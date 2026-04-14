@@ -68,6 +68,8 @@
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   z-index: 2;
+  object-fit: contain !important;
+  background-color: var(--bg-color);
 }
 
 /* Tabs */

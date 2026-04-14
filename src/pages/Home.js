@@ -20,7 +20,7 @@ const renderPokemons = (container) => {
   });
 
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state retro-font" style="grid-column: 1 / -1;">Nenhum Pokémon encontrado.</div>';
+    grid.innerHTML = '<div class="empty-state" style="grid-column: 1 / -1;">Nenhum Pokémon encontrado.</div>';
     return;
   }
 
@@ -55,7 +55,7 @@ const Home = async (container) => {
         ${SearchBar({ searchMode: searchTerm })}
         ${Filter({ selectedType })}
       </div>
-      <div class="loading-state retro-font" id="home-loading">Carregando Pokédex...</div>
+      <div class="loading-state" id="home-loading">Carregando Pokédex...</div>
       <div class="pokemon-grid" style="display: none;"></div>
     </main>
   `;

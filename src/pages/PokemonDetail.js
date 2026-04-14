@@ -60,7 +60,7 @@ const PokemonDetail = async (container, id) => {
 
   const getSprite = () => {
     try {
-      return pokemon.sprites.versions['generation-i']['red-blue'].front_default || pokemon.sprites.front_default;
+      return pokemon.sprites.versions['generation-i']['red-blue'].front_transparent || pokemon.sprites.versions['generation-i']['yellow'].front_transparent || pokemon.sprites.front_default;
     } catch {
       return pokemon.sprites?.front_default || '';
     }
@@ -88,8 +88,8 @@ const PokemonDetail = async (container, id) => {
   if (evos.length > 1) {
     const evosItems = evos.map((evo, idx) => `
       <a href="#/pokemon/${evo.id}" class="evo-item">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/${evo.id}.png" alt="${evo.name}" />
-        <span class="retro-font capitalize">${evo.name}</span>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${evo.id}.png" alt="${evo.name}" />
+        <span class="capitalize">${evo.name}</span>
       </a>
       ${idx < evos.length - 1 ? '<span class="evo-arrow">→</span>' : ''}
     `).join('');

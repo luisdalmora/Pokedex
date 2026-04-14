@@ -14,11 +14,11 @@ const Header = ({ darkMode }) => {
       <div class="container header-content">
         <a href="#/" class="brand">
           <div class="pokeball-icon"></div>
-          <h1 class="retro-font brand-title">Pokédex</h1>
+          <h1 class="brand-title">Pokédex</h1>
         </a>
         <nav class="nav-links">
-          <a href="#/" class="nav-link retro-font">Kanto</a>
-          <a href="#/games" class="nav-link retro-font">Jogos</a>
+          <a href="#/" class="nav-link">Kanto</a>
+          <a href="#/games" class="nav-link">Jogos</a>
           <button class="theme-toggle" aria-label="Toggle Theme">
             ${darkMode ? MdLightMode : MdDarkMode}
           </button>

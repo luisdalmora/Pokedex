@@ -1,9 +1,8 @@
-/* Layout & Pages CSS */
 .app-header {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--card-bg);
+  color: var(--text-main);
   padding: 15px 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border-color);
   margin-bottom: 30px;
 }
 
@@ -21,9 +20,9 @@
 
 .brand-title {
   font-size: 1.5rem;
-  letter-spacing: 2px;
-  color: white;
-  text-shadow: 2px 2px 0px var(--primary-dark);
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
 .nav-links {
@@ -33,14 +32,17 @@
 }
 
 .nav-link {
-  font-size: 0.8rem;
-  padding: 5px 10px;
-  border-radius: 4px;
-  transition: background 0.3s;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
 }
 
 .nav-link:hover {
-  background: rgba(255,255,255,0.2);
+  background: var(--bg-color);
+  color: var(--text-main);
 }
 
 .theme-toggle {
@@ -49,12 +51,14 @@
   justify-content: center;
   padding: 8px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  transition: background 0.3s;
+  color: var(--text-muted);
+  background: transparent;
+  transition: all 0.2s;
 }
 
 .theme-toggle:hover {
-  background: rgba(255,255,255,0.4);
+  background: var(--bg-color);
+  color: var(--text-main);
 }
 
 /* Controls */
@@ -63,6 +67,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 30px;
 }
 
@@ -70,12 +75,17 @@
   display: flex;
   align-items: center;
   background: var(--card-bg);
-  padding: 10px 15px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 2px solid var(--border-color);
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
   flex: 1;
-  max-width: 500px;
+  max-width: 400px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition: border-color 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: var(--primary);
 }
 
 .search-input {
@@ -92,21 +102,31 @@
 .filter-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .filter-label {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
 }
 
 .filter-select {
-  padding: 10px;
-  border-radius: var(--radius);
-  border: 2px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
   background: var(--card-bg);
   color: var(--text-main);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.filter-select:hover {
+  border-color: var(--primary);
 }
 
 /* Loading & Empty states */
@@ -184,6 +204,7 @@
   width: 200px;
   height: 200px;
   image-rendering: pixelated;
+  transform: scale(1.3);
   margin-bottom: 20px;
 }
 
@@ -291,6 +312,7 @@
   width: 80px;
   height: 80px;
   image-rendering: pixelated;
+  transform: scale(1.4);
 }
 
 .evo-item span {
@@ -327,7 +349,7 @@
 
 .game-cover {
   width: 250px;
-  object-fit: contain;
+  object-fit: contain !important;
   background: var(--bg-color);
   border-right: 2px solid var(--border-color);
 }

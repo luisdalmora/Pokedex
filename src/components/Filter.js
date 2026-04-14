@@ -14,8 +14,8 @@ const Filter = ({ selectedType }) => {
 
   return `
     <div class="filter-container">
-      <span class="filter-label retro-font">Tipo:</span>
-      <select id="type-filter" class="filter-select retro-font">
+      <span class="filter-label">Tipo:</span>
+      <select id="type-filter" class="filter-select">
         ${optionsHtml}
       </select>
     </div>
