@@ -42,7 +42,8 @@ export const renderPokemonDetail = async (container, id) => {
 
   try {
     pokemon = await fetchPokemonDetails(id);
-    species = await fetchSpeciesDetails(id);
+    if (!pokemon) throw new Error('Pokemon not found');
+    species = await fetchSpeciesDetails(pokemon.species.name);
     
     // Evolução Horizontal
     if (species.evolution_chain?.url) {
