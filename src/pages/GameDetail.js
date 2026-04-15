@@ -18,10 +18,11 @@ const renderModal = (container) => {
     <div class="pokemon-column">
       <div class="circle-avatar">
         <img 
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${poke.id}.png" 
-          onerror="this.onerror = null; this.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png';"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${poke.id}.png" 
+          onerror="this.onerror = null; this.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png';"
           alt="${poke.name}" 
-          class="sprite-pixelated"
+          class="sprite-3d"
+          style="width: 60px; height: 60px; object-fit: contain; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));"
         />
       </div>
       <h4 class="retro-font poke-name-title">${poke.name}</h4>
@@ -115,9 +116,9 @@ const renderTabs = (container) => {
             || poke.sprites?.front_default 
             || '';
           return `
-            <a href="#/pokemon/${poke.id}" class="pokemon-card exclusive-card">
-              <img src="${pokeSprite}" alt="${poke.name}" class="pokemon-sprite" />
-              <h4 class="capitalize">${poke.name}</h4>
+            <a href="#/pokemon/${poke.id}" class="pokemon-card exclusive-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; padding: 10px;">
+              <img src="${pokeSprite}" alt="${poke.name}" class="pokemon-sprite" style="max-height: 80px; width: auto; object-fit: contain; margin-bottom: 5px;" />
+              <h4 class="capitalize" style="font-size: 0.85em; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0;">${poke.name}</h4>
             </a>
           `;
         }).join('');
