@@ -1,5 +1,6 @@
-import { fetchPokemonDetails, fetchSpeciesDetails, fetchEvolutionChain } from '../services/api.js';
+import { fetchPokemonDetails, fetchSpeciesDetails, fetchEvolutionChain, fetchSpecialEvolutionsFallback } from '../services/api.js';
 import ProgressBar from '../components/ProgressBar.js';
+import EvolutionTree from '../components/EvolutionTree.js';
 
 let isFavorite = false;
 
@@ -34,6 +35,7 @@ const PokemonDetail = async (container, id) => {
 
   let pokemon, species, evos = [];
   let varietiesHtml = '';
+  let evosHtml = '';
 
   try {
     pokemon = await fetchPokemonDetails(id);
@@ -41,43 +43,14 @@ const PokemonDetail = async (container, id) => {
     
     if (species.evolution_chain?.url) {
       const evoData = await fetchEvolutionChain(species.evolution_chain.url);
-      let currentEvo = evoData.chain;
+      const specialEvolutionsFallbackData = await fetchSpecialEvolutionsFallback();
       
-      do {
-        const speciesUrlParts = currentEvo.species.url.split('/');
-        const speciesId = speciesUrlParts[speciesUrlParts.length - 2];
-        const details = currentEvo.evolution_details && currentEvo.evolution_details[0] ? currentEvo.evolution_details[0] : {};
-        let triggerType = 'level';
-        let triggerValue = details.min_level || '?';
-        let triggerIcon = '';
-
-        if (details.trigger?.name === 'trade') {
-            triggerType = 'trade';
-            triggerIcon = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/link-cable.png';
-        } else if (details.item) {
-            triggerType = 'item';
-            triggerValue = details.item.name;
-            triggerIcon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${details.item.name}.png`;
-        } else if (details.min_happiness) {
-            triggerType = 'happiness';
-            triggerIcon = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/soothe-bell.png';
-        } else if (details.min_level) {
-            triggerType = 'level';
-            triggerValue = details.min_level;
-        } else if (details.trigger?.name) {
-            triggerType = 'other';
-            triggerValue = '?';
-        }
-
-        evos.push({
-          name: currentEvo.species.name,
-          id: speciesId,
-          triggerType,
-          triggerValue,
-          triggerIcon
-        });
-        currentEvo = currentEvo.evolves_to[0];
-      } while (currentEvo && !!currentEvo);
+      evosHtml = `
+        <div class="evolution-section" style="margin-top: 30px;">
+          <h3 class="retro-font" style="text-align: center; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 10px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 20px; border-radius: 0;">Cadeia de Evolução</h3>
+          ${EvolutionTree(evoData.chain, specialEvolutionsFallbackData.specialEvolutions)}
+        </div>
+      `;
     }
 
     if (species.varieties && species.varieties.length > 1) {
@@ -160,49 +133,6 @@ const PokemonDetail = async (container, id) => {
       value: stat.base_stat 
     })
   ).join('');
-
-  let evosHtml = '';
-  if (evos.length > 1) {
-    const evosItems = evos.map((evo, idx) => {
-      let arrowHtml = '';
-      if (idx < evos.length - 1) {
-         const nextEvo = evos[idx+1];
-         let triggerHtml = '';
-         
-         if (nextEvo.triggerType === 'level') {
-            triggerHtml = `<div style="background: #e2e8f0; clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%); padding: 5px 20px 5px 10px; font-weight: bold; font-size: 0.85em; display: flex; align-items: center; justify-content: center; color: #333; margin-top: -20px;">Lv. ${nextEvo.triggerValue}</div>`;
-         } else if (nextEvo.triggerType === 'item' || nextEvo.triggerType === 'trade' || nextEvo.triggerType === 'happiness') {
-            triggerHtml = `
-              <div style="display: flex; flex-direction: column; align-items: center; margin-top: -20px;">
-                <img src="${nextEvo.triggerIcon}" style="width: 32px; height: 32px; image-rendering: pixelated; filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.2));" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png';" title="${nextEvo.triggerType === 'trade' ? 'Trade' : nextEvo.triggerType === 'happiness' ? 'Happiness' : nextEvo.triggerValue}" />
-                <span style="font-size: 1.2em; color: #ccc; margin-top: -5px;">&rarr;</span>
-              </div>
-            `;
-         } else {
-            triggerHtml = `<span class="evo-arrow" style="font-size: 24px; color: #ccc; margin-top: -20px;">→</span>`;
-         }
-         
-         arrowHtml = `<div style="display: flex; align-items: center; justify-content: center; margin: 0 10px;">${triggerHtml}</div>`;
-      }
-      
-      return `
-        <a href="#/pokemon/${evo.id}" class="evo-item" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-          <div style="background: rgba(0,0,0,0.03); border-radius: 50%; padding: 15px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
-             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${evo.id}.png" alt="${evo.name}" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evo.id}.png';" style="max-height: 100%; object-fit: contain; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));" />
-          </div>
-          <span class="capitalize" style="margin-top: 10px; font-weight: bold; color: var(--text-color);">${evo.name}</span>
-        </a>
-        ${arrowHtml}
-      `;
-    }).join('');
-
-    evosHtml = `
-      <div class="evolution-section">
-        <h3 class="retro-font" style="text-align: center; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 10px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 20px; border-radius: 0;">Cadeia de Evolução</h3>
-        <div class="evolution-chain" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">${evosItems}</div>
-      </div>
-    `;
-  }
 
   container.innerHTML = `
     <main class="container detail-page animate-fade" style="--card-type-color: var(--type-${primaryType});">

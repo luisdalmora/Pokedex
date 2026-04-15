@@ -271,7 +271,7 @@
   transition: width 1s ease-out;
 }
 
-/* Evolutions */
+/* Evolutions - Tree Structure */
 .evolution-section {
   margin-top: 40px;
   padding-top: 30px;
@@ -284,46 +284,18 @@
   text-align: center;
 }
 
-.evolution-chain {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.evo-card:hover { border-color: var(--primary) !important; transform: scale(1.1); box-shadow: var(--shadow-hover) !important; z-index: 10; }
 
-.evo-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: var(--bg-color);
-  padding: 15px;
-  border-radius: 50%;
-  border: 3px solid var(--border-color);
-  transition: all 0.3s;
-}
+.evo-line-right { width: 30px; height: 2px; background-color: var(--border-color); margin: 0 5px; }
+.evo-branch-line-horiz { width: 20px; height: 2px; background-color: var(--border-color); margin: 0 5px; }
 
-.evo-item:hover {
-  border-color: var(--primary);
-  transform: scale(1.1);
-}
+.tooltip-container { position: relative; cursor: help; }
+.tooltip-container .tooltip-text { visibility: hidden; opacity: 0; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 5px 10px; position: absolute; z-index: 20; bottom: 125%; left: 50%; transform: translateX(-50%); transition: opacity 0.3s; pointer-events: none; white-space: nowrap; font-size: 10px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+.tooltip-container .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #333 transparent transparent transparent; }
+.tooltip-container:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-.evo-item img {
-  width: 80px;
-  height: 80px;
-  image-rendering: pixelated;
-  transform: scale(1.4);
-}
-
-.evo-item span {
-  font-size: 0.6rem;
-  margin-top: 10px;
-}
-
-.evo-arrow {
-  font-size: 2rem;
-  color: var(--text-muted);
-}
+.evo-condition { transition: transform 0.2s; }
+.evo-condition:hover { transform: scale(1.1); }
 
 /* Games Section */
 .page-title {

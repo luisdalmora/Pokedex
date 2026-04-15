@@ -79,3 +79,13 @@ export const fetchGenerationGames = async (genSlug) => {
   }
 };
 
+export const fetchSpecialEvolutionsFallback = async () => {
+  try {
+    const response = await fetch('./src/data/special-evolutions.json');
+    if (!response.ok) return { specialEvolutions: [] };
+    return await response.json();
+  } catch (error) {
+    return { specialEvolutions: [] };
+  }
+};
+
