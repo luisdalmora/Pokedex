@@ -3,10 +3,13 @@ const PokemonCard = (pokemon) => {
 
   const getSprite = () => {
     try {
-      // Usando a versão transparente da Geração I para evitar o fundo branco
-      return pokemon.sprites.versions['generation-i']['red-blue'].front_transparent
-        || pokemon.sprites.versions['generation-i']['yellow'].front_transparent
-        || pokemon.sprites.front_default;
+      // Priorizando imagens em 3D (Home) ou Official Artwork
+      const other = pokemon.sprites?.other || {};
+      return other.home?.front_default 
+        || other['official-artwork']?.front_default
+        || pokemon.sprites.versions?.['generation-i']?.['red-blue']?.front_transparent
+        || pokemon.sprites?.front_default 
+        || '';
     } catch (e) {
       return pokemon.sprites?.front_default || '';
     }

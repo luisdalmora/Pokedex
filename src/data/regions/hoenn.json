@@ -1,0 +1,10 @@
+{
+  "name": "Hoenn",
+  "generation": 3,
+  "range": {
+    "start": 252,
+    "end": 386
+  },
+  "image": "/assets/regions/hoenn.png",
+  "description": "Muitas águas, ilhas e clima tropical introduzida em Pokémon Ruby & Sapphire."
+}

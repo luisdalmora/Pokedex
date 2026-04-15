@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Pokémon Black Version",
+    "slug": "black",
+    "color": "#222222",
+    "year": "2010",
+    "region": "Unova",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d1/Black_EN_boxart.png/250px-Black_EN_boxart.png",
+    "description": "Um reinício completo na franquia com a Geração V, contendo a narrativa mais elogiada enfrentando N e a Equipe Plasma.",
+    "features": ["Apenas Pokémon novos antes da Elite 4", "Sprites totalmente animados em combate"],
+    "exclusivesTitle": "Exclusivos Black",
+    "exclusives": ["reshiram"]
+  },
+  {
+    "name": "Pokémon White Version",
+    "slug": "white",
+    "color": "#dddddd",
+    "year": "2010",
+    "region": "Unova",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/87/White_EN_boxart.png/250px-White_EN_boxart.png",
+    "description": "A busca pelos ideais ao lado de Zekrom na região urbana de Unova.",
+    "features": ["White Forest", "Múltiplos climas urbanos e estações do ano"],
+    "exclusivesTitle": "Exclusivos White",
+    "exclusives": ["zekrom"]
+  },
+  {
+    "name": "Pokémon Black Version 2",
+    "slug": "black-2",
+    "color": "#111111",
+    "year": "2012",
+    "region": "Unova",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/66/Black_2_EN_boxart.png/250px-Black_2_EN_boxart.png",
+    "description": "A primeira sequência direta da franquia, passando-se 2 anos no futuro de Black & White.",
+    "features": ["Pokémon World Tournament", "Fusão de Lendários com Kyurem Clássico"],
+    "exclusivesTitle": "Lendário Fusão",
+    "exclusives": ["kyurem-black"]
+  },
+  {
+    "name": "Pokémon White Version 2",
+    "slug": "white-2",
+    "color": "#eeeeee",
+    "year": "2012",
+    "region": "Unova",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/2/29/White_2_EN_boxart.png/250px-White_2_EN_boxart.png",
+    "description": "Sequência do White original com Kyurem White controlando a capa.",
+    "features": ["Pokéstar Studios", "Expansão massiva da rota regional"],
+    "exclusivesTitle": "Lendário Fusão",
+    "exclusives": ["kyurem-white"]
+  }
+]

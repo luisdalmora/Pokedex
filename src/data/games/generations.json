@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "slug": "gen1",
+    "name": "Geração 1 (Game Boy)"
+  },
+  {
+    "id": 2,
+    "slug": "gen2",
+    "name": "Geração 2 (Game Boy Color)"
+  },
+  {
+    "id": 3,
+    "slug": "gen3",
+    "name": "Geração 3 (Game Boy Advance)"
+  },
+  {
+    "id": 4,
+    "slug": "gen4",
+    "name": "Geração 4 (Nintendo DS)"
+  },
+  {
+    "id": 5,
+    "slug": "gen5",
+    "name": "Geração 5 (Nintendo DS)"
+  },
+  {
+    "id": 6,
+    "slug": "gen6",
+    "name": "Geração 6 (Nintendo 3DS)"
+  },
+  {
+    "id": 7,
+    "slug": "gen7",
+    "name": "Geração 7 (3DS / Switch)"
+  },
+  {
+    "id": 8,
+    "slug": "gen8",
+    "name": "Geração 8 (Nintendo Switch)"
+  },
+  {
+    "id": 9,
+    "slug": "gen9",
+    "name": "Geração 9 (Switch / Switch 2)"
+  }
+]

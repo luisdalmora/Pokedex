@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Pokémon Ruby Version",
+    "slug": "ruby",
+    "color": "#a12323",
+    "year": "2002",
+    "region": "Hoenn",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/14/Ruby_EN_boxart.png/250px-Ruby_EN_boxart.png",
+    "description": "Lançado como parte da 3ª Geração, apresentando a região de Hoenn liderada pelo lendário Groudon.",
+    "features": ["Introdução de batalhas em dupla", "Abilities nativas e Natures"],
+    "exclusivesTitle": "Exclusivos de Ruby",
+    "exclusives": ["seedot", "zangoose", "groudon"]
+  },
+  {
+    "name": "Pokémon Sapphire Version",
+    "slug": "sapphire",
+    "color": "#2341a1",
+    "year": "2002",
+    "region": "Hoenn",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d1/Sapphire_EN_boxart.png/250px-Sapphire_EN_boxart.png",
+    "description": "Ao lado de Ruby, estrela o lendário Kyogre focado no domínio dos mares de Hoenn.",
+    "features": ["Novos vilões: Equipe Aqua", "Climas globais de Chuva Intensa"],
+    "exclusivesTitle": "Exclusivos de Sapphire",
+    "exclusives": ["lotad", "seviper", "kyogre"]
+  },
+  {
+    "name": "Pokémon Emerald Version",
+    "slug": "emerald",
+    "color": "#1ca34d",
+    "year": "2004",
+    "region": "Hoenn",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/65/Emerald_EN_boxart.jpg/250px-Emerald_EN_boxart.jpg",
+    "description": "A versão definitiva da Geração III, unindo a Equipe Magma e Aqua controladas por Rayquaza.",
+    "features": ["Battle Frontier", "Animações nos sprites dos Pokémon"],
+    "exclusivesTitle": "Inclusões de Emerald",
+    "exclusives": ["rayquaza"]
+  },
+  {
+    "name": "Pokémon Omega Ruby",
+    "slug": "omega-ruby",
+    "color": "#c43333",
+    "year": "2014",
+    "region": "Hoenn",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/0/05/Omega_Ruby_EN_boxart.png/250px-Omega_Ruby_EN_boxart.png",
+    "description": "Remake tridimensional dos clássicos da Geração III para o 3DS.",
+    "features": ["Primal Groudon", "Retorno na Geração VI"],
+    "exclusivesTitle": "Exclusivos de Omega Ruby",
+    "exclusives": ["groudon"]
+  },
+  {
+    "name": "Pokémon Alpha Sapphire",
+    "slug": "alpha-sapphire",
+    "color": "#335fc4",
+    "year": "2014",
+    "region": "Hoenn",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/7b/Alpha_Sapphire_EN_boxart.png/250px-Alpha_Sapphire_EN_boxart.png",
+    "description": "Remake tridimensional dos clássicos da Geração III para o 3DS.",
+    "features": ["Primal Kyogre", "Episódio Delta"],
+    "exclusivesTitle": "Exclusivos de Alpha Sapphire",
+    "exclusives": ["kyogre"]
+  }
+]

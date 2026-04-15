@@ -1,0 +1,10 @@
+{
+  "name": "Paldea",
+  "generation": 9,
+  "range": {
+    "start": 906,
+    "end": 1025
+  },
+  "image": "/assets/regions/paldea.png",
+  "description": "Uma região vasta de mundo aberto em Scarlet & Violet inspirada na Península Ibérica."
+}

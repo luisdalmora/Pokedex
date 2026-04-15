@@ -38,3 +38,44 @@ export const fetchVersionGroup = async (groupUrl) => {
   if (!response.ok) throw new Error('Version group not found');
   return response.json();
 };
+
+// --- Funções de Dados Locais ---
+
+export const fetchRegionsList = async () => {
+  const response = await fetch('./src/data/regions/regions.json');
+  if (!response.ok) throw new Error('Failed to fetch regions list');
+  return response.json();
+};
+
+export const fetchRegionData = async (regionSlug) => {
+  const response = await fetch(`./src/data/regions/${regionSlug}.json`);
+  if (!response.ok) throw new Error(`Failed to fetch region data for ${regionSlug}`);
+  return response.json();
+};
+
+export const fetchRegionGames = async (regionSlug) => {
+  try {
+    const response = await fetch(`./src/data/games/${regionSlug}-games.json`);
+    if (!response.ok) return []; // Ignora caso a região ainda não tenha o arquivo com jogos
+    return await response.json();
+  } catch (error) {
+    return [];
+  }
+};
+
+export const fetchGenerationsList = async () => {
+  const response = await fetch('./src/data/games/generations.json');
+  if (!response.ok) throw new Error('Failed to fetch generations list');
+  return response.json();
+};
+
+export const fetchGenerationGames = async (genSlug) => {
+  try {
+    const response = await fetch(`./src/data/games/${genSlug}-games.json`);
+    if (!response.ok) return [];
+    return await response.json();
+  } catch (error) {
+    return [];
+  }
+};
+

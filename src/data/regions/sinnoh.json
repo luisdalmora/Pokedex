@@ -1,0 +1,10 @@
+{
+  "name": "Sinnoh",
+  "generation": 4,
+  "range": {
+    "start": 387,
+    "end": 493
+  },
+  "image": "/assets/regions/sinnoh.png",
+  "description": "Região gelada com uma mitologia rica e a lenda da criação do universo Pokémon."
+}

@@ -33,6 +33,7 @@ const PokemonDetail = async (container, id) => {
   isFavorite = storedFavorites.includes(id);
 
   let pokemon, species, evos = [];
+  let varietiesHtml = '';
 
   try {
     pokemon = await fetchPokemonDetails(id);
@@ -52,6 +53,39 @@ const PokemonDetail = async (container, id) => {
         currentEvo = currentEvo.evolves_to[0];
       } while (currentEvo && !!currentEvo);
     }
+
+    if (species.varieties && species.varieties.length > 1) {
+      try {
+        const varietyPromises = species.varieties.map(v => fetch(v.pokemon.url).then(r => r.json()));
+        const varietiesData = await Promise.all(varietyPromises);
+        
+        const varietiesItems = varietiesData.map(vData => {
+           const vSprite = vData.sprites?.other?.home?.front_default || vData.sprites?.other?.['official-artwork']?.front_default || vData.sprites?.front_default || '';
+           let label = vData.name;
+           if(label === pokemon.name) label = "Normal";
+           else label = label.replace(pokemon.name + '-', '');
+           
+           return `
+             <div class="variety-item pokemon-card" style="display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 0 0 auto; min-width: 120px;">
+               <img src="${vSprite}" alt="${vData.name}" style="height: 100px; object-fit: contain;" />
+               <span class="retro-font" style="font-size: 0.7em; text-transform: capitalize; text-align: center;">${label.replace('-', ' ')}</span>
+             </div>
+           `;
+        }).join('');
+        
+        varietiesHtml = `
+          <div class="varieties-section" style="margin-top: 30px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 20px;">
+            <h3 class="retro-font" style="text-align: center; margin-bottom: 20px;">Variações & Formas</h3>
+            <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; justify-content: center; flex-wrap: wrap;">
+              ${varietiesItems}
+            </div>
+          </div>
+        `;
+      } catch(e) {
+         console.error("Error loading varieties", e);
+      }
+    }
+
   } catch (err) {
     console.error(err);
     container.innerHTML = '<div class="container retro-font">Pokémon não encontrado.</div>';
@@ -60,16 +94,22 @@ const PokemonDetail = async (container, id) => {
 
   const getSprite = () => {
     try {
-      return pokemon.sprites.versions['generation-i']['red-blue'].front_transparent || pokemon.sprites.versions['generation-i']['yellow'].front_transparent || pokemon.sprites.front_default;
+      const other = pokemon.sprites?.other || {};
+      return other.home?.front_default 
+        || other['official-artwork']?.front_default
+        || pokemon.sprites?.front_default 
+        || '';
     } catch {
       return pokemon.sprites?.front_default || '';
     }
   };
 
   const getFlavorText = () => {
-    const entry = species?.flavor_text_entries?.find(e => e.language.name === 'en' && e.version.name === 'red');
+    const entry = species?.flavor_text_entries?.find(e => e.language.name === 'en');
     return entry ? entry.flavor_text.replace(/\f/g, ' ') : 'Nenhuma descrição encontrada.';
   };
+
+  const primaryType = pokemon.types[0].type.name;
 
   const typesHtml = pokemon.types.map(t => `
     <span class="type-pill retro-font" style="background-color: var(--type-${t.type.name})">
@@ -87,23 +127,23 @@ const PokemonDetail = async (container, id) => {
   let evosHtml = '';
   if (evos.length > 1) {
     const evosItems = evos.map((evo, idx) => `
-      <a href="#/pokemon/${evo.id}" class="evo-item">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${evo.id}.png" alt="${evo.name}" />
-        <span class="capitalize">${evo.name}</span>
+      <a href="#/pokemon/${evo.id}" class="evo-item" style="text-decoration: none;">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${evo.id}.png" alt="${evo.name}" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${evo.id}.png';" style="height: 100px; object-fit: contain; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));" />
+        <span class="capitalize" style="margin-top: 10px; font-weight: bold; color: var(--text-color);">${evo.name}</span>
       </a>
-      ${idx < evos.length - 1 ? '<span class="evo-arrow">→</span>' : ''}
+      ${idx < evos.length - 1 ? '<span class="evo-arrow" style="font-size: 24px; color: #ccc;">→</span>' : ''}
     `).join('');
 
     evosHtml = `
       <div class="evolution-section">
-        <h3 class="retro-font">Cadeia de Evolução</h3>
-        <div class="evolution-chain">${evosItems}</div>
+        <h3 class="retro-font" style="text-align: center; border-bottom: 2px dashed rgba(0,0,0,0.1); padding-bottom: 10px; border-top: 2px dashed rgba(0,0,0,0.1); padding-top: 20px; border-radius: 0;">Cadeia de Evolução</h3>
+        <div class="evolution-chain" style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">${evosItems}</div>
       </div>
     `;
   }
 
   container.innerHTML = `
-    <main class="container detail-page animate-fade">
+    <main class="container detail-page animate-fade" style="--card-type-color: var(--type-${primaryType});">
       <a href="#/" class="back-link retro-font">< Voltar</a>
       
       <div class="detail-card">
@@ -117,21 +157,24 @@ const PokemonDetail = async (container, id) => {
         </div>
 
         <div class="detail-body">
-          <div class="detail-sprite-container">
-            <img src="${getSprite()}" alt="${pokemon.name}" class="detail-sprite" />
-            <div class="types-container detail-types">${typesHtml}</div>
+          <div class="detail-sprite-container" style="background-color: color-mix(in srgb, var(--card-type-color) 25%, transparent); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="${getSprite()}" alt="${pokemon.name}" class="detail-sprite" style="max-height: 250px; filter: drop-shadow(4px 4px 10px rgba(0,0,0,0.3));" />
+            <div class="types-container detail-types" style="margin-top: 20px;">${typesHtml}</div>
           </div>
 
           <div class="detail-info">
-            <p class="description retro-font">${getFlavorText()}</p>
+            <div style="background-color: #f0f0f0; padding: 20px; border-radius: 12px; border: 2px solid #ddd; margin-bottom: 20px;">
+              <p class="description retro-font" style="line-height: 1.6; font-size: 0.9em;">${getFlavorText()}</p>
+            </div>
             
             <div class="stats-container">
-              <h3 class="retro-font">Base Stats</h3>
+              <h3 class="retro-font" style="margin-bottom: 15px;">Base Stats</h3>
               ${statsHtml}
             </div>
           </div>
         </div>
         ${evosHtml}
+        ${varietiesHtml}
       </div>
     </main>
   `;

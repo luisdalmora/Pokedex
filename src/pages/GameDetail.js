@@ -1,5 +1,4 @@
-import { gamesData } from '../data/games.js';
-import { fetchPokemonDetails } from '../services/api.js';
+import { fetchPokemonDetails, fetchRegionsList, fetchRegionGames } from '../services/api.js';
 import ImageWithFallback from '../components/ImageWithFallback.js';
 
 let activeTab = 'overview';
@@ -98,7 +97,7 @@ const renderTabs = (container) => {
         <p class="retro-text">${game.description}</p>
         <h3 class="retro-font mt-4">Features</h3>
         <ul class="features-list">
-          ${game.features.map(f => `<li>✓ ${f}</li>`).join('')}
+          ${game.features && game.features.map(f => `<li>✓ ${f}</li>`).join('')}
         </ul>
       </div>
     `;
@@ -107,20 +106,34 @@ const renderTabs = (container) => {
     if (loadingExclusives) {
       gridContent = Array.from({ length: 6 }).map(() => '<div class="skeleton card-skeleton"></div>').join('');
     } else {
-      gridContent = exclusivesData.map(poke => `
-        <a href="#/pokemon/${poke.id}" class="pokemon-card exclusive-card">
-          <img src="${poke.sprites.versions['generation-i']['red-blue'].front_default || poke.sprites.front_default}" alt="${poke.name}" class="pokemon-sprite" />
-          <h4 class="capitalize">${poke.name}</h4>
-        </a>
-      `).join('');
+      if(exclusivesData.length === 0) {
+        gridContent = '<p style="grid-column: 1 / -1">Nenhum Pokémon exclusivo mapeado.</p>';
+      } else {
+        gridContent = exclusivesData.map(poke => {
+          const pokeSprite = poke.sprites?.other?.home?.front_default 
+            || poke.sprites?.other?.['official-artwork']?.front_default
+            || poke.sprites?.front_default 
+            || '';
+          return `
+            <a href="#/pokemon/${poke.id}" class="pokemon-card exclusive-card">
+              <img src="${pokeSprite}" alt="${poke.name}" class="pokemon-sprite" />
+              <h4 class="capitalize">${poke.name}</h4>
+            </a>
+          `;
+        }).join('');
+      }
     }
     contentArea.innerHTML = `
       <div class="exclusives-tab animate-fade">
-        <h3 class="retro-font tooltip-title">${game.exclusivesTitle}</h3>
+        <h3 class="retro-font tooltip-title">${game.exclusivesTitle || 'Exclusivos'}</h3>
         <div class="pokemon-grid">${gridContent}</div>
       </div>
     `;
   } else if (activeTab === 'leaders') {
+    if(!game.leaders || game.leaders.length === 0) {
+       contentArea.innerHTML = '<div class="leaders-tab animate-fade"><p>Líderes não cadastrados para esta versão.</p></div>';
+       return;
+    }
     contentArea.innerHTML = `
       <div class="leaders-tab animate-fade">
         <h3 class="retro-font">Líderes de Ginásio (${game.region})</h3>
@@ -141,7 +154,7 @@ const renderTabs = (container) => {
                 <span class="type-pill retro-font" style="background-color: var(--type-${leader.type})">${leader.type}</span>
                 <div class="leader-badge-container mt-2">
                   <p><strong>Insígnia:</strong><br/>${leader.badge}</p>
-                  ${['red', 'blue', 'green'].includes(game.slug) ? `
+                  ${game.slug === 'red' || game.slug === 'blue' || game.slug === 'green' || game.slug === 'yellow' ? `
                     <div style="margin-top: 10px;">
                       <img 
                         src="./images/badges/${leader.badge.toLowerCase().replace(' ', '-')}.png" 
@@ -182,8 +195,22 @@ const GameDetail = async (container, slug) => {
   activeTab = 'overview';
   loadingExclusives = true;
   selectedLeader = null;
+  game = null;
   
-  game = gamesData.find(g => g.slug === slug);
+  try {
+     const regionsSlug = await fetchRegionsList();
+     for (const r of regionsSlug) {
+        const gamesList = await fetchRegionGames(r);
+        const found = gamesList.find(g => g.slug === slug);
+        if (found) {
+           game = found;
+           break;
+        }
+     }
+  } catch(e) {
+     console.error('Erro buscando detalhe de jogo:', e);
+  }
+
   if (!game) {
     container.innerHTML = '<main class="container retro-font">Jogo não encontrado.</main>';
     return;
@@ -219,7 +246,6 @@ const GameDetail = async (container, slug) => {
   window.removeEventListener('keydown', handleKeydown);
   window.addEventListener('keydown', handleKeydown);
   
-  // Cleanup hook
   window.unmountCurrent = () => window.removeEventListener('keydown', handleKeydown);
 
   container.querySelectorAll('.tab-btn').forEach(btn => {
@@ -232,8 +258,12 @@ const GameDetail = async (container, slug) => {
   renderTabs(container);
 
   try {
-    const promises = game.exclusives.map(poke => fetchPokemonDetails(poke));
-    exclusivesData = await Promise.all(promises);
+    if(game.exclusives && game.exclusives.length > 0) {
+      const promises = game.exclusives.map(poke => fetchPokemonDetails(poke));
+      exclusivesData = await Promise.all(promises);
+    } else {
+      exclusivesData = [];
+    }
   } catch (err) {
     console.error("Error fetching exclusives", err);
   } finally {

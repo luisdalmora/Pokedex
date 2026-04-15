@@ -1,11 +1,16 @@
-import { fetchPokemons, fetchPokemonDetails } from '../services/api.js';
+import { fetchPokemons, fetchPokemonDetails, fetchRegionsList, fetchRegionData } from '../services/api.js';
 import PokemonCard from '../components/PokemonCard.js';
 import SearchBar from '../components/SearchBar.js';
 import Filter from '../components/Filter.js';
+import RegionFilter from '../components/RegionFilter.js';
 
 let cachedPokemons = [];
 let searchTerm = '';
 let selectedType = '';
+let currentRegionParam = 'kanto';
+
+let cachedRegions = [];
+let regionsDataMap = {};
 
 const renderPokemons = (container) => {
   const grid = container.querySelector('.pokemon-grid');
@@ -43,17 +48,79 @@ const attachEvents = (container) => {
       renderPokemons(container);
     });
   }
+
+  const regionSelect = container.querySelector('#region-filter');
+  if (regionSelect) {
+    regionSelect.addEventListener('change', async (e) => {
+      currentRegionParam = e.target.value;
+      searchTerm = '';
+      selectedType = '';
+      if(searchInput) searchInput.value = '';
+      if(filterSelect) filterSelect.value = '';
+      await loadRegionPokemons(container);
+    });
+  }
 };
+
+const loadRegionPokemons = async (container) => {
+  const loadingEl = container.querySelector('#home-loading');
+  const grid = container.querySelector('.pokemon-grid');
+  
+  if (loadingEl) {
+    loadingEl.style.display = 'block';
+    loadingEl.textContent = `Carregando Pokédex da região ${currentRegionParam}...`;
+  }
+  if (grid) grid.style.display = 'none';
+
+  try {
+    const regionInfo = regionsDataMap[currentRegionParam];
+    
+    // Calcula o offset e o limit para a geração/região
+    const limit = regionInfo.range.end - regionInfo.range.start + 1;
+    const offset = regionInfo.range.start - 1;
+
+    const data = await fetchPokemons(limit, offset);
+    const detailsPromises = data.results.map(p => fetchPokemonDetails(p.name));
+    cachedPokemons = await Promise.all(detailsPromises);
+    
+  } catch (error) {
+    console.error("Error loading pokemons:", error);
+  }
+
+  if (loadingEl) loadingEl.style.display = 'none';
+  if (grid) grid.style.display = 'grid';
+  renderPokemons(container);
+};
+
 
 const Home = async (container) => {
   searchTerm = '';
   selectedType = '';
   
+  if (cachedRegions.length === 0) {
+    try {
+      const regionsList = await fetchRegionsList();
+      const regionsFetchPromises = regionsList.map(async (slug) => {
+         const d = await fetchRegionData(slug);
+         d.slug = slug;
+         return d;
+      });
+      cachedRegions = await Promise.all(regionsFetchPromises);
+       
+      cachedRegions.forEach(cr => {
+         regionsDataMap[cr.slug] = cr;
+      });
+    } catch (e) {
+      console.error("Erro ao carregar lista de regiões:", e);
+    }
+  }
+
   container.innerHTML = `
     <main class="container animate-fade">
       <div class="controls-section">
         ${SearchBar({ searchMode: searchTerm })}
         ${Filter({ selectedType })}
+        ${RegionFilter({ regions: cachedRegions, selectedRegion: currentRegionParam })}
       </div>
       <div class="loading-state" id="home-loading">Carregando Pokédex...</div>
       <div class="pokemon-grid" style="display: none;"></div>
@@ -62,23 +129,7 @@ const Home = async (container) => {
 
   attachEvents(container);
 
-  if (cachedPokemons.length === 0) {
-    try {
-      const data = await fetchPokemons(151);
-      const detailsPromises = data.results.map(p => fetchPokemonDetails(p.name));
-      cachedPokemons = await Promise.all(detailsPromises);
-    } catch (error) {
-      console.error("Error loading pokemons:", error);
-    }
-  }
-
-  const loadingEl = container.querySelector('#home-loading');
-  if (loadingEl) loadingEl.style.display = 'none';
-  
-  const grid = container.querySelector('.pokemon-grid');
-  if (grid) grid.style.display = 'grid';
-  
-  renderPokemons(container);
+  await loadRegionPokemons(container);
 };
 
 export default Home;

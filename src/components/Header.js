@@ -17,7 +17,7 @@ const Header = ({ darkMode }) => {
           <h1 class="brand-title">Pokédex</h1>
         </a>
         <nav class="nav-links">
-          <a href="#/" class="nav-link">Kanto</a>
+          <a href="#/" class="nav-link">Regiões</a>
           <a href="#/games" class="nav-link">Jogos</a>
           <button class="theme-toggle" aria-label="Toggle Theme">
             ${darkMode ? MdLightMode : MdDarkMode}

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Pokémon Sword",
+    "slug": "sword",
+    "console": "Nintendo Switch",
+    "color": "#01b0f0",
+    "year": "2019",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/1a/Sword_EN_boxart.png/250px-Sword_EN_boxart.png",
+    "description": "Exploração dos campos selvagens expandidos (Wild Area) em 3D de mundo-livre no Reino Unido da oitava Geração."
+  },
+  {
+    "name": "Pokémon Shield",
+    "slug": "shield",
+    "console": "Nintendo Switch",
+    "color": "#e30022",
+    "year": "2019",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/9/91/Shield_EN_boxart.png/250px-Shield_EN_boxart.png",
+    "description": "Ao lado do seu antecessor formaram a imersão de RPG base no Switch com Raid cooperativas para a Geração 8."
+  },
+  {
+    "name": "Pokémon Brilliant Diamond",
+    "slug": "brilliant-diamond",
+    "console": "Nintendo Switch",
+    "color": "#add8e6",
+    "year": "2021",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/4/41/Brilliant_Diamond_EN_boxart.png/250px-Brilliant_Diamond_EN_boxart.png",
+    "description": "Remake belíssimo 3D clássico estilo top-down da icônica versão clássica retro."
+  },
+  {
+    "name": "Pokémon Shining Pearl",
+    "slug": "shining-pearl",
+    "console": "Nintendo Switch",
+    "color": "#ffb6c1",
+    "year": "2021",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/52/Shining_Pearl_EN_boxart.png/250px-Shining_Pearl_EN_boxart.png",
+    "description": "Um remake fiel as raízes transportando o 2D de Nintendo DS para um modelagem de boneco Chibi moderno."
+  },
+  {
+    "name": "Pokémon Legends: Arceus",
+    "slug": "legends-arceus",
+    "console": "Nintendo Switch",
+    "color": "#a8a183",
+    "year": "2022",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/1c/Legends_Arceus_EN_boxart.png/250px-Legends_Arceus_EN_boxart.png",
+    "description": "Um título spin-off focado que revolucionou o núcleo com capturas ativas 100% no mundo antigo antes das regras atuais de Pokémon em Hisui."
+  }
+]

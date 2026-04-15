@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Pokémon Gold Version",
+    "slug": "gold",
+    "console": "Game Boy Color",
+    "color": "#e6b800",
+    "year": "1999",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/2/22/Gold_EN_boxart.png/250px-Gold_EN_boxart.png",
+    "description": "Retorne a Johto e encare Ho-Oh com ciclos de dia e noite em cores no GBC."
+  },
+  {
+    "name": "Pokémon Silver Version",
+    "slug": "silver",
+    "console": "Game Boy Color",
+    "color": "#c0c0c0",
+    "year": "1999",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/77/Silver_EN_boxart.png/250px-Silver_EN_boxart.png",
+    "description": "Contraparte da versão Gold destacando o lendário dos mares, Lugia."
+  },
+  {
+    "name": "Pokémon Crystal Version",
+    "slug": "crystal",
+    "console": "Game Boy Color",
+    "color": "#a1d7c4",
+    "year": "2000",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/60/Crystal_EN_boxart.png/250px-Crystal_EN_boxart.png",
+    "description": "A primeira versão definitiva com sprites animados na introdução, estrelando Suicune."
+  }
+]
