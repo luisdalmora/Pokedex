@@ -16,7 +16,13 @@ export const state = {
     search: '',
     type: ''
   },
-  loading: false
+  loading: false,
+  dailyPokemon: null,
+  quiz: {
+    current: null,
+    score: 0,
+    guessed: false
+  }
 };
 
 export const setPokemons = (newPokemons) => {

@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { translateType } from './translations.js';
 
 export const formatId = (id) => `#${String(id).padStart(3, '0')}`;
 
@@ -18,7 +19,7 @@ export const getSprite = (pokemon) => {
 export const createTypePill = (typeName) => {
   const span = document.createElement('span');
   span.className = `type-pill type-color-${typeName}`;
-  span.textContent = typeName;
+  span.textContent = translateType(typeName);
   return span;
 };
 

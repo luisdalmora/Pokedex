@@ -24,6 +24,16 @@ const loadGameDetail = async (container, slug) => {
   }
 };
 
+const loadQuizView = async (container) => {
+  try {
+    const { renderQuizView } = await import('./views/quiz.js');
+    await renderQuizView(container);
+  } catch(e) {
+    console.error(e);
+    container.innerHTML = '<div class="empty-state">Erro ao carregar o Quiz.</div>';
+  }
+};
+
 const router = async () => {
   const hash = window.location.hash.slice(1) || '/';
   const container = document.getElementById('app-content');
@@ -43,6 +53,9 @@ const router = async () => {
   else if (hash === '/games') {
     await initGamesView(container);
   } 
+  else if (hash === '/quiz') {
+    await loadQuizView(container);
+  }
   else if (hash.startsWith('/pokemon/')) {
     const id = hash.split('/')[2];
     await loadPokemonDetail(container, id);
