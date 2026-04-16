@@ -1,6 +1,8 @@
-import { fetchPokemonDetails } from '../api.js';
-import { state } from '../state.js';
-import { getSprite } from '../render.js';
+import { fetchPokemonDetails } from '../services/api.js';
+import { getSprite } from '../utils/helpers.js';
+import { renderNav } from '../components/Nav.js';
+
+const state = { quiz: null };
 
 export const renderQuizView = async (container) => {
   container.innerHTML = '<div class="loading-state">Preparando o Quiz...</div>';
@@ -28,13 +30,7 @@ export const renderQuizView = async (container) => {
     const sprite = getSprite(state.quiz.current);
     
     container.innerHTML = `
-      <nav class="main-nav" style="margin-top: -40px; margin-bottom: 40px; margin-left: -20px; margin-right: -20px; border-radius: 0 0 10px 10px;">
-        <div class="nav-inner">
-          <a href="#/" class="nav-btn">Pokédex</a>
-          <a href="#/games" class="nav-btn">Jogos & Regiões</a>
-          <a href="#/quiz" class="nav-btn active">Quiz</a>
-        </div>
-      </nav>
+      ${renderNav('/quiz')}
 
       <div class="animate-fade" style="background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
         

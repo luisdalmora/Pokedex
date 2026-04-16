@@ -1,36 +1,60 @@
-import { renderHomeView } from './views/home.js';
-import { initGamesView } from './views/games.js';
-
-// Minimal DOM manipulation without importing the entire old router to preserve the new architecture.
+const loadHomeView = async (container) => {
+  try {
+    const { renderHomeView } = await import('./pages/Home.js');
+    await renderHomeView(container);
+  } catch(e) {
+    console.error(e);
+    container.innerHTML = '<div class="empty-state">Erro ao carregar a página inicial.</div>';
+  }
+};
 
 const loadPokemonDetail = async (container, id) => {
-  // To avoid huge files, we dynamically import the detail view
   try {
-    const { renderPokemonDetail } = await import('./views/pokemonDetail.js');
+    const { renderPokemonDetail } = await import('./pages/PokemonDetail.js');
     await renderPokemonDetail(container, id);
   } catch(e) {
     console.error(e);
-    container.innerHTML = '<div class="empty-state">Erro ao carregar detalhes.</div>';
+    container.innerHTML = '<div class="empty-state">Erro ao carregar detalhes do Pokémon.</div>';
+  }
+};
+
+const loadGamesView = async (container) => {
+  try {
+    const { initGamesView } = await import('./pages/games.js');
+    await initGamesView(container);
+  } catch(e) {
+    console.error(e);
+    container.innerHTML = '<div class="empty-state">Erro ao carregar jogos.</div>';
   }
 };
 
 const loadGameDetail = async (container, slug) => {
   try {
-    const { renderGameDetail } = await import('./views/gameDetail.js');
+    const { renderGameDetail } = await import('./pages/gameDetail.js');
     await renderGameDetail(container, slug);
   } catch(e) {
     console.error(e);
-    container.innerHTML = '<div class="empty-state">Erro ao carregar partida.</div>';
+    container.innerHTML = '<div class="empty-state">Erro ao carregar detalhes do jogo.</div>';
   }
 };
 
 const loadQuizView = async (container) => {
   try {
-    const { renderQuizView } = await import('./views/quiz.js');
+    const { renderQuizView } = await import('./pages/quiz.js');
     await renderQuizView(container);
   } catch(e) {
     console.error(e);
-    container.innerHTML = '<div class="empty-state">Erro ao carregar o Quiz.</div>';
+    container.innerHTML = '<div class="empty-state">Erro ao carregar quiz.</div>';
+  }
+};
+
+const loadCompareView = async (container) => {
+  try {
+    const { renderCompareView } = await import('./pages/Compare.js');
+    await renderCompareView(container);
+  } catch(e) {
+    console.error(e);
+    container.innerHTML = '<div class="empty-state">Erro ao carregar comparador.</div>';
   }
 };
 
@@ -39,20 +63,25 @@ const router = async () => {
   const container = document.getElementById('app-content');
   if (!container) return;
 
-  // Cleanup old timers or events if any (simple approach)
   if (window.unmountCurrent) {
     window.unmountCurrent();
     window.unmountCurrent = null;
   }
 
-  container.innerHTML = '<div class="loading-state">Aguarde...</div>';
+  container.innerHTML = `
+    <div style="display:flex; justify-content:center; align-items:center; min-height:50vh;">
+       <div class="skeleton-img shimmer" style="width: 80px; height:80px;"></div>
+    </div>`;
 
   if (hash === '/') {
-    await renderHomeView(container);
+    await loadHomeView(container);
   } 
+  else if (hash === '/compare') {
+    await loadCompareView(container);
+  }
   else if (hash === '/games') {
-    await initGamesView(container);
-  } 
+    await loadGamesView(container);
+  }
   else if (hash === '/quiz') {
     await loadQuizView(container);
   }
@@ -63,24 +92,29 @@ const router = async () => {
   else if (hash.startsWith('/games/')) {
     const slug = hash.split('/')[2];
     await loadGameDetail(container, slug);
-  } 
+  }
   else {
-    container.innerHTML = '<div class="empty-state">Página não encontrada.</div>';
+    container.innerHTML = '<div class="empty-state">Página não encontrada ou em construção. <a href="#/">Voltar para Home</a></div>';
   }
 };
 
 const init = () => {
-  // Global theme toggle trigger check
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       const isDark = document.body.dataset.theme === 'dark';
       if (isDark) {
         document.body.removeAttribute('data-theme');
+        localStorage.setItem('pokedex-theme', 'light');
       } else {
         document.body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('pokedex-theme', 'dark');
       }
     });
+    
+    // Check saved theme
+    const saved = localStorage.getItem('pokedex-theme');
+    if (saved === 'dark') document.body.setAttribute('data-theme', 'dark');
   }
 
   window.addEventListener('hashchange', router);

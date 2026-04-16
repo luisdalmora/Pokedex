@@ -1,20 +1,5 @@
-import { state } from './state.js';
-import { translateType } from './translations.js';
-
-export const formatId = (id) => `#${String(id).padStart(3, '0')}`;
-
-export const getSprite = (pokemon) => {
-  try {
-    const other = pokemon.sprites?.other || {};
-    return other.home?.front_default 
-      || other['official-artwork']?.front_default
-      || pokemon.sprites.versions?.['generation-i']?.['red-blue']?.front_transparent
-      || pokemon.sprites?.front_default 
-      || '';
-  } catch (e) {
-    return pokemon.sprites?.front_default || '';
-  }
-};
+import { formatId, getSprite } from '../utils/helpers.js';
+import { translateType } from '../utils/translations.js';
 
 export const createTypePill = (typeName) => {
   const span = document.createElement('span');
@@ -23,8 +8,9 @@ export const createTypePill = (typeName) => {
   return span;
 };
 
-// Evitar innerHTML na criação do card, usar API DOM ou template strings de forma unificada para performance
 export const createPokemonCard = (pokemon) => {
+  if (!pokemon) return createSkeletonCard();
+
   const primaryType = pokemon.types[0].type.name;
   
   const card = document.createElement('a');
@@ -45,7 +31,7 @@ export const createPokemonCard = (pokemon) => {
   img.src = getSprite(pokemon);
   img.alt = pokemon.name;
   img.className = 'pokemon-sprite float-anim';
-  img.loading = 'lazy'; // Lazy loading
+  img.loading = 'lazy';
   spriteContainer.appendChild(img);
   
   const info = document.createElement('div');
@@ -53,7 +39,7 @@ export const createPokemonCard = (pokemon) => {
   
   const name = document.createElement('h3');
   name.className = 'pokemon-name';
-  name.textContent = pokemon.name;
+  name.textContent = pokemon.name.replace('-', ' ');
   
   const typesContainer = document.createElement('div');
   typesContainer.className = 'types-container';
@@ -71,7 +57,23 @@ export const createPokemonCard = (pokemon) => {
   return card;
 };
 
-// Renderiza uma lista de pokemon no grid
+export const createSkeletonCard = () => {
+  const card = document.createElement('div');
+  card.className = 'pokemon-card skeleton-card animate-fade';
+  card.innerHTML = `
+    <div class="card-header"><span class="skeleton-id shimmer"></span></div>
+    <div class="sprite-container"><div class="skeleton-img shimmer"></div></div>
+    <div class="card-info">
+      <div class="skeleton-name shimmer"></div>
+      <div class="types-container">
+        <div class="skeleton-type shimmer"></div>
+        <div class="skeleton-type shimmer"></div>
+      </div>
+    </div>
+  `;
+  return card;
+};
+
 export const renderPokemonGrid = (container, pokemons, append = false) => {
   if (!append) {
     container.innerHTML = '';
@@ -88,19 +90,4 @@ export const renderPokemonGrid = (container, pokemons, append = false) => {
   });
   
   container.appendChild(fragment);
-};
-
-export const renderLoading = (container, show) => {
-  let loader = document.getElementById('loading-spinner');
-  if (show) {
-    if (!loader) {
-      loader = document.createElement('div');
-      loader.id = 'loading-spinner';
-      loader.className = 'loading-state';
-      loader.textContent = 'Carregando Pokédex...';
-      container.appendChild(loader);
-    }
-  } else {
-    if (loader) loader.remove();
-  }
 };
