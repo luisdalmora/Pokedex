@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -26,6 +26,7 @@ export function SafeImage({
   const [errorCount, setErrorCount] = useState(0);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   // Sync with prop changes
   useEffect(() => {
@@ -35,18 +36,23 @@ export function SafeImage({
     setHasError(false);
   }, [src]);
 
+  // Handle cached images
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [currentSrc]);
+
   const handleError = () => {
     if (errorCount === 0 && src?.includes("home")) {
-      // First fallback: Try official artwork if HOME fails
       const officialArtwork = src.replace("other/home", "other/official-artwork");
       setCurrentSrc(officialArtwork);
       setErrorCount(1);
     } else {
-      // Final fallback: Poke-ball
       setCurrentSrc(fallback);
       setErrorCount(2);
       setHasError(true);
-      setIsLoaded(true); // Stop skeleton since we are showing fallback
+      setIsLoaded(true); 
     }
   };
 
@@ -64,7 +70,8 @@ export function SafeImage({
       </AnimatePresence>
       
       <motion.img
-        key={currentSrc} // Force re-render on src change to trigger onLoad/onError
+        ref={imgRef}
+        key={currentSrc}
         src={currentSrc}
         alt={alt}
         initial={{ opacity: 0 }}

@@ -20,7 +20,7 @@ const getTriggerLabel = (details: EvolutionDetail) => {
     if (details.min_affection) return "Afeto";
     if (details.known_move) return "Aprender Golpe";
     if (details.location) return "Localização";
-    if (details.time_of_day && details.time_of_day !== "") return `Dia/Noite`;
+    if ("time_of_day" in details && details.time_of_day) return `Dia/Noite`;
   }
   
   if (details.trigger.name === "use-item" && details.item) {
