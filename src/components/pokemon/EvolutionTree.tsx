@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { EvolutionLink, EvolutionDetail } from "@/types/pokemon";
-import { getOfficialArtwork } from "@/utils/spriteResolver";
+import { getBestAvailableSprite } from "@/utils/spriteResolver";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Box, Zap, Repeat } from "lucide-react";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 /**
  * Helper to display the evolution trigger in a friendly way
@@ -19,7 +20,7 @@ const getTriggerLabel = (details: EvolutionDetail) => {
     if (details.min_affection) return "Afeto";
     if (details.known_move) return "Aprender Golpe";
     if (details.location) return "Localização";
-    if (details.time_of_day) return `Dia/Noite`;
+    if (details.time_of_day && details.time_of_day !== "") return `Dia/Noite`;
   }
   
   if (details.trigger.name === "use-item" && details.item) {
@@ -48,8 +49,8 @@ interface TreeNodeProps {
 const PokemonNode = ({ speciesName, id }: { speciesName: string, id: string }) => (
   <Link href={`/pokemon/${id}`} className="group flex flex-col items-center">
     <div className="w-16 h-16 lg:w-20 lg:h-20 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center p-2 border-2 border-transparent group-hover:border-rose-500 transition-all shadow-sm">
-      <img 
-        src={getOfficialArtwork(id)} 
+      <SafeImage 
+        src={getBestAvailableSprite(id)} 
         alt={speciesName} 
         className="w-full h-full object-contain"
       />

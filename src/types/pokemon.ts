@@ -108,4 +108,5 @@ export interface EvolutionDetail {
   trade_species: { name: string; url: string } | null;
   needs_overworld_rain: boolean;
   turn_upside_down: boolean;
+  time_of_day?: string | null;
 }

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { PokemonSummary } from "@/types/pokemon";
 import { translateType } from "@/utils/translations";
 import { getTypeColor } from "@/utils/pokemonStyles";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -39,7 +40,7 @@ export function PokemonCard({ pokemon }: { pokemon: PokemonSummary }) {
           </span>
 
           <div className="relative w-40 h-40 mb-4 group-hover:drop-shadow-2xl transition-all duration-300">
-            <img 
+            <SafeImage 
                src={pokemon.image} 
                alt={pokemon.name}
                className="w-full h-full object-contain filter group-hover:brightness-105"

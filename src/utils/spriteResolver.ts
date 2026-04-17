@@ -1,14 +1,28 @@
 /**
  * Standardized Sprite Resolver for Pokédex Project
- * Level: Professional
+ * Priority: HOME (3D) -> Official Artwork -> Default
  */
 
 export const getOfficialArtwork = (id: number | string): string => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
 };
 
+export const getHomeSprite = (id: number | string): string => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
+};
+
 export const getFallbackImage = (): string => {
   return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
+};
+
+/**
+ * Returns the best available high-res image.
+ * Uses HOME (3D) as priority, falling back to Official Artwork.
+ */
+export const getBestAvailableSprite = (id: number | string): string => {
+  // Since we are in a client/server environment where we can't easily ping URLs,
+  // we return the HOME sprite and rely on SafeImage component for 404 fallbacks.
+  return getHomeSprite(id);
 };
 
 export const getSpriteByVersion = (id: number | string, version: string): string => {
@@ -35,6 +49,6 @@ export const getSpriteByVersion = (id: number | string, version: string): string
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/${path}`;
   }
 
-  // Default to Official Artwork
-  return getOfficialArtwork(id);
+  // Default to Best High-Res
+  return getBestAvailableSprite(id);
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getOfficialArtwork } from "@/utils/spriteResolver";
+import { getBestAvailableSprite } from "@/utils/spriteResolver";
 import Link from "next/link";
 import { Layers } from "lucide-react";
 import { motion } from "framer-motion";
+import { SafeImage } from "@/components/ui/SafeImage";
 
 interface Variety {
   is_default: boolean;
@@ -67,10 +67,10 @@ export function AlternativeForms({
                 }`}
               >
                 <div className="w-16 h-16 lg:w-20 lg:h-20 mb-2">
-                  <img 
-                    src={getOfficialArtwork(id)} 
+                  <SafeImage 
+                    src={getBestAvailableSprite(id)} 
                     alt={name}
-                    className={`w-full h-full object-contain ${isCurrent ? "" : "filter grayscale group-hover:grayscale-0"}`}
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <span className={`text-[10px] font-black uppercase tracking-tighter text-center max-w-[80px] leading-tight ${

@@ -3,6 +3,23 @@ import { Gamepad2, Monitor, Calendar } from "lucide-react";
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/SafeImage";
 
+const BOX_ART_MAP: Record<string, string> = {
+  "lets-go-pikachu": "lets-go-pikachu-switch",
+  "lets-go-eevee": "lets-go-eevee-switch",
+  "green": "pocket-monsters-green", // Original Japanese Green
+  "red-2": "pocket-monsters-red",    // If we ever have a conflict
+  "legends-arceus": "legends-arceus",
+  "brilliant-diamond": "brilliant-diamond",
+  "shining-pearl": "shining-pearl",
+  "scarlet": "scarlet",
+  "violet": "violet"
+};
+
+const getBoxArtUrl = (gameId: string) => {
+  const slug = BOX_ART_MAP[gameId] || gameId;
+  return `https://img.pokemondb.net/boxes/${slug}.jpg`;
+};
+
 export default function GamesPage() {
   return (
     <div className="p-8 lg:p-12 max-w-7xl mx-auto space-y-12">
@@ -40,7 +57,7 @@ export default function GamesPage() {
                       >
                         <div className="w-12 h-16 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0">
                           <SafeImage 
-                            src={`https://img.pokemondb.net/boxes/${game.id.replace('lets-go-pikachu', 'lets-go-pikachu-switch').replace('lets-go-eevee', 'lets-go-eevee-switch')}.jpg`} 
+                            src={getBoxArtUrl(game.id)} 
                             alt={game.name}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform"
                           />

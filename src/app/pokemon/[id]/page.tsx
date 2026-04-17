@@ -1,10 +1,11 @@
 import { getPokemon, getPokemonSpecies, getEvolutionChain } from "@/services/pokeapi";
-import { getOfficialArtwork } from "@/utils/spriteResolver";
+import { getBestAvailableSprite } from "@/utils/spriteResolver";
 import { translateType, getPtBrText } from "@/utils/translations";
 import { getTypeColor } from "@/utils/pokemonStyles";
 import { StatsBar } from "@/components/pokemon/StatsBar";
 import { EvolutionTree } from "@/components/pokemon/EvolutionTree";
 import { AlternativeForms } from "@/components/pokemon/AlternativeForms";
+import { SafeImage } from "@/components/ui/SafeImage";
 import { ChevronLeft, Scale, Ruler, Zap, Info } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -42,10 +43,11 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
 
         {/* Big Float Image */}
         <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-64 h-64 lg:w-80 lg:h-80 drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-500">
-           <img 
-              src={getOfficialArtwork(pokemon.id)} 
+           <SafeImage 
+              src={getBestAvailableSprite(pokemon.id)} 
               alt={pokemon.name}
               className="w-full h-full object-contain"
+              useSkeleton={false}
            />
         </div>
       </div>

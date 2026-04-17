@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getPokemonList, getPokemon } from "@/services/pokeapi";
-import { getOfficialArtwork } from "@/utils/spriteResolver";
+import { getBestAvailableSprite } from "@/utils/spriteResolver";
 import { PokemonSummary } from "@/types/pokemon";
 import { PokemonCard, PokemonSkeleton } from "@/components/pokemon/PokemonCard";
 import { Search, Dices } from "lucide-react";
@@ -19,16 +19,21 @@ export default function PokedexPage() {
       const results = await getPokemonList(100, 0);
       const detailed = await Promise.all(
         results.map(async (p) => {
-          const detail = await getPokemon(p.name);
-          return {
-            id: detail!.id,
-            name: detail!.name,
-            types: detail!.types.map(t => t.type.name),
-            image: getOfficialArtwork(detail!.id),
-          };
+          try {
+            const detail = await getPokemon(p.name);
+            if (!detail) return null;
+            return {
+              id: detail.id,
+              name: detail.name,
+              types: detail.types.map(t => t.type.name),
+              image: getBestAvailableSprite(detail.id),
+            };
+          } catch (e) {
+            return null;
+          }
         })
       );
-      setPokemon(detailed);
+      setPokemon(detailed.filter((p): p is PokemonSummary => p !== null));
       setLoading(false);
     }
     loadData();
