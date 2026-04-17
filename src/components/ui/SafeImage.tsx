@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -14,19 +14,26 @@ interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   useSkeleton?: boolean;
 }
 
-export function SafeImage({ 
+export const SafeImage = forwardRef<HTMLImageElement, SafeImageProps>(({ 
   src, 
   fallback = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png", 
   className, 
   alt,
   useSkeleton = true,
+  onDrag,
+  onDragStart,
+  onDragEnd,
+  onAnimationStart,
   ...props 
-}: SafeImageProps) {
+}, ref) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [errorCount, setErrorCount] = useState(0);
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const internalRef = useRef<HTMLImageElement>(null);
+
+  // Sync refs: internal usage + external ref
+  useImperativeHandle(ref, () => internalRef.current!);
 
   // Sync with prop changes
   useEffect(() => {
@@ -38,13 +45,13 @@ export function SafeImage({
 
   // Handle cached images
   useEffect(() => {
-    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+    if (internalRef.current?.complete && internalRef.current?.naturalWidth > 0) {
       setIsLoaded(true);
     }
   }, [currentSrc]);
 
   const handleError = () => {
-    if (errorCount === 0 && src?.includes("home")) {
+    if (errorCount === 0 && typeof src === "string" && src.includes("home")) {
       const officialArtwork = src.replace("other/home", "other/official-artwork");
       setCurrentSrc(officialArtwork);
       setErrorCount(1);
@@ -70,8 +77,8 @@ export function SafeImage({
       </AnimatePresence>
       
       <motion.img
-        ref={imgRef}
-        key={currentSrc}
+        ref={internalRef}
+        key={typeof currentSrc === "string" ? currentSrc : undefined}
         src={currentSrc}
         alt={alt}
         initial={{ opacity: 0 }}
@@ -82,9 +89,11 @@ export function SafeImage({
         transition={{ duration: 0.3 }}
         onLoad={() => setIsLoaded(true)}
         onError={handleError}
-        className={cn("w-full h-full object-contain", props.className)}
+        className={cn("w-full h-full object-contain", className)}
         {...props}
       />
     </div>
   );
-}
+});
+
+SafeImage.displayName = "SafeImage";
