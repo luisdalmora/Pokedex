@@ -197,6 +197,8 @@ export const fetchLocalExclusives = async (generationSlug) => {
  * Using PokéAPI's sprites.versions structure
  */
 export const getVersionSprite = (sprites, versionGroup) => {
+    if (!sprites) return null;
+
     // Mapping versionGroup to PokeAPI sprite keys
     const mapping = {
         'red-blue': ['generation-i', 'red-blue'],
@@ -224,8 +226,78 @@ export const getVersionSprite = (sprites, versionGroup) => {
     try {
         const generation = sprites.versions[path[0]];
         const game = generation[path[1]];
+        // For older generations, 'transparent' often exists and looks better
         return game.front_default || sprites.front_default;
     } catch (e) {
         return sprites.front_default;
     }
 };
+
+const idCache = {};
+
+/**
+ * Resolves a Pokémon name to its ID and types by fetching from PokéAPI
+ * Uses a local cache to avoid redundant requests
+ */
+export const resolvePokemonId = async (name) => {
+    const slug = name.toLowerCase().replace(/[\s.]+/g, '-');
+    if (idCache[slug]) return idCache[slug];
+
+    try {
+        const data = await fetchPokemonDetails(slug);
+        if (data) {
+            const info = {
+                id: data.id,
+                types: data.types.map(t => t.type.name),
+                name: data.name
+            };
+            idCache[slug] = info;
+            return info;
+        }
+    } catch (e) {
+        console.warn(`Could not resolve ID for ${name}`);
+    }
+    return null;
+};
+
+/**
+ * Returns a static sprite URL for a specific pokemon ID based on the game version
+ */
+export const getPokemonSpriteUrl = (idOrName, versionGroup = 'modern') => {
+    const key = idOrName;
+    
+    // Gen 1 & 2
+    if (versionGroup === 'red' || versionGroup === 'blue' || versionGroup === 'yellow' || versionGroup === 'red-blue') {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/${key}.png`;
+    }
+    if (versionGroup === 'gold' || versionGroup === 'silver' || versionGroup === 'crystal') {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-ii/${versionGroup}/transparent/${key}.png`;
+    }
+    
+    // Gen 3
+    if (versionGroup === 'ruby' || versionGroup === 'sapphire' || versionGroup === 'emerald') {
+        const path = versionGroup === 'emerald' ? 'emerald' : 'ruby-sapphire';
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/${path}/${key}.png`;
+    }
+    if (versionGroup === 'firered' || versionGroup === 'leafgreen') {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/${key}.png`;
+    }
+
+    // Gen 4
+    if (versionGroup === 'diamond' || versionGroup === 'pearl' || versionGroup === 'platinum') {
+        const path = versionGroup === 'platinum' ? 'platinum' : 'diamond-pearl';
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/${path}/${key}.png`;
+    }
+    if (versionGroup === 'heartgold' || versionGroup === 'soulsilver') {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iv/heartgold-soulsilver/${key}.png`;
+    }
+
+    // Gen 5
+    if (versionGroup === 'black' || versionGroup === 'white' || versionGroup === 'black-2' || versionGroup === 'white-2') {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${key}.gif`;
+    }
+
+    // Modern (Gen 6-9) - Default to High Quality Official Artwork
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${key}.png`;
+};
+
