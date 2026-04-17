@@ -123,8 +123,8 @@ export default async function GameDetailPage({ params }: { params: Promise<{ id:
                       <h4 className="font-black text-slate-900 dark:text-white capitalize">{leader.name}</h4>
                       <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{leader.role}</p>
                       <div className="flex gap-1 mt-2">
-                        {leader.pokemon?.map(p => (
-                          <div key={p} className="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 p-0.5" title={p}>
+                        {leader.pokemon?.map((p, pIdx) => (
+                          <div key={`${p}-${pIdx}`} className="w-6 h-6 rounded-md bg-slate-100 dark:bg-slate-800 p-0.5" title={p}>
                             <img src={`https://img.pokemondb.net/sprites/home/normal/${p.toLowerCase().replace(/ /g, '-')}.png`} className="w-full h-full object-contain" alt={p}/>
                           </div>
                         ))}
