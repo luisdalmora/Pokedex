@@ -32,7 +32,7 @@ export const renderQuizView = async (container) => {
     container.innerHTML = `
       ${renderNav('/quiz')}
 
-      <div class="animate-fade" style="background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 600px; margin: 0 auto;">
+      <div class="animate-fade container" style="margin-top: 40px; background: var(--card-bg); border-radius: 20px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 600px;">
         
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">
           <h2 style="font-size: 2rem; font-weight: 800; display: flex; align-items: center; gap: 10px;"><span style="font-size: 1.8rem;">🤔</span> Quem é esse Pokémon?</h2>

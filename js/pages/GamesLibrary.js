@@ -16,7 +16,7 @@ export const renderGamesLibrary = async (container) => {
 
     container.innerHTML = `
         ${renderNav('/games')}
-        <div class="animate-fade">
+        <div class="animate-fade container" style="margin-top: 40px;">
             <div style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: flex-end;">
                 <div>
                     <a href="#/games" class="nav-btn" style="color: var(--text-muted); font-weight: bold; text-decoration: none; display: block; margin-bottom: 15px;">&larr; Voltar para Regiões</a>

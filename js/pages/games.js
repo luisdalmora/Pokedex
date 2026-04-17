@@ -17,11 +17,13 @@ const romanToNum = (roman) => {
 export const initGamesView = async (container) => {
   container.innerHTML = `
     ${renderNav('/games')}
-    <div style="margin-bottom: 40px; text-align:center;">
-       <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">🗺️ Mundo Pokémon</h2>
-       <p style="color: var(--text-muted); font-size: 1.2rem;">Escolha uma região para explorar seus jogos e Pokédex nativa.</p>
+    <div class="container animate-fade" style="margin-top: 40px;">
+       <div style="margin-bottom: 40px; text-align:center;">
+          <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">🗺️ Mundo Pokémon</h2>
+          <p style="color: var(--text-muted); font-size: 1.2rem;">Escolha uma região para explorar seus jogos e Pokédex nativa.</p>
+       </div>
+       <div id="regions-content"><div class="loading-state">Buscando regiões no satélite...</div></div>
     </div>
-    <div id="regions-content"><div class="loading-state">Buscando regiões no satélite...</div></div>
   `;
 
   const content = document.getElementById('regions-content');

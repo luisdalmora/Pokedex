@@ -74,7 +74,7 @@ export const renderCompareView = async (container) => {
   const render = () => {
     container.innerHTML = `
       ${renderNav('/compare')}
-      <div class="animate-fade">
+      <div class="animate-fade container" style="margin-top: 40px;">
         <h2 style="text-align:center; font-size: 2rem; margin-bottom: 30px;">Comparador Pokédex</h2>
         <div class="compare-container">
           ${renderSlot(pokemon1, 1)}

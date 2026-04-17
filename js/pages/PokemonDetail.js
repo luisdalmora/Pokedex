@@ -129,8 +129,8 @@ export const renderPokemonDetail = async (container, id) => {
 
   // Build the main UI
   let html = `
-    <div class="animate-fade">
-      <nav class="main-nav" style="margin-top: -40px; margin-bottom: 30px; margin-left: -20px; margin-right: -20px; border-radius: 0 0 10px 10px;">
+    <div class="animate-fade container" style="margin-top: 40px;">
+      <nav class="main-nav" style="margin-bottom: 30px; border-radius: 10px;">
         <div class="nav-inner">
           <a href="#/" class="nav-btn" style="color: var(--text-main); font-weight: bold;">&larr; Voltar para Pokédex</a>
         </div>

@@ -25,36 +25,36 @@ const renderSmallDexCard = (id, title, desc, icon, gradient) => `
 
 export const renderHomeView = async (container) => {
     container.innerHTML = `
-        <!-- Hero Section -->
-        <section class="hero-dashboard animate-fade" style="background-image: url('./assets/images/backgrounds/hero-bg.png');">
-            <div class="hero-content">
-                <h1 class="hero-title">Pokédex Completa</h1>
-                <p class="hero-subtitle">Explore Pokémon por região, jogos ou Pokédex especiais.</p>
-                <div class="hero-actions">
-                    <a href="#/pokemon/1" class="btn-premium btn-primary">
-                        <span style="font-size: 1.2rem;">✨</span> Ver Nacional
-                    </a>
-                    <a href="#/games" class="btn-premium btn-secondary" onclick="document.getElementById('section-pokedex').scrollIntoView({behavior: 'smooth'})">
-                        <span style="font-size: 1.2rem;">🗓️</span> Regiões
-                    </a>
-                </div>
+        <!-- Panoramic Hero Section with Integrated UI -->
+        <section class="hero-dashboard animate-fade" style="background-image: url('./assets/images/backgrounds/hero-bg.png'); height: 580px; flex-direction: column; align-items: stretch; justify-content: space-between; padding: 40px 8%; border-radius: 0;">
+            <!-- Top Bar: Theme Toggle -->
+            <div style="display: flex; justify-content: flex-end; width: 100%;">
+                <button class="theme-toggle" id="hero-theme-toggle" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 12px; border-radius: 50%; color: white; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;">
+                    <svg fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                </button>
             </div>
-        </section>
 
-        <!-- Navigation (Sticky) -->
-        <nav class="dashboard-tabs">
-            <div class="tabs-container">
-                <button class="tab-item active" data-target="section-pokedex">
-                    <span style="font-size: 1.2rem;">🗓️</span> Pokédex
-                </button>
-                <button class="tab-item" data-target="section-jogos">
-                    <span style="font-size: 1.2rem;">🎮</span> Jogos
-                </button>
-                <button class="tab-item" data-target="section-outros">
-                    <span style="font-size: 1.2rem;">🔘</span> Outros Pokédex
-                </button>
+            <!-- Middle Row: Branding -->
+            <div class="hero-content" style="max-width: 900px; margin: 0; padding: 0;">
+                <h1 class="hero-title" style="font-size: 6rem; line-height: 0.9; margin-bottom: 25px; font-weight: 950; letter-spacing: -3px; color: white;">Pokédex <br>Completa</h1>
+                <p class="hero-subtitle" style="font-size: 1.6rem; opacity: 1; border-left: 6px solid #fcd34d; padding-left: 25px; max-width: 600px; color: white;">Explore Pokémon por região, jogos ou Pokédex especiais.</p>
             </div>
-        </nav>
+
+            <!-- Bottom Row: Integrated Navigation Menu -->
+            <nav class="dashboard-tabs" style="margin-top: 50px; justify-content: flex-start; position: relative; top: 0; background: none;">
+                <div class="tabs-container" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); padding: 8px; border-radius: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
+                    <button class="tab-item active" data-target="section-pokedex" style="color: white; padding: 15px 30px; background: rgba(255,255,255,0.1);">
+                        <span style="font-size: 1.2rem;">📅</span> Pokédex
+                    </button>
+                    <button class="tab-item" data-target="section-jogos" style="color: white; padding: 15px 30px;">
+                        <span style="font-size: 1.2rem;">🎮</span> Jogos
+                    </button>
+                    <button class="tab-item" data-target="section-outros" style="color: white; padding: 15px 30px;">
+                        <span style="font-size: 1.2rem;">🔘</span> Outros Pokédex
+                    </button>
+                </div>
+            </nav>
+        </section>
 
         <div id="dashboard-content" class="dashboard-content-layout">
             <!-- Pokédex Section -->
@@ -113,6 +113,17 @@ export const renderHomeView = async (container) => {
             }
         });
     });
+
+    // Integrated Theme Toggle Logic
+    const themeBtn = document.getElementById('hero-theme-toggle');
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('pokedex-theme', targetTheme);
+        });
+    }
 
     const loadGames = async () => {
         const gamesContainer = document.getElementById('games-container');
