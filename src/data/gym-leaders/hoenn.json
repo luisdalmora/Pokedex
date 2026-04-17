@@ -1,0 +1,158 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Roxanne",
+      "gym": "Rustboro City Gym",
+      "specialty": "Rock",
+      "type": "Rock",
+      "team": [
+        {"name": "Geodude", "level": 14, "types": ["Rock", "Ground"]},
+        {"name": "Nosepass", "level": 15, "types": ["Rock"]}
+      ]
+    },
+    {
+      "name": "Brawly",
+      "gym": "Dewford Town Gym",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Machop", "level": 17, "types": ["Fighting"]},
+        {"name": "Makuhita", "level": 18, "types": ["Fighting"]}
+      ]
+    },
+    {
+      "name": "Wattson",
+      "gym": "Mauville City Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Magnemite", "level": 22, "types": ["Electric", "Steel"]},
+        {"name": "Voltorb", "level": 20, "types": ["Electric"]},
+        {"name": "Magneton", "level": 23, "types": ["Electric", "Steel"]}
+      ]
+    },
+    {
+      "name": "Flannery",
+      "gym": "Lavaridge Town Gym",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Slugma", "level": 26, "types": ["Fire"]},
+        {"name": "Slugma", "level": 26, "types": ["Fire"]},
+        {"name": "Torkoal", "level": 28, "types": ["Fire"]}
+      ]
+    },
+    {
+      "name": "Norman",
+      "gym": "Petalburg City Gym",
+      "specialty": "Normal",
+      "type": "Normal",
+      "team": [
+        {"name": "Slaking", "level": 28, "types": ["Normal"]},
+        {"name": "Vigoroth", "level": 30, "types": ["Normal"]},
+        {"name": "Slaking", "level": 31, "types": ["Normal"]}
+      ]
+    },
+    {
+      "name": "Winona",
+      "gym": "Fortree City Gym",
+      "specialty": "Flying",
+      "type": "Flying",
+      "team": [
+        {"name": "Swellow", "level": 31, "types": ["Normal", "Flying"]},
+        {"name": "Pelipper", "level": 30, "types": ["Water", "Flying"]},
+        {"name": "Skarmory", "level": 32, "types": ["Steel", "Flying"]},
+        {"name": "Altaria", "level": 33, "types": ["Dragon", "Flying"]}
+      ]
+    },
+    {
+      "name": "Tate & Liza",
+      "gym": "Mossdeep City Gym",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Lunatone", "level": 42, "types": ["Rock", "Psychic"]},
+        {"name": "Solrock", "level": 42, "types": ["Rock", "Psychic"]}
+      ]
+    },
+    {
+      "name": "Wallace",
+      "gym": "Sootopolis City Gym",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Luvdisc", "level": 40, "types": ["Water"]},
+        {"name": "Whiscash", "level": 42, "types": ["Water", "Ground"]},
+        {"name": "Sealeo", "level": 40, "types": ["Ice", "Water"]},
+        {"name": "Seaking", "level": 42, "types": ["Water"]},
+        {"name": "Milotic", "level": 43, "types": ["Water"]}
+      ]
+    },
+    {
+      "name": "Sidney",
+      "gym": "Elite Four",
+      "specialty": "Dark",
+      "type": "Dark",
+      "team": [
+        {"name": "Mightyena", "level": 46, "types": ["Dark"]},
+        {"name": "Cacturne", "level": 46, "types": ["Grass", "Dark"]},
+        {"name": "Shiftry", "level": 48, "types": ["Grass", "Dark"]},
+        {"name": "Sharpedo", "level": 48, "types": ["Water", "Dark"]},
+        {"name": "Absol", "level": 49, "types": ["Dark"]}
+      ]
+    },
+    {
+      "name": "Phoebe",
+      "gym": "Elite Four",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Dusclops", "level": 48, "types": ["Ghost"]},
+        {"name": "Banette", "level": 49, "types": ["Ghost"]},
+        {"name": "Banette", "level": 49, "types": ["Ghost"]},
+        {"name": "Sableye", "level": 50, "types": ["Dark", "Ghost"]},
+        {"name": "Dusclops", "level": 51, "types": ["Ghost"]}
+      ]
+    },
+    {
+      "name": "Glacia",
+      "gym": "Elite Four",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Glalie", "level": 50, "types": ["Ice"]},
+        {"name": "Sealeo", "level": 50, "types": ["Ice", "Water"]},
+        {"name": "Glalie", "level": 52, "types": ["Ice"]},
+        {"name": "Sealeo", "level": 52, "types": ["Ice", "Water"]},
+        {"name": "Walrein", "level": 53, "types": ["Ice", "Water"]}
+      ]
+    },
+    {
+      "name": "Drake",
+      "gym": "Elite Four",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Shelgon", "level": 52, "types": ["Dragon"]},
+        {"name": "Altaria", "level": 54, "types": ["Dragon", "Flying"]},
+        {"name": "Flygon", "level": 53, "types": ["Ground", "Dragon"]},
+        {"name": "Flygon", "level": 53, "types": ["Ground", "Dragon"]},
+        {"name": "Salamence", "level": 55, "types": ["Dragon", "Flying"]}
+      ]
+    },
+    {
+      "name": "Steven",
+      "gym": "Champion",
+      "specialty": "Steel",
+      "type": "Steel",
+      "team": [
+        {"name": "Skarmory", "level": 57, "types": ["Steel", "Flying"]},
+        {"name": "Cradily", "level": 56, "types": ["Rock", "Grass"]},
+        {"name": "Claydol", "level": 55, "types": ["Ground", "Psychic"]},
+        {"name": "Armaldo", "level": 56, "types": ["Rock", "Bug"]},
+        {"name": "Aggron", "level": 56, "types": ["Steel", "Rock"]},
+        {"name": "Metagross", "level": 58, "types": ["Steel", "Psychic"]}
+      ]
+    }
+  ]
+}

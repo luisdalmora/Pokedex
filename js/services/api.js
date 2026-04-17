@@ -181,3 +181,51 @@ export const fetchLocalGameData = async (gameSlug) => {
     return null;
   }
 };
+
+export const fetchLocalExclusives = async (generationSlug) => {
+  try {
+    const res = await fetch(`./src/data/exclusives/${generationSlug}.json`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch (err) {
+    return null;
+  }
+};
+
+/**
+ * Helper to get the best sprite for a specific game version
+ * Using PokéAPI's sprites.versions structure
+ */
+export const getVersionSprite = (sprites, versionGroup) => {
+    // Mapping versionGroup to PokeAPI sprite keys
+    const mapping = {
+        'red-blue': ['generation-i', 'red-blue'],
+        'yellow': ['generation-i', 'yellow'],
+        'gold': ['generation-ii', 'gold'],
+        'silver': ['generation-ii', 'silver'],
+        'crystal': ['generation-ii', 'crystal'],
+        'ruby-sapphire': ['generation-iii', 'ruby-sapphire'],
+        'emerald': ['generation-iii', 'emerald'],
+        'firered-leafgreen': ['generation-iii', 'firered-leafgreen'],
+        'diamond-pearl': ['generation-iv', 'diamond-pearl'],
+        'platinum': ['generation-iv', 'platinum'],
+        'heartgold-soulsilver': ['generation-iv', 'heartgold-soulsilver'],
+        'black-white': ['generation-v', 'black-white'],
+        'black-2-white-2': ['generation-v', 'black-white'],
+        'x-y': ['generation-vi', 'x-y'],
+        'omega-ruby-alpha-sapphire': ['generation-vi', 'omegaruby-alphasapphire'],
+        'sun-moon': ['generation-vii', 'ultra-sun-ultra-moon'],
+        'ultra-sun-ultra-moon': ['generation-vii', 'ultra-sun-ultra-moon']
+    };
+
+    const path = mapping[versionGroup];
+    if (!path || !sprites.versions) return sprites.front_default;
+
+    try {
+        const generation = sprites.versions[path[0]];
+        const game = generation[path[1]];
+        return game.front_default || sprites.front_default;
+    } catch (e) {
+        return sprites.front_default;
+    }
+};

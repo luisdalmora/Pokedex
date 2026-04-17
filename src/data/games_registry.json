@@ -1,0 +1,185 @@
+{
+  "regions": [
+    {
+      "id": "kanto",
+      "name": "Kanto",
+      "generations": [
+        {
+          "gen": 1,
+          "name": "Geração 1 (Game Boy)",
+          "games": [
+            { "id": "red", "name": "Pokémon Red", "year": 1996, "desc": "A versão original que deu início a tudo em Kanto.", "platform": "Game Boy", "exclusives": ["Ekans", "Arbok", "Oddish", "Gloom", "Vileplume", "Mankey", "Primeape", "Growlithe", "Arcanine", "Scyther", "Electabuzz", "Magmar"] },
+            { "id": "blue", "name": "Pokémon Blue", "year": 1996, "desc": "A contraparte internacional da versão Red.", "platform": "Game Boy", "exclusives": ["Sandshrew", "Sandslash", "Vulpix", "Ninetales", "Meowth", "Persian", "Bellsprout", "Weepinbell", "Victreebel", "Magmar", "Pinsir"] },
+            { "id": "green", "name": "Pokémon Green", "year": 1996, "desc": "Lançamento exclusivo do Japão que fundou a franquia.", "platform": "Game Boy", "exclusives": ["Sandshrew", "Sandslash", "Vulpix", "Ninetales", "Meowth", "Persian", "Bellsprout", "Weepinbell", "Victreebel", "Pinsir", "Magmar"] },
+            { "id": "yellow", "name": "Pokémon Yellow", "year": 1998, "desc": "A edição especial do Pikachu baseada no anime.", "platform": "Game Boy", "exclusives": ["Pikachu (Starter)", "Bulbasaur", "Charmander", "Squirtle"] }
+          ]
+        },
+        {
+          "gen": 3,
+          "name": "Geração 3 (Game Boy Advance)",
+          "games": [
+            { "id": "firered", "name": "FireRed", "year": 2004, "desc": "Remake vibrante da jornada original em Kanto.", "platform": "GBA" },
+            { "id": "leafgreen", "name": "LeafGreen", "year": 2004, "desc": "O retorno a Kanto com gráficos de terceira geração.", "platform": "GBA" }
+          ]
+        },
+        {
+          "gen": 7,
+          "name": "Geração 7 (Switch)",
+          "games": [
+            { "id": "lets-go-pikachu", "name": "Let's Go Pikachu", "year": 2018, "desc": "Reimaginação de Yellow com mecânicas de captura modernas.", "platform": "Switch" },
+            { "id": "lets-go-eevee", "name": "Let's Go Eevee", "year": 2018, "desc": "Uma nova forma de explorar Kanto com sua Eevee.", "platform": "Switch" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "johto",
+      "name": "Johto",
+      "generations": [
+        {
+          "gen": 2,
+          "name": "Geração 2 (Game Boy Color)",
+          "games": [
+            { "id": "gold", "name": "Pokémon Gold", "year": 1999, "desc": "Explore Johto e descubra 100 novos Pokémon.", "platform": "GBC" },
+            { "id": "silver", "name": "Pokémon Silver", "year": 1999, "desc": "A lenda de Lugia aguarda nas profundezas das Ilhas Redemoinho.", "platform": "GBC" },
+            { "id": "crystal", "name": "Pokémon Crystal", "year": 2000, "desc": "A versão definitiva de Johto com as primeiras animações.", "platform": "GBC" }
+          ]
+        },
+        {
+          "gen": 4,
+          "name": "Geração 4 (Nintendo DS)",
+          "games": [
+            { "id": "heartgold", "name": "HeartGold", "year": 2009, "desc": "A experiência definitiva de Johto em glorioso 2D/3D.", "platform": "DS" },
+            { "id": "soulsilver", "name": "SoulSilver", "year": 2009, "desc": "Uma jornada nostálgica e completa pela região de Johto.", "platform": "DS" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hoenn",
+      "name": "Hoenn",
+      "generations": [
+        {
+          "gen": 3,
+          "name": "Geração 3 (Game Boy Advance)",
+          "games": [
+            { "id": "ruby", "name": "Pokémon Ruby", "year": 2002, "desc": "Aventuras no continente tropical de Hoenn.", "platform": "GBA" },
+            { "id": "sapphire", "name": "Pokémon Sapphire", "year": 2002, "desc": "Domine os mares de Hoenn e enfrente a Equipe Aqua.", "platform": "GBA" },
+            { "id": "emerald", "name": "Pokémon Emerald", "year": 2004, "desc": "A versão definitiva com a Battle Frontier.", "platform": "GBA" }
+          ]
+        },
+        {
+          "gen": 6,
+          "name": "Geração 6 (Nintendo 3DS)",
+          "games": [
+            { "id": "omega-ruby", "name": "Omega Ruby", "year": 2014, "desc": "Mega Evoluções transformam Hoenn nesta nova aventura.", "platform": "3DS" },
+            { "id": "alpha-sapphire", "name": "Alpha Sapphire", "year": 2014, "desc": "Redescubra os segredos da Primal Reversion em Hoenn.", "platform": "3DS" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sinnoh",
+      "name": "Sinnoh / Hisui",
+      "generations": [
+        {
+          "gen": 4,
+          "name": "Geração 4 (Nintendo DS)",
+          "games": [
+            { "id": "diamond", "name": "Pokémon Diamond", "year": 2006, "desc": "A lenda do tempo começa em Sinnoh.", "platform": "DS" },
+            { "id": "pearl", "name": "Pokémon Pearl", "year": 2006, "desc": "Controle o espaço e as dimensões em Sinnoh.", "platform": "DS" },
+            { "id": "platinum", "name": "Pokémon Platinum", "year": 2008, "desc": "Viaje para o Distortion World com Giratina.", "platform": "DS" }
+          ]
+        },
+        {
+          "gen": 8,
+          "name": "Geração 8 (Nintendo Switch)",
+          "games": [
+            { "id": "brilliant-diamond", "name": "Brilliant Diamond", "year": 2021, "desc": "Remake fiel da jornada original por Sinnoh.", "platform": "Switch" },
+            { "id": "shining-pearl", "name": "Shining Pearl", "year": 2021, "desc": "Explore Sinnoh novamente com gráficos renovados.", "platform": "Switch" },
+            { "id": "legends-arceus", "name": "Legends: Arceus", "year": 2022, "desc": "O passado de Sinnoh revelado em Hisui.", "platform": "Switch" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unova",
+      "name": "Unova",
+      "generations": [
+        {
+          "gen": 5,
+          "name": "Geração 5 (Nintendo DS)",
+          "games": [
+            { "id": "black", "name": "Pokémon Black", "year": 2010, "desc": "Uma revolução na franquia ambientada em Unova.", "platform": "DS" },
+            { "id": "white", "name": "Pokémon White", "year": 2010, "desc": "Enfrente ideais opostos nesta épica jornada.", "platform": "DS" },
+            { "id": "black-2", "name": "Pokémon Black 2", "year": 2012, "desc": "A primeira sequência direta, anos depois em Unova.", "platform": "DS" },
+            { "id": "white-2", "name": "Pokémon White 2", "year": 2012, "desc": "Novas áreas e mistérios na sequência de Unova.", "platform": "DS" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kalos",
+      "name": "Kalos",
+      "generations": [
+        {
+          "gen": 6,
+          "name": "Geração 6 (Nintendo 3DS)",
+          "games": [
+            { "id": "x", "name": "Pokémon X", "year": 2013, "desc": "A introdução da Mega Evolução em Kalos.", "platform": "3DS" },
+            { "id": "y", "name": "Pokémon Y", "year": 2013, "desc": "Descubra o mistério do lendário Yveltal.", "platform": "3DS" },
+            { "id": "legends-za", "name": "Legends Z-A", "year": 2025, "desc": "O futuro de Lumiose City em uma nova lenda.", "platform": "Switch" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alola",
+      "name": "Alola",
+      "generations": [
+        {
+          "gen": 7,
+          "name": "Geração 7 (Nintendo 3DS)",
+          "games": [
+            { "id": "sun", "name": "Pokémon Sun", "year": 2016, "desc": "Experimente o tropical Alola Challenge.", "platform": "3DS" },
+            { "id": "moon", "name": "Pokémon Moon", "year": 2016, "desc": "Aventure-se pela noite eterna de Alola.", "platform": "3DS" },
+            { "id": "ultra-sun", "name": "Ultra Sun", "year": 2017, "desc": "Uma versão expandida com segredos de Necrozma.", "platform": "3DS" },
+            { "id": "ultra-moon", "name": "Ultra Moon", "year": 2017, "desc": "Novos Ultra Beasts e dimensões em Alola.", "platform": "3DS" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "galar",
+      "name": "Galar",
+      "generations": [
+        {
+          "gen": 8,
+          "name": "Geração 8 (Nintendo Switch)",
+          "games": [
+            { "id": "sword", "name": "Pokémon Sword", "year": 2019, "desc": "Torne-se o campeão da industrial Galar.", "platform": "Switch" },
+            { "id": "shield", "name": "Pokémon Shield", "year": 2019, "desc": "Defenda a honra de Galar com o escudo lendário.", "platform": "Switch" },
+            { "id": "isle-of-armor", "name": "Isle of Armor", "year": 2020, "desc": "Treinamento intensivo em uma ilha isolada.", "platform": "Switch" },
+            { "id": "crown-tundra", "name": "Crown Tundra", "year": 2020, "desc": "Expedições em terras geladas e lendários antigos.", "platform": "Switch" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paldea",
+      "name": "Paldea",
+      "generations": [
+        {
+          "gen": 9,
+          "name": "Geração 9 (Switch)",
+          "games": [
+            { "id": "scarlet", "name": "Pokémon Scarlet", "year": 2022, "desc": "Mundo aberto e Terastal em uma Paldea ancestral.", "platform": "Switch" },
+            { "id": "violet", "name": "Pokémon Violet", "year": 2022, "desc": "O futuro tecnológico de Paldea aguarda você.", "platform": "Switch" },
+            { "id": "teal-mask", "name": "Teal Mask", "year": 2023, "desc": "Festivais e folclore na terra de Kitakami.", "platform": "Switch" },
+            { "id": "indigo-disk", "name": "Indigo Disk", "year": 2023, "desc": "Duelos de alto nível na Blueberry Academy.", "platform": "Switch" }
+          ]
+        }
+      ]
+    }
+  ]
+}

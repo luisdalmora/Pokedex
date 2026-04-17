@@ -1,0 +1,157 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Falkner",
+      "gym": "Violet City Gym",
+      "specialty": "Flying",
+      "type": "Flying",
+      "team": [
+        {"name": "Pidgey", "level": 7, "types": ["Normal", "Flying"]},
+        {"name": "Pidgeotto", "level": 9, "types": ["Normal", "Flying"]}
+      ]
+    },
+    {
+      "name": "Bugsy",
+      "gym": "Azalea Town Gym",
+      "specialty": "Bug",
+      "type": "Bug",
+      "team": [
+        {"name": "Metapod", "level": 14, "types": ["Bug"]},
+        {"name": "Kakuna", "level": 14, "types": ["Bug"]},
+        {"name": "Scyther", "level": 16, "types": ["Bug", "Flying"]}
+      ]
+    },
+    {
+      "name": "Whitney",
+      "gym": "Goldenrod City Gym",
+      "specialty": "Normal",
+      "type": "Normal",
+      "team": [
+        {"name": "Clefairy", "level": 18, "types": ["Normal"]},
+        {"name": "Miltank", "level": 20, "types": ["Normal"]}
+      ]
+    },
+    {
+      "name": "Morty",
+      "gym": "Ecruteak City Gym",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Gastly", "level": 21, "types": ["Ghost", "Poison"]},
+        {"name": "Haunter", "level": 21, "types": ["Ghost", "Poison"]},
+        {"name": "Gengar", "level": 25, "types": ["Ghost", "Poison"]},
+        {"name": "Haunter", "level": 23, "types": ["Ghost", "Poison"]}
+      ]
+    },
+    {
+      "name": "Chuck",
+      "gym": "Cianwood City Gym",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Primeape", "level": 27, "types": ["Fighting"]},
+        {"name": "Poliwrath", "level": 30, "types": ["Water", "Fighting"]}
+      ]
+    },
+    {
+      "name": "Jasmine",
+      "gym": "Olivine City Gym",
+      "specialty": "Steel",
+      "type": "Steel",
+      "team": [
+        {"name": "Magnemite", "level": 30, "types": ["Electric", "Steel"]},
+        {"name": "Magnemite", "level": 30, "types": ["Electric", "Steel"]},
+        {"name": "Steelix", "level": 35, "types": ["Steel", "Ground"]}
+      ]
+    },
+    {
+      "name": "Pryce",
+      "gym": "Mahogany Town Gym",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Seel", "level": 27, "types": ["Water"]},
+        {"name": "Dewgong", "level": 29, "types": ["Water", "Ice"]},
+        {"name": "Piloswine", "level": 31, "types": ["Ice", "Ground"]}
+      ]
+    },
+    {
+      "name": "Clair",
+      "gym": "Blackthorn City Gym",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Dragonair", "level": 37, "types": ["Dragon"]},
+        {"name": "Dragonair", "level": 37, "types": ["Dragon"]},
+        {"name": "Dragonair", "level": 37, "types": ["Dragon"]},
+        {"name": "Kingdra", "level": 40, "types": ["Water", "Dragon"]}
+      ]
+    },
+    {
+      "name": "Will",
+      "gym": "Elite Four",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Xatu", "level": 40, "types": ["Psychic", "Flying"]},
+        {"name": "Jynx", "level": 41, "types": ["Ice", "Psychic"]},
+        {"name": "Slowbro", "level": 41, "types": ["Water", "Psychic"]},
+        {"name": "Exeggutor", "level": 41, "types": ["Grass", "Psychic"]},
+        {"name": "Xatu", "level": 42, "types": ["Psychic", "Flying"]}
+      ]
+    },
+    {
+      "name": "Koga",
+      "gym": "Elite Four",
+      "specialty": "Poison",
+      "type": "Poison",
+      "team": [
+        {"name": "Ariados", "level": 40, "types": ["Bug", "Poison"]},
+        {"name": "Venomoth", "level": 41, "types": ["Bug", "Poison"]},
+        {"name": "Forretress", "level": 43, "types": ["Bug", "Steel"]},
+        {"name": "Muk", "level": 42, "types": ["Poison"]},
+        {"name": "Crobat", "level": 44, "types": ["Poison", "Flying"]}
+      ]
+    },
+    {
+      "name": "Bruno",
+      "gym": "Elite Four",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Hitmontop", "level": 42, "types": ["Fighting"]},
+        {"name": "Hitmonlee", "level": 42, "types": ["Fighting"]},
+        {"name": "Hitmonchan", "level": 42, "types": ["Fighting"]},
+        {"name": "Onix", "level": 43, "types": ["Rock", "Ground"]},
+        {"name": "Machamp", "level": 46, "types": ["Fighting"]}
+      ]
+    },
+    {
+      "name": "Karen",
+      "gym": "Elite Four",
+      "specialty": "Dark",
+      "type": "Dark",
+      "team": [
+        {"name": "Umbreon", "level": 42, "types": ["Dark"]},
+        {"name": "Vileplume", "level": 42, "types": ["Grass", "Poison"]},
+        {"name": "Murkrow", "level": 44, "types": ["Dark", "Flying"]},
+        {"name": "Gengar", "level": 45, "types": ["Ghost", "Poison"]},
+        {"name": "Houndoom", "level": 47, "types": ["Dark", "Fire"]}
+      ]
+    },
+    {
+      "name": "Lance",
+      "gym": "Champion",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Gyarados", "level": 44, "types": ["Water", "Flying"]},
+        {"name": "Charizard", "level": 46, "types": ["Fire", "Flying"]},
+        {"name": "Aerodactyl", "level": 46, "types": ["Rock", "Flying"]},
+        {"name": "Dragonite", "level": 47, "types": ["Dragon", "Flying"]},
+        {"name": "Dragonite", "level": 47, "types": ["Dragon", "Flying"]},
+        {"name": "Dragonite", "level": 50, "types": ["Dragon", "Flying"]}
+      ]
+    }
+  ]
+}

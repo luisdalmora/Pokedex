@@ -16,6 +16,11 @@ export const getCache = (group, key) => {
       localStorage.removeItem(fullKey);
       return null;
     }
+    
+    // Update lastAccessed for LRU
+    item.lastAccessed = now;
+    localStorage.setItem(fullKey, JSON.stringify(item));
+    
     return item.value;
   } catch (error) {
     console.error('Error reading from cache:', error);
@@ -30,7 +35,8 @@ export const setCache = (group, key, value, ttl = DEFAULT_TTL) => {
     
     const item = {
       value: value,
-      expiry: now + ttl
+      expiry: now + ttl,
+      lastAccessed: now
     };
     
     localStorage.setItem(fullKey, JSON.stringify(item));
@@ -52,21 +58,26 @@ const clearOldestCache = () => {
   const items = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key.startsWith('pokedex_')) {
+    if (key && key.startsWith('pokedex_')) {
       try {
         const item = JSON.parse(localStorage.getItem(key));
-        items.push({ key, expiry: item.expiry });
+        // Use lastAccessed if available, fallback to expiry
+        items.push({ key, priority: item.lastAccessed || item.expiry || 0 });
       } catch (e) {}
     }
   }
   
-  // Sort by expiry (oldest first)
-  items.sort((a, b) => a.expiry - b.expiry);
+  if (items.length === 0) return;
+
+  // Sort by priority (least recently accessed first)
+  items.sort((a, b) => a.priority - b.priority);
   
-  // Remove 20% of the oldest cache
-  const toRemove = Math.max(1, Math.floor(items.length * 0.2));
+  // Remove 50% of the cache to ensure we actually make space
+  const toRemove = Math.max(1, Math.floor(items.length * 0.5));
   for (let i = 0; i < toRemove; i++) {
-    localStorage.removeItem(items[i].key);
+    if (items[i]) {
+      localStorage.removeItem(items[i].key);
+    }
   }
 };
 

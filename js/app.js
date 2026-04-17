@@ -38,6 +38,16 @@ const loadGameDetail = async (container, slug) => {
   }
 };
 
+const loadGamesLibrary = async (container) => {
+  try {
+    const { renderGamesLibrary } = await import('./pages/GamesLibrary.js');
+    await renderGamesLibrary(container);
+  } catch(e) {
+    console.error(e);
+    container.innerHTML = '<div class="empty-state">Erro ao carregar biblioteca de jogos.</div>';
+  }
+};
+
 const loadQuizView = async (container) => {
   try {
     const { renderQuizView } = await import('./pages/quiz.js');
@@ -81,6 +91,9 @@ const router = async () => {
   }
   else if (hash === '/games') {
     await loadGamesView(container);
+  }
+  else if (hash.startsWith('/games/library')) {
+    await loadGamesLibrary(container);
   }
   else if (hash === '/quiz') {
     await loadQuizView(container);

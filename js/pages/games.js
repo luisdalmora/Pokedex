@@ -61,7 +61,7 @@ export const initGamesView = async (container) => {
      const genRoman = region.main_generation.name.split('-')[1].toUpperCase();
      
      html += `
-        <a href="#/games/${region.name}" style="display: flex; flex-direction: column; background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: all 0.3s; border: 1px solid var(--border-color); position: relative;" class="region-card">
+        <a href="#/games/library?region=${region.name}" style="display: flex; flex-direction: column; background: var(--card-bg); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-decoration: none; color: inherit; transition: all 0.3s; border: 1px solid var(--border-color); position: relative;" class="region-card">
           
           <div style="height: 180px; position:relative; overflow:hidden; background:var(--bg-color); display:flex; justify-content:center; align-items:center;">
              <img src="./assets/images/regions/${region.name}.png" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/town-map.png'; this.style.opacity='0.5'; this.style.objectFit='contain'; this.style.width='50%';" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;" class="region-img" alt="${region.name}"/>
