@@ -1,22 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { getPokemonList, getPokemon } from "@/services/pokeapi";
 import { getBestAvailableSprite } from "@/utils/spriteResolver";
 import { PokemonSummary } from "@/types/pokemon";
 import { PokemonCard, PokemonSkeleton } from "@/components/pokemon/PokemonCard";
-import { Search, Dices } from "lucide-react";
+import { Search, Dices, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+const ITEMS_PER_PAGE = 50;
 
 export default function PokedexPage() {
   const [pokemon, setPokemon] = useState<PokemonSummary[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const router = useRouter();
+  
+  const observer = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    async function loadData() {
-      const results = await getPokemonList(100, 0);
+  const fetchPokemon = useCallback(async (currentOffset: number, isInitial = false) => {
+    if (isInitial) setLoading(true);
+    else setLoadingMore(true);
+
+    try {
+      const results = await getPokemonList(ITEMS_PER_PAGE, currentOffset);
+      
+      if (results.length < ITEMS_PER_PAGE) {
+        setHasMore(false);
+      }
+
       const detailed = await Promise.all(
         results.map(async (p) => {
           try {
@@ -33,11 +48,40 @@ export default function PokedexPage() {
           }
         })
       );
-      setPokemon(detailed.filter((p): p is PokemonSummary => p !== null));
+
+      const validDetails = detailed.filter((p): p is PokemonSummary => p !== null);
+      
+      setPokemon(prev => isInitial ? validDetails : [...prev, ...validDetails]);
+    } catch (error) {
+      console.error("Failed to fetch pokemon:", error);
+    } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
-    loadData();
   }, []);
+
+  // Initial load
+  useEffect(() => {
+    fetchPokemon(0, true);
+  }, [fetchPokemon]);
+
+  // Infinite scroll observer
+  const lastElementRef = useCallback((node: HTMLDivElement) => {
+    if (loading || loadingMore) return;
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore && !searchTerm) {
+        setOffset(prevOffset => {
+          const nextOffset = prevOffset + ITEMS_PER_PAGE;
+          fetchPokemon(nextOffset);
+          return nextOffset;
+        });
+      }
+    });
+
+    if (node) observer.current.observe(node);
+  }, [loading, loadingMore, hasMore, searchTerm, fetchPokemon]);
 
   const handleRandom = () => {
     const randomId = Math.floor(Math.random() * 1025) + 1;
@@ -78,16 +122,43 @@ export default function PokedexPage() {
         </div>
       </header>
 
-      {loading ? (
+      {loading && pokemon.length === 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[...Array(12)].map((_, i) => <PokemonSkeleton key={i} />)}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredPokemon.map((p) => (
-            <PokemonCard key={p.id} pokemon={p} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredPokemon.map((p, index) => {
+              if (filteredPokemon.length === index + 1) {
+                return (
+                  <div key={p.id} ref={lastElementRef}>
+                    <PokemonCard pokemon={p} />
+                  </div>
+                );
+              }
+              return <PokemonCard key={p.id} pokemon={p} />;
+            })}
+          </div>
+
+          {loadingMore && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
+              {[...Array(4)].map((_, i) => <PokemonSkeleton key={i} />)}
+            </div>
+          )}
+
+          {!hasMore && pokemon.length > 0 && (
+            <div className="text-center py-12">
+              <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Você chegou ao fim da Pokédex nacional.</p>
+            </div>
+          )}
+
+          {searchTerm && filteredPokemon.length === 0 && (
+            <div className="text-center py-20 bg-slate-50 dark:bg-slate-900/50 rounded-[3rem] border-2 border-dashed border-slate-200 dark:border-slate-800">
+               <p className="text-xl font-bold text-slate-400">Nenhum Pokémon encontrado para "{searchTerm}"</p>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
