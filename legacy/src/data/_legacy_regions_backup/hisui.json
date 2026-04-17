@@ -1,0 +1,10 @@
+{
+  "name": "Hisui",
+  "generation": 8,
+  "range": {
+    "start": 899,
+    "end": 905
+  },
+  "image": "/assets/regions/hisui.png",
+  "description": "A antiga Sinnoh explorada em Pokémon Legends: Arceus num passado muito distante."
+}

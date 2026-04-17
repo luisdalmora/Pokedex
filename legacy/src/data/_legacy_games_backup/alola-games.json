@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Pokémon Sun",
+    "slug": "sun",
+    "color": "#f28929",
+    "year": "2016",
+    "region": "Alola",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/f/fa/Sun_EN_boxart.png/250px-Sun_EN_boxart.png",
+    "description": "Exploração tropical celebrando 20 anos da franquia sem a mecânica de Ginásios tradicionais.",
+    "features": ["Island Challenges no lugar de Ginásios", "Z-Moves", "Formas de Alola"],
+    "exclusivesTitle": "Exclusivos de Sun",
+    "exclusives": ["solgaleo"]
+  },
+  {
+    "name": "Pokémon Moon",
+    "slug": "moon",
+    "color": "#633c7f",
+    "year": "2016",
+    "region": "Alola",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/52/Moon_EN_boxart.png/250px-Moon_EN_boxart.png",
+    "description": "Focada no lendário da Lua (Lunala), ocorre em horário de relógio trocado (12h de diferença).",
+    "features": ["Relógio invertido ao sistema real", "Formas Regionais Inéditas"],
+    "exclusivesTitle": "Exclusivos de Moon",
+    "exclusives": ["lunala"]
+  },
+  {
+    "name": "Pokémon Ultra Sun",
+    "slug": "ultra-sun",
+    "color": "#ffa500",
+    "year": "2017",
+    "region": "Alola",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/74/Ultra_Sun_EN_boxart.png/250px-Ultra_Sun_EN_boxart.png",
+    "description": "Uma versão expandida e alternativa de Alola trazendo novas interfaces e o Ultra Space de Necrozma.",
+    "features": ["Ultra Wormholes", "Batalhas contra a Equipe Rainbow Rocket"],
+    "exclusivesTitle": "Ultra Fera",
+    "exclusives": ["necrozma-dusk"]
+  },
+  {
+    "name": "Pokémon Ultra Moon",
+    "slug": "ultra-moon",
+    "color": "#4b0082",
+    "year": "2017",
+    "region": "Alola",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/7c/Ultra_Moon_EN_boxart.png/250px-Ultra_Moon_EN_boxart.png",
+    "description": "Expansão da narrativa Lunar com maior leque de ultra feras e exploração alternativa da história.",
+    "features": ["Mini-game Mantine Surf", "Rivalizando com Necrozma"],
+    "exclusivesTitle": "Ultra Fera",
+    "exclusives": ["necrozma-dawn"]
+  }
+]

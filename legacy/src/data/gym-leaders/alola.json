@@ -1,0 +1,122 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Ilima",
+      "gym": "Trial Captain",
+      "specialty": "Normal",
+      "type": "Normal",
+      "team": [
+        {"name": "Gumshoos", "level": 15, "types": ["Normal"]},
+        {"name": "Smeargle", "level": 14, "types": ["Normal"]}
+      ]
+    },
+    {
+      "name": "Lana",
+      "gym": "Trial Captain",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Chinchou", "level": 26, "types": ["Water", "Electric"]},
+        {"name": "Shellder", "level": 26, "types": ["Water"]},
+        {"name": "Araquanid", "level": 27, "types": ["Water", "Bug"]}
+      ]
+    },
+    {
+      "name": "Kiawe",
+      "gym": "Trial Captain",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Growlithe", "level": 26, "types": ["Fire"]},
+        {"name": "Fletchinder", "level": 26, "types": ["Fire", "Flying"]},
+        {"name": "Marowak", "level": 27, "types": ["Fire", "Ghost"]}
+      ]
+    },
+    {
+      "name": "Mallow",
+      "gym": "Trial Captain",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Phantump", "level": 26, "types": ["Ghost", "Grass"]},
+        {"name": "Shiinotic", "level": 26, "types": ["Grass", "Fairy"]},
+        {"name": "Steenee", "level": 27, "types": ["Grass"]}
+      ]
+    },
+    {
+      "name": "Hala",
+      "gym": "Island Kahuna / Elite Four",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Hariyama", "level": 54, "types": ["Fighting"]},
+        {"name": "Primeape", "level": 54, "types": ["Fighting"]},
+        {"name": "Bewear", "level": 54, "types": ["Normal", "Fighting"]},
+        {"name": "Poliwrath", "level": 54, "types": ["Water", "Fighting"]},
+        {"name": "Crabominable", "level": 55, "types": ["Fighting", "Ice"]}
+      ]
+    },
+    {
+      "name": "Olivia",
+      "gym": "Island Kahuna / Elite Four",
+      "specialty": "Rock",
+      "type": "Rock",
+      "team": [
+        {"name": "Relicanth", "level": 54, "types": ["Water", "Rock"]},
+        {"name": "Carbink", "level": 54, "types": ["Rock", "Fairy"]},
+        {"name": "Golem", "level": 54, "types": ["Rock", "Electric"]},
+        {"name": "Probopass", "level": 54, "types": ["Rock", "Steel"]},
+        {"name": "Lycanroc", "level": 55, "types": ["Rock"]}
+      ]
+    },
+    {
+      "name": "Nanu",
+      "gym": "Island Kahuna",
+      "specialty": "Dark",
+      "type": "Dark",
+      "team": [
+        {"name": "Sableye", "level": 38, "types": ["Dark", "Ghost"]},
+        {"name": "Krokorok", "level": 38, "types": ["Ground", "Dark"]},
+        {"name": "Persian", "level": 39, "types": ["Dark"]}
+      ]
+    },
+    {
+      "name": "Hapu",
+      "gym": "Island Kahuna",
+      "specialty": "Ground",
+      "type": "Ground",
+      "team": [
+        {"name": "Dugtrio", "level": 47, "types": ["Ground", "Steel"]},
+        {"name": "Gastrodon", "level": 47, "types": ["Water", "Ground"]},
+        {"name": "Flygon", "level": 47, "types": ["Ground", "Dragon"]},
+        {"name": "Mudsdale", "level": 48, "types": ["Ground"]}
+      ]
+    },
+    {
+      "name": "Acerola",
+      "gym": "Trial Captain / Elite Four",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Sableye", "level": 54, "types": ["Dark", "Ghost"]},
+        {"name": "Drifblim", "level": 54, "types": ["Ghost", "Flying"]},
+        {"name": "Dhelmise", "level": 54, "types": ["Ghost", "Grass"]},
+        {"name": "Froslass", "level": 54, "types": ["Ice", "Ghost"]},
+        {"name": "Palossand", "level": 55, "types": ["Ghost", "Ground"]}
+      ]
+    },
+    {
+      "name": "Kahili",
+      "gym": "Elite Four",
+      "specialty": "Flying",
+      "type": "Flying",
+      "team": [
+        {"name": "Skarmory", "level": 54, "types": ["Steel", "Flying"]},
+        {"name": "Crobat", "level": 54, "types": ["Poison", "Flying"]},
+        {"name": "Oricorio", "level": 54, "types": ["Fire", "Flying"]},
+        {"name": "Mandibuzz", "level": 54, "types": ["Dark", "Flying"]},
+        {"name": "Toucannon", "level": 55, "types": ["Normal", "Flying"]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "specialEvolutions": [
+    {
+      "pokemon": "inkay",
+      "condition": "Segure as costas do console viradas para cima",
+      "icon": "rotate-icon"
+    },
+    {
+      "pokemon": "tyrogue",
+      "targets": {
+        "hitmonlee": { "condition": "Ataque > Defesa", "icon": "stats-atk" },
+        "hitmonchan": { "condition": "Ataque < Defesa", "icon": "stats-def" },
+        "hitmontop": { "condition": "Ataque = Defesa", "icon": "stats-eq" }
+      }
+    },
+    {
+      "pokemon": "milcery",
+      "condition": "Segurar um doce e girar",
+      "icon": "spin"
+    },
+    {
+      "pokemon": "galarian-yamask",
+      "condition": "Perder 49+ HP e ir sob arco de rocha em Dusty Bowl",
+      "icon": "location"
+    },
+    {
+      "pokemon": "galarian-farfetchd",
+      "condition": "3 Critical Hits na mesma batalha",
+      "icon": "stats-crit"
+    }
+  ]
+}

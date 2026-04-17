@@ -1,0 +1,152 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Viola",
+      "gym": "Santalune City Gym",
+      "specialty": "Bug",
+      "type": "Bug",
+      "team": [
+        {"name": "Surskit", "level": 10, "types": ["Bug", "Water"]},
+        {"name": "Vivillon", "level": 12, "types": ["Bug", "Flying"]}
+      ]
+    },
+    {
+      "name": "Grant",
+      "gym": "Cyllage City Gym",
+      "specialty": "Rock",
+      "type": "Rock",
+      "team": [
+        {"name": "Amaura", "level": 25, "types": ["Rock", "Ice"]},
+        {"name": "Tyrunt", "level": 25, "types": ["Rock", "Dragon"]}
+      ]
+    },
+    {
+      "name": "Korrina",
+      "gym": "Shalour City Gym",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Mienfoo", "level": 29, "types": ["Fighting"]},
+        {"name": "Machoke", "level": 28, "types": ["Fighting"]},
+        {"name": "Hawlucha", "level": 32, "types": ["Fighting", "Flying"]}
+      ]
+    },
+    {
+      "name": "Ramos",
+      "gym": "Coumarine City Gym",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Jumpluff", "level": 30, "types": ["Grass", "Flying"]},
+        {"name": "Weepinbell", "level": 31, "types": ["Grass", "Poison"]},
+        {"name": "Gogoat", "level": 34, "types": ["Grass"]}
+      ]
+    },
+    {
+      "name": "Clemont",
+      "gym": "Lumiose City Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Emolga", "level": 35, "types": ["Electric", "Flying"]},
+        {"name": "Magneton", "level": 35, "types": ["Electric", "Steel"]},
+        {"name": "Heliolisk", "level": 37, "types": ["Electric", "Normal"]}
+      ]
+    },
+    {
+      "name": "Valerie",
+      "gym": "Laverre City Gym",
+      "specialty": "Fairy",
+      "type": "Fairy",
+      "team": [
+        {"name": "Mawile", "level": 38, "types": ["Steel", "Fairy"]},
+        {"name": "Mr. Mime", "level": 39, "types": ["Psychic", "Fairy"]},
+        {"name": "Sylveon", "level": 42, "types": ["Fairy"]}
+      ]
+    },
+    {
+      "name": "Olympia",
+      "gym": "Anistar City Gym",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Sigilyph", "level": 44, "types": ["Psychic", "Flying"]},
+        {"name": "Slowking", "level": 45, "types": ["Water", "Psychic"]},
+        {"name": "Meowstic", "level": 48, "types": ["Psychic"]}
+      ]
+    },
+    {
+      "name": "Wulfric",
+      "gym": "Snowbelle City Gym",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Abomasnow", "level": 56, "types": ["Grass", "Ice"]},
+        {"name": "Cryogonal", "level": 55, "types": ["Ice"]},
+        {"name": "Avalugg", "level": 59, "types": ["Ice"]}
+      ]
+    },
+    {
+      "name": "Wikstrom",
+      "gym": "Elite Four",
+      "specialty": "Steel",
+      "type": "Steel",
+      "team": [
+        {"name": "Klefki", "level": 63, "types": ["Steel", "Fairy"]},
+        {"name": "Probopass", "level": 63, "types": ["Rock", "Steel"]},
+        {"name": "Scizor", "level": 63, "types": ["Bug", "Steel"]},
+        {"name": "Aegislash", "level": 65, "types": ["Steel", "Ghost"]}
+      ]
+    },
+    {
+      "name": "Malva",
+      "gym": "Elite Four",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Pyroar", "level": 63, "types": ["Fire", "Normal"]},
+        {"name": "Torkoal", "level": 63, "types": ["Fire"]},
+        {"name": "Chandelure", "level": 63, "types": ["Ghost", "Fire"]},
+        {"name": "Talonflame", "level": 65, "types": ["Fire", "Flying"]}
+      ]
+    },
+    {
+      "name": "Drasna",
+      "gym": "Elite Four",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Dragalge", "level": 63, "types": ["Poison", "Dragon"]},
+        {"name": "Druddigon", "level": 63, "types": ["Dragon"]},
+        {"name": "Altaria", "level": 63, "types": ["Dragon", "Flying"]},
+        {"name": "Noivern", "level": 65, "types": ["Flying", "Dragon"]}
+      ]
+    },
+    {
+      "name": "Siebold",
+      "gym": "Elite Four",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Clawitzer", "level": 63, "types": ["Water"]},
+        {"name": "Starmie", "level": 63, "types": ["Water", "Psychic"]},
+        {"name": "Gyarados", "level": 63, "types": ["Water", "Flying"]},
+        {"name": "Barbaracle", "level": 65, "types": ["Rock", "Water"]}
+      ]
+    },
+    {
+      "name": "Diantha",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "All",
+      "team": [
+        {"name": "Hawlucha", "level": 64, "types": ["Fighting", "Flying"]},
+        {"name": "Aurorus", "level": 65, "types": ["Rock", "Ice"]},
+        {"name": "Tyrantrum", "level": 65, "types": ["Rock", "Dragon"]},
+        {"name": "Goodra", "level": 66, "types": ["Dragon"]},
+        {"name": "Gourgeist", "level": 65, "types": ["Ghost", "Grass"]},
+        {"name": "Gardevoir", "level": 68, "types": ["Psychic", "Fairy"]}
+      ]
+    }
+  ]
+}

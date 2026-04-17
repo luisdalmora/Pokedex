@@ -1,0 +1,19 @@
+{
+  "sword": [
+    "Galarian Farfetch'd", "Sirfetch'd", "Seedot", "Nuzleaf", "Shiftry", "Mawile", "Solrock",
+    "Basculin (Red-Striped)", "Galarian Darumaka", "Galarian Darmanitan", "Scraggy", "Scrafty",
+    "Gothita", "Gothorita", "Gothitelle", "Rufflet", "Braviary", "Deino", "Zweilous", "Hydreigon",
+    "Swirlix", "Slurpuff", "Passimian", "Turtonator", "Jangmo-o", "Hakamo-o", "Kommo-o", "Flapple",
+    "Indeedee (Male)", "Stonjourner", "Zacian", "Pinsir", "Clauncher", "Clawitzer", "Sawk",
+    "Omanyte", "Omastar", "Bagon", "Shelgon", "Salamence", "Ho-oh", "Latios", "Groudon", "Dialga",
+    "Tornadus", "Reshiram", "Xerneas", "Solgaleo"
+  ],
+  "shield": [
+    "Galarian Ponyta", "Galarian Rapidash", "Galarian Corsola", "Cursola", "Lotad", "Lombre", "Ludicolo",
+    "Sableye", "Lunatone", "Basculin (Blue-Striped)", "Croagunk", "Toxicroak", "Solosis", "Duosion",
+    "Reuniclus", "Vullaby", "Mandibuzz", "Spritzee", "Aromatisse", "Goomy", "Sliggoo", "Goodra",
+    "Oranguru", "Drampa", "Larvitar", "Pupitar", "Tyranitar", "Appletun", "Indeedee (Female)", "Eiscue",
+    "Zamazenta", "Heracross", "Skrelp", "Dragalge", "Throh", "Kabuto", "Kabutops", "Gible", "Gabite",
+    "Garchomp", "Lugia", "Latias", "Kyogre", "Palkia", "Thundurus", "Zekrom", "Yveltal", "Lunala"
+  ]
+}

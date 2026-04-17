@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Pokémon Gold Version",
+    "slug": "gold",
+    "color": "#e6b800",
+    "year": "1999 (JP) / 2000 (EUA)",
+    "region": "Johto",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/2/22/Gold_EN_boxart.png/250px-Gold_EN_boxart.png",
+    "description": "Retorne ao mundo de Pokémon três anos após as aventuras originais. Apresenta o lendário Ho-Oh na capa e permite explorar a região de Kanto no pós-jogo.",
+    "features": [
+      "Introdução do ciclo de Dia e Noite e Relógio Real",
+      "Novo tipo de Pokémon Dark e Steel",
+      "Sistema de breeding introduzido",
+      "Mochila reformulada com bolsos separados"
+    ],
+    "exclusivesTitle": "Pokémon Exclusivos (Gold)",
+    "exclusives": [
+      "mankey", "primeape", "growlithe", "arcanine", "spinarak", "ariados",
+      "teddiursa", "ursaring", "gligar", "mantine"
+    ],
+    "leaders": []
+  },
+  {
+    "name": "Pokémon Silver Version",
+    "slug": "silver",
+    "color": "#c0c0c0",
+    "year": "1999 (JP) / 2000 (EUA)",
+    "region": "Johto",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/77/Silver_EN_boxart.png/250px-Silver_EN_boxart.png",
+    "description": "A versão contraparte de Gold com o lendário Lugia na capa.",
+    "features": [
+      "Introdução do ciclo de Dia e Noite",
+      "Novo tipo de Pokémon Dark e Steel"
+    ],
+    "exclusivesTitle": "Pokémon Exclusivos (Silver)",
+    "exclusives": [
+      "meowth", "persian", "vulpix", "ninetales", "ledyba", "ledian",
+      "phanpy", "donphan", "skarmory", "delibird"
+    ],
+    "leaders": []
+  },
+  {
+    "name": "Pokémon Crystal Version",
+    "slug": "crystal",
+    "color": "#a1d7c4",
+    "year": "2000 (JP)",
+    "region": "Johto",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/60/Crystal_EN_boxart.png/250px-Crystal_EN_boxart.png",
+    "description": "Versão definitiva da Geração II focada em Suicune.",
+    "features": ["Animações de entrada no combate para Pokémons", "Torre de Batalha (Battle Tower)", "Escolher gênero do personagem"],
+    "exclusivesTitle": "Exclusivos de Crystal",
+    "exclusives": ["suicune"]
+  },
+  {
+    "name": "Pokémon HeartGold Version",
+    "slug": "heartgold",
+    "color": "#e2a938",
+    "year": "2009",
+    "region": "Johto",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/15/HeartGold_EN_boxart.png/250px-HeartGold_EN_boxart.png",
+    "description": "Remake definitivo de Pokémon Gold para o Nintendo DS.",
+    "features": ["Qualquer Pokémon pode te seguir fora da bola", "Gráficos da Gen 4 re-imaginados", "Compatibilidade no Pokéwalker"],
+    "exclusivesTitle": "Exclusivos de HG",
+    "exclusives": ["mankey", "ho-oh"]
+  },
+  {
+    "name": "Pokémon SoulSilver Version",
+    "slug": "soulsilver",
+    "color": "#c4c0c5",
+    "year": "2009",
+    "region": "Johto",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/53/SoulSilver_EN_boxart.png/250px-SoulSilver_EN_boxart.png",
+    "description": "Remake definitivo de Pokémon Silver ao lado da engine do Nintendo DS.",
+    "features": ["Qualquer Pokémon seguindo visível", "Minigame do Pokéathlon"],
+    "exclusivesTitle": "Exclusivos de SS",
+    "exclusives": ["vulpix", "lugia"]
+  }
+]

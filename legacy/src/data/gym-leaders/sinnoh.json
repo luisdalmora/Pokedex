@@ -1,0 +1,160 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Roark",
+      "gym": "Oreburgh City Gym",
+      "specialty": "Rock",
+      "type": "Rock",
+      "team": [
+        {"name": "Geodude", "level": 12, "types": ["Rock", "Ground"]},
+        {"name": "Onix", "level": 12, "types": ["Rock", "Ground"]},
+        {"name": "Cranidos", "level": 14, "types": ["Rock"]}
+      ]
+    },
+    {
+      "name": "Gardenia",
+      "gym": "Eterna City Gym",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Cherubi", "level": 19, "types": ["Grass"]},
+        {"name": "Turtwig", "level": 19, "types": ["Grass"]},
+        {"name": "Roserade", "level": 22, "types": ["Grass", "Poison"]}
+      ]
+    },
+    {
+      "name": "Maylene",
+      "gym": "Veilstone City Gym",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Meditite", "level": 27, "types": ["Fighting", "Psychic"]},
+        {"name": "Machoke", "level": 27, "types": ["Fighting"]},
+        {"name": "Lucario", "level": 30, "types": ["Fighting", "Steel"]}
+      ]
+    },
+    {
+      "name": "Crasher Wake",
+      "gym": "Pastoria City Gym",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Gyarados", "level": 27, "types": ["Water", "Flying"]},
+        {"name": "Quagsire", "level": 27, "types": ["Water", "Ground"]},
+        {"name": "Floatzel", "level": 30, "types": ["Water"]}
+      ]
+    },
+    {
+      "name": "Fantina",
+      "gym": "Hearthome City Gym",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Drifblim", "level": 32, "types": ["Ghost", "Flying"]},
+        {"name": "Gengar", "level": 34, "types": ["Ghost", "Poison"]},
+        {"name": "Mismagius", "level": 36, "types": ["Ghost"]}
+      ]
+    },
+    {
+      "name": "Byron",
+      "gym": "Canalave City Gym",
+      "specialty": "Steel",
+      "type": "Steel",
+      "team": [
+        {"name": "Bronzor", "level": 36, "types": ["Steel", "Psychic"]},
+        {"name": "Steelix", "level": 36, "types": ["Steel", "Ground"]},
+        {"name": "Bastiodon", "level": 39, "types": ["Rock", "Steel"]}
+      ]
+    },
+    {
+      "name": "Candice",
+      "gym": "Snowpoint City Gym",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Snover", "level": 38, "types": ["Grass", "Ice"]},
+        {"name": "Sneasel", "level": 38, "types": ["Dark", "Ice"]},
+        {"name": "Medicham", "level": 40, "types": ["Fighting", "Psychic"]},
+        {"name": "Abomasnow", "level": 42, "types": ["Grass", "Ice"]}
+      ]
+    },
+    {
+      "name": "Volkner",
+      "gym": "Sunyshore City Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Raichu", "level": 46, "types": ["Electric"]},
+        {"name": "Ambipom", "level": 47, "types": ["Normal"]},
+        {"name": "Octillery", "level": 48, "types": ["Water"]},
+        {"name": "Luxray", "level": 49, "types": ["Electric"]}
+      ]
+    },
+    {
+      "name": "Aaron",
+      "gym": "Elite Four",
+      "specialty": "Bug",
+      "type": "Bug",
+      "team": [
+        {"name": "Dustox", "level": 53, "types": ["Bug", "Poison"]},
+        {"name": "Beautifly", "level": 53, "types": ["Bug", "Flying"]},
+        {"name": "Heracross", "level": 54, "types": ["Bug", "Fighting"]},
+        {"name": "Vespiquen", "level": 54, "types": ["Bug", "Flying"]},
+        {"name": "Drapion", "level": 57, "types": ["Poison", "Dark"]}
+      ]
+    },
+    {
+      "name": "Bertha",
+      "gym": "Elite Four",
+      "specialty": "Ground",
+      "type": "Ground",
+      "team": [
+        {"name": "Quagsire", "level": 55, "types": ["Water", "Ground"]},
+        {"name": "Whiscash", "level": 55, "types": ["Water", "Ground"]},
+        {"name": "Golem", "level": 56, "types": ["Rock", "Ground"]},
+        {"name": "Sudowoodo", "level": 57, "types": ["Rock"]},
+        {"name": "Hippowdon", "level": 59, "types": ["Ground"]}
+      ]
+    },
+    {
+      "name": "Flint",
+      "gym": "Elite Four",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Rapidash", "level": 58, "types": ["Fire"]},
+        {"name": "Steelix", "level": 57, "types": ["Steel", "Ground"]},
+        {"name": "Lopunny", "level": 57, "types": ["Normal"]},
+        {"name": "Drifblim", "level": 58, "types": ["Ghost", "Flying"]},
+        {"name": "Infernape", "level": 61, "types": ["Fire", "Fighting"]}
+      ]
+    },
+    {
+      "name": "Lucian",
+      "gym": "Elite Four",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Mr. Mime", "level": 59, "types": ["Psychic", "Fairy"]},
+        {"name": "Girafarig", "level": 59, "types": ["Normal", "Psychic"]},
+        {"name": "Medicham", "level": 60, "types": ["Fighting", "Psychic"]},
+        {"name": "Alakazam", "level": 60, "types": ["Psychic"]},
+        {"name": "Bronzong", "level": 63, "types": ["Steel", "Psychic"]}
+      ]
+    },
+    {
+      "name": "Cynthia",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "All",
+      "team": [
+        {"name": "Spiritomb", "level": 61, "types": ["Ghost", "Dark"]},
+        {"name": "Gastrodon", "level": 60, "types": ["Water", "Ground"]},
+        {"name": "Roserade", "level": 60, "types": ["Grass", "Poison"]},
+        {"name": "Milotic", "level": 63, "types": ["Water"]},
+        {"name": "Lucario", "level": 63, "types": ["Fighting", "Steel"]},
+        {"name": "Garchomp", "level": 66, "types": ["Dragon", "Ground"]}
+      ]
+    }
+  ]
+}

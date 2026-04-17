@@ -1,0 +1,10 @@
+{
+  "name": "Alola",
+  "generation": 7,
+  "range": {
+    "start": 722,
+    "end": 809
+  },
+  "image": "/assets/regions/alola.png",
+  "description": "Arquipélago tropical de Sun & Moon com variações regionais únicas e Z-Moves."
+}

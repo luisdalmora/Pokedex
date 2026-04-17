@@ -1,0 +1,162 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Katy",
+      "gym": "Cortondo Gym",
+      "specialty": "Bug",
+      "type": "Bug",
+      "team": [
+        {"name": "Nymble", "level": 14, "types": ["Bug"]},
+        {"name": "Tarountula", "level": 14, "types": ["Bug"]},
+        {"name": "Teddiursa", "level": 15, "types": ["Normal"]}
+      ]
+    },
+    {
+      "name": "Brassius",
+      "gym": "Artazon Gym",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Petilil", "level": 16, "types": ["Grass"]},
+        {"name": "Smoliv", "level": 16, "types": ["Grass", "Normal"]},
+        {"name": "Sudowoodo", "level": 17, "types": ["Rock"]}
+      ]
+    },
+    {
+      "name": "Iono",
+      "gym": "Levincia Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Wattrel", "level": 23, "types": ["Electric", "Flying"]},
+        {"name": "Bellibolt", "level": 23, "types": ["Electric"]},
+        {"name": "Luxio", "level": 23, "types": ["Electric"]},
+        {"name": "Mismagius", "level": 24, "types": ["Ghost"]}
+      ]
+    },
+    {
+      "name": "Kofu",
+      "gym": "Cascarrafa Gym",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Veluza", "level": 29, "types": ["Water", "Psychic"]},
+        {"name": "Wugtrio", "level": 29, "types": ["Water"]},
+        {"name": "Crabominable", "level": 30, "types": ["Ice", "Fighting"]}
+      ]
+    },
+    {
+      "name": "Larry",
+      "gym": "Medali Gym",
+      "specialty": "Normal",
+      "type": "Normal",
+      "team": [
+        {"name": "Komala", "level": 35, "types": ["Normal"]},
+        {"name": "Dudunsparce", "level": 35, "types": ["Normal"]},
+        {"name": "Staraptor", "level": 36, "types": ["Normal", "Flying"]}
+      ]
+    },
+    {
+      "name": "Ryme",
+      "gym": "Montenevera Gym",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Banette", "level": 41, "types": ["Ghost"]},
+        {"name": "Mimikyu", "level": 41, "types": ["Ghost", "Fairy"]},
+        {"name": "Houndstone", "level": 41, "types": ["Ghost"]},
+        {"name": "Toxtricity", "level": 42, "types": ["Electric", "Poison"]}
+      ]
+    },
+    {
+      "name": "Tulip",
+      "gym": "Alfornada Gym",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Farigiraf", "level": 44, "types": ["Normal", "Psychic"]},
+        {"name": "Gardevoir", "level": 44, "types": ["Psychic", "Fairy"]},
+        {"name": "Espathra", "level": 44, "types": ["Psychic"]},
+        {"name": "Florges", "level": 45, "types": ["Fairy"]}
+      ]
+    },
+    {
+      "name": "Grusha",
+      "gym": "Glaseado Gym",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Frosmoth", "level": 47, "types": ["Ice", "Bug"]},
+        {"name": "Beartic", "level": 47, "types": ["Ice"]},
+        {"name": "Cetitan", "level": 47, "types": ["Ice"]},
+        {"name": "Altaria", "level": 48, "types": ["Dragon", "Flying"]}
+      ]
+    },
+    {
+      "name": "Rika",
+      "gym": "Elite Four",
+      "specialty": "Ground",
+      "type": "Ground",
+      "team": [
+        {"name": "Whiscash", "level": 57, "types": ["Water", "Ground"]},
+        {"name": "Camerupt", "level": 57, "types": ["Fire", "Ground"]},
+        {"name": "Donphan", "level": 57, "types": ["Ground"]},
+        {"name": "Dugtrio", "level": 57, "types": ["Ground"]},
+        {"name": "Clodsire", "level": 58, "types": ["Poison", "Ground"]}
+      ]
+    },
+    {
+      "name": "Poppy",
+      "gym": "Elite Four",
+      "specialty": "Steel",
+      "type": "Steel",
+      "team": [
+        {"name": "Copperajah", "level": 58, "types": ["Steel"]},
+        {"name": "Magnezone", "level": 58, "types": ["Electric", "Steel"]},
+        {"name": "Bronzong", "level": 58, "types": ["Steel", "Psychic"]},
+        {"name": "Corviknight", "level": 58, "types": ["Flying", "Steel"]},
+        {"name": "Tinkaton", "level": 59, "types": ["Fairy", "Steel"]}
+      ]
+    },
+    {
+      "name": "Larry (Elite)",
+      "gym": "Elite Four",
+      "specialty": "Flying",
+      "type": "Flying",
+      "team": [
+        {"name": "Tropius", "level": 59, "types": ["Grass", "Flying"]},
+        {"name": "Staraptor", "level": 59, "types": ["Normal", "Flying"]},
+        {"name": "Altaria", "level": 59, "types": ["Dragon", "Flying"]},
+        {"name": "Oricorio", "level": 59, "types": ["Electric", "Flying"]},
+        {"name": "Flamigo", "level": 60, "types": ["Flying", "Fighting"]}
+      ]
+    },
+    {
+      "name": "Hassel",
+      "gym": "Elite Four",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Noivern", "level": 60, "types": ["Flying", "Dragon"]},
+        {"name": "Haxorus", "level": 60, "types": ["Dragon"]},
+        {"name": "Dragalge", "level": 60, "types": ["Poison", "Dragon"]},
+        {"name": "Flapple", "level": 60, "types": ["Grass", "Dragon"]},
+        {"name": "Baxcalibur", "level": 61, "types": ["Dragon", "Ice"]}
+      ]
+    },
+    {
+      "name": "Geeta",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "All",
+      "team": [
+        {"name": "Espathra", "level": 61, "types": ["Psychic"]},
+        {"name": "Gogoat", "level": 61, "types": ["Grass"]},
+        {"name": "Veluza", "level": 61, "types": ["Water", "Psychic"]},
+        {"name": "Avalugg", "level": 61, "types": ["Ice"]},
+        {"name": "Kingambit", "level": 61, "types": ["Dark", "Steel"]},
+        {"name": "Glimmora", "level": 62, "types": ["Rock", "Poison"]}
+      ]
+    }
+  ]
+}

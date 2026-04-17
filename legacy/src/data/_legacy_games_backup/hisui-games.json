@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Pokémon Legends: Arceus",
+    "slug": "legends-arceus",
+    "color": "#a8a183",
+    "year": "2022",
+    "region": "Hisui",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/1c/Legends_Arceus_EN_boxart.png/250px-Legends_Arceus_EN_boxart.png",
+    "description": "Um título que revolucionou as mecânicas com captura nativa em mundo semi-aberto numa Sinnoh feudal (Hisui).",
+    "features": ["Crafting no Mundo", "Estilos Fortes e Ágeis nas Batalhas", "Combate direto Treinador-Pokémon", "Zonas Livres Semi-abertas"],
+    "exclusivesTitle": "Deus Pokémon",
+    "exclusives": ["arceus"]
+  }
+]

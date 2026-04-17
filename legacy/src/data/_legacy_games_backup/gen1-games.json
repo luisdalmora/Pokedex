@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Pokémon Red Version",
+    "slug": "red",
+    "console": "Game Boy",
+    "color": "#eb3434",
+    "year": "1996",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/80/Red_JP_boxart.png/250px-Red_JP_boxart.png",
+    "description": "Edição original contendo os clássicos 151 Pokémons."
+  },
+  {
+    "name": "Pokémon Green Version",
+    "slug": "green",
+    "console": "Game Boy",
+    "color": "#1a9a46",
+    "year": "1996",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/9/98/Green_JP_boxart.png/250px-Green_JP_boxart.png",
+    "description": "Lançamento exclusivo do Japão que fundou a franquia."
+  },
+  {
+    "name": "Pokémon Blue Version",
+    "slug": "blue",
+    "console": "Game Boy",
+    "color": "#3455eb",
+    "year": "1996",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/f/f6/Blue_JP_boxart.png/250px-Blue_JP_boxart.png",
+    "description": "A versão internacional contendo rebalanceamento nos sprites da versão Green do Japão."
+  },
+  {
+    "name": "Pokémon Yellow Version",
+    "slug": "yellow",
+    "console": "Game Boy",
+    "color": "#ebc034",
+    "year": "1998",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/3/30/Yellow_JP_boxart.png/250px-Yellow_JP_boxart.png",
+    "description": "Edição Especial do Pikachu com referências da primeira temporada do Anime."
+  }
+]
