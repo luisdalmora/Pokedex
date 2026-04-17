@@ -120,8 +120,8 @@ export const renderGameDetail = async (container, gameSlug) => {
                 .box-art-outer { padding: 12px; background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-radius: 25px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
                 .detail-cover-img-premium { width: 190px; height: 270px; object-fit: cover; border-radius: 12px; }
                 .game-title-main { font-size: 5rem; font-weight: 950; margin: 10px 0; text-shadow: 0 5px 20px rgba(0,0,0,0.5); letter-spacing: -2px; }
-                .gen-badge-hub { display: inline-flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.3); padding: 8px 20px; border-radius: 40px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); }
-                .console-img-small { height: 18px; filter: brightness(0) invert(1); }
+                .gen-badge-hub { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.9); padding: 8px 20px; border-radius: 40px; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.1); color: #334155; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+                .console-img-small { height: 20px; filter: none; }
                 .meta-row-premium { display: flex; gap: 15px; margin-top: 25px; }
                 .badge-glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.1); }
 

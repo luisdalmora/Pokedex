@@ -119,32 +119,48 @@ export const renderHomeView = async (container) => {
         try {
             const res = await fetch('./src/data/games_registry.json');
             const data = await res.json();
+            
+            const platformIcons = {
+                'Game Boy': 'game-boy.png', 'GBC': 'game-boy-color.png', 'Game Boy Color': 'game-boy-color.png',
+                'GBA': 'game-boy-advance.png', 'DS': 'nintendo-ds.png', '3DS': 'nintendo-3ds.png', 'Switch': 'nintendo-switch.png'
+            };
 
-            gamesContainer.innerHTML = data.regions.map(r => `
-                <div class="accordion-item" id="acc-${r.id}">
-                    <div class="accordion-header" onclick="document.getElementById('acc-${r.id}').classList.toggle('open')">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" width="20" style="opacity: 0.8;">
-                            <span>${r.name}</span>
+            // Let's show a few featured ones from different generations
+            const featuredGames = [];
+            data.regions.forEach(r => {
+                r.generations.forEach(gen => {
+                    gen.games.slice(0, 1).forEach(g => {
+                        featuredGames.push({...g, region: r.name, platformIcon: platformIcons[g.platform] || 'nintendo-switch.png'});
+                    });
+                });
+            });
+
+            gamesContainer.innerHTML = featuredGames.slice(0, 9).map(g => `
+                <a href="#/games/${g.id}" class="game-card-premium animate-fade" style="text-decoration: none;">
+                    <div class="game-card-img-wrapper" style="height: 200px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; padding: 10px;">
+                        <div class="console-badge-float" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.1); padding: 6px 10px;">
+                            <img src="assets/images/consoles/${g.platformIcon}" class="console-icon-tiny" style="filter: none; height: 16px;" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'; this.style.opacity='0.5';">
+                            <span class="console-name-tiny" style="color: #334155; font-size: 0.65rem;">${g.platform}</span>
                         </div>
-                        <span class="accordion-icon" style="opacity: 0.5;">▼</span>
+                        <img src="https://img.pokemondb.net/boxes/${g.id.replace('lets-go-pikachu', 'lets-go-pikachu-switch').replace('lets-go-eevee', 'lets-go-eevee-switch')}.jpg" 
+                             onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png'; this.style.opacity='0.2'; this.style.width='40px';" 
+                             class="game-card-img" alt="${g.name}" style="object-fit: contain; width: auto; max-height: 100%; box-shadow: 0 8px 15px rgba(0,0,0,0.1);">
                     </div>
-                    <div class="accordion-content">
-                        <div class="game-list-mini">
-                            ${r.generations.map(gen => gen.games.map(g => `
-                                <a href="#/games/${g.id}" class="game-item-link">
-                                    <span style="font-size: 1.2rem; width: 24px; text-align: center;">${r.id === 'kanto' ? '🔴' : r.id === 'johto' ? '⚪' : r.id === 'hoenn' ? '🟢' : '🔵'}</span>
-                                    <span>${g.name}</span>
-                                </a>
-                            `).join('')).join('')}
-                        </div>
+                    <div class="game-card-content" style="padding: 15px;">
+                        <h4 style="font-size: 1rem; font-weight: 900; margin: 0; color: var(--text-main);">${g.name}</h4>
+                        <div style="font-size: 0.75rem; font-weight: 800; color: var(--text-muted); margin-top: 5px;">${g.region} • ${g.year}</div>
                     </div>
+                </a>
+            `).join('') + `
+                <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+                    <a href="#/games/library" class="btn-premium btn-primary" style="display: inline-flex;">Ver Biblioteca Completa &rarr;</a>
                 </div>
-            `).join('');
+            `;
         } catch (e) {
             gamesContainer.innerHTML = '<div class="empty-state">Erro ao carregar jogos.</div>';
         }
     };
+
 
     loadGames();
 
