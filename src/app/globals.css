@@ -22,35 +22,63 @@
 }
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
-  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --radius: 1rem;
+  --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  --premium-gradient: linear-gradient(135deg, #f43f5e 0%, #fb7185 100%);
 }
 
 [data-theme='dark'] {
-  --background: #0f172a;
+  --background: #020617;
   --foreground: #f8fafc;
+  --card-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Skeleton Pulse Animation */
-@keyframes skeleton-pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0.5; }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.animate-skeleton {
-  animation: skeleton-pulse 1.5s ease-in-out infinite;
-  background-color: rgb(226 232 240);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-[data-theme='dark'] .animate-skeleton {
-  background-color: rgb(30 41 59);
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Pokemon Type Backgrounds with Opacity */
+.type-bg-subtle {
+  background-color: color-mix(in srgb, var(--type-color), transparent 90%);
+}
+
+.type-text-main {
+  color: var(--type-color);
 }

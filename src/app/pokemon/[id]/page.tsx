@@ -5,6 +5,7 @@ import { getTypeColor } from "@/utils/pokemonStyles";
 import { StatsBar } from "@/components/pokemon/StatsBar";
 import { EvolutionTree } from "@/components/pokemon/EvolutionTree";
 import { AlternativeForms } from "@/components/pokemon/AlternativeForms";
+import { SpriteExplorer } from "@/components/pokemon/SpriteExplorer";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { ChevronLeft, Scale, Ruler, Zap, Info } from "lucide-react";
 import Link from "next/link";
@@ -129,19 +130,23 @@ export default async function PokemonDetailPage({ params }: { params: Promise<{ 
           </div>
 
           {/* Stats Side */}
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border border-slate-100 dark:border-slate-800">
-             <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-8">Atributos Base</h2>
-             <div className="space-y-6">
-                {pokemon.stats.map(s => (
-                  <StatsBar
-                    key={s.stat.name}
-                    label={s.stat.name}
-                    value={s.base_stat}
-                    type={primaryType}
-                    isHighest={s.base_stat === maxStat}
-                  />
-                ))}
-             </div>
+          <div className="space-y-8">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border border-slate-100 dark:border-slate-800">
+               <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-8">Atributos Base</h2>
+               <div className="space-y-6">
+                  {pokemon.stats.map(s => (
+                    <StatsBar
+                      key={s.stat.name}
+                      label={s.stat.name}
+                      value={s.base_stat}
+                      type={primaryType}
+                      isHighest={s.base_stat === maxStat}
+                    />
+                  ))}
+               </div>
+            </div>
+
+            <SpriteExplorer pokemon={pokemon} />
           </div>
         </div>
       </div>

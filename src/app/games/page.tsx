@@ -6,6 +6,7 @@ import { Gamepad2, Monitor, Calendar, Smartphone, Gamepad, Layers } from "lucide
 import Link from "next/link";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { motion, AnimatePresence } from "framer-motion";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const BOX_ART_MAP: Record<string, string> = {
   "lets-go-pikachu": "lets-go-pikachu-switch",
@@ -37,13 +38,14 @@ export default function GamesPage() {
   const activeRegion = gamesRegistry.regions.find(r => r.id === activeRegionId) || gamesRegistry.regions[0];
 
   return (
-    <div className="p-8 lg:p-12 max-w-7xl mx-auto space-y-12">
-      <header className="mb-12">
-        <h1 className="text-5xl font-black text-slate-900 dark:text-white tracking-tighter mb-4">Biblioteca de Jogos</h1>
-        <p className="text-slate-500 font-bold max-w-2xl">
-          Navegue por décadas de história Pokémon, organizadas por regiões e gerações.
-        </p>
-      </header>
+    <div className="space-y-12 pb-20">
+      <PageHeader 
+        title="Biblioteca de Jogos"
+        subtitle="Navegue por décadas de história Pokémon, organizadas por regiões e gerações."
+        pill="Coleção de Aventuras"
+      />
+
+      <div className="max-w-7xl mx-auto px-8 lg:px-12 space-y-12">
 
       {/* Region Selector (Tabs) */}
       <div className="flex items-center gap-2 overflow-x-auto pb-4 no-scrollbar -mx-4 px-4 lg:mx-0 lg:px-0">
@@ -133,6 +135,7 @@ export default function GamesPage() {
           </div>
         </motion.div>
       </AnimatePresence>
+      </div>
     </div>
   );
 }

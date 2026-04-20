@@ -11,6 +11,16 @@ export const getHomeSprite = (id: number | string): string => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
 };
 
+export const getDreamWorldSprite = (id: number | string): string => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+};
+
+export const getShowdownSprite = (name: string, shiny = false): string => {
+  const cleanName = String(name).toLowerCase().replace(' ', '');
+  const prefix = shiny ? 'ani-shiny' : 'ani';
+  return `https://play.pokemonshowdown.com/sprites/${prefix}/${cleanName}.gif`;
+};
+
 export const getFallbackImage = (): string => {
   return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
 };
@@ -20,12 +30,10 @@ export const getFallbackImage = (): string => {
  * Uses HOME (3D) as priority, falling back to Official Artwork.
  */
 export const getBestAvailableSprite = (id: number | string): string => {
-  // Since we are in a client/server environment where we can't easily ping URLs,
-  // we return the HOME sprite and rely on SafeImage component for 404 fallbacks.
   return getHomeSprite(id);
 };
 
-export const getSpriteByVersion = (id: number | string, version: string): string => {
+export const getSpriteByVersion = (id: number | string, version: string, name?: string): string => {
   const key = id;
   
   // Logic for Legacy/Pixel Sprites based on game versions
@@ -45,10 +53,15 @@ export const getSpriteByVersion = (id: number | string, version: string): string
   };
 
   const path = versionMap[version];
+  
+  // Use Showdown for Gen 5+ animations if name is provided
+  if (name && (version === 'black-white' || version === 'x-y' || version === 'sun-moon' || version === 'sword-shield' || version === 'scarlet-violet')) {
+    return getShowdownSprite(name);
+  }
+
   if (path) {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/${path}`;
   }
 
-  // Default to Best High-Res
   return getBestAvailableSprite(id);
 };
