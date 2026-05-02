@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Pokémon X",
+    "slug": "x",
+    "color": "#0d43a6",
+    "year": "2013",
+    "region": "Kalos",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d4/X_EN_boxart.png/250px-X_EN_boxart.png",
+    "description": "Primeiro título estritamente original para Nintendo 3DS (Geração VI), introduzindo modelos completos em 3D e as Mega Evoluções.",
+    "features": ["Mega Evoluções", "Customização do Treinador", "Tipo Fada Estreia"],
+    "exclusivesTitle": "Lendário X",
+    "exclusives": ["xerneas"]
+  },
+  {
+    "name": "Pokémon Y",
+    "slug": "y",
+    "color": "#a60d1b",
+    "year": "2013",
+    "region": "Kalos",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/8c/Y_EN_boxart.png/250px-Y_EN_boxart.png",
+    "description": "Trazendo a lenda da destruição Yveltal na região de Kalos inspirada na França.",
+    "features": ["Wonder Trade", "Mecânica de Super Training"],
+    "exclusivesTitle": "Lendário Y",
+    "exclusives": ["yveltal"]
+  },
+  {
+    "name": "Pokémon Legends: Z-A",
+    "slug": "legends-za",
+    "color": "#2c6c39",
+    "year": "Anunciado (2025)",
+    "region": "Kalos",
+    "cover": "",
+    "description": "Retorno anunciado à região de Kalos num modelo similar à saga Legends de Arceus, focado em Lumiose City.",
+    "features": ["Retorno das Mega Evoluções", "Exploração Urbana"],
+    "exclusivesTitle": "Destaque",
+    "exclusives": ["zygarde"]
+  }
+]

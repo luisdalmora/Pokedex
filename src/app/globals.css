@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pokedex-red: #cc0000;
+  --color-pokedex-dark-red: #8b0000;
+  --color-pokedex-screen-bg: #98cb98;
+  --color-pokedex-screen-border: #4a4a4a;
+  --color-pokedex-blue: #28aadc;
+  --color-pokedex-blue-glow: #87cefa;
+  --color-pokedex-yellow: #fdd835;
+  --color-pokedex-green: #4caf50;
+  --color-pokedex-gray: #e0e0e0;
+  --color-pokedex-black: #212121;
+  --color-pokedex-screen-text: #1a1a1a;
+  
+  --color-type-normal: #A8A77A;
+  --color-type-fire: #EE8130;
+  --color-type-water: #6390F0;
+  --color-type-grass: #7AC74C;
+  --color-type-electric: #F7D02C;
+  --color-type-ice: #96D9D6;
+  --color-type-fighting: #C22E28;
+  --color-type-poison: #A33EA1;
+  --color-type-ground: #E2BF65;
+  --color-type-flying: #A98FF3;
+  --color-type-psychic: #F95587;
+  --color-type-bug: #A6B91A;
+  --color-type-rock: #B6A136;
+  --color-type-ghost: #735797;
+  --color-type-dragon: #6F35FC;
+  --color-type-dark: #705746;
+  --color-type-steel: #B7B7CE;
+  --color-type-fairy: #D685AD;
+
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-blink: blink 1.5s infinite;
+  --animate-flash: flash 0.5s;
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  @keyframes flash {
+    0%, 100% { opacity: 1; filter: brightness(1); }
+    50% { opacity: 0.8; filter: brightness(1.5); }
+  }
+}
+
+:root {
+  --background: #1e1e1e;
+  --foreground: #ffffff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Scrollbar para telas internas da pokedex */
+.pokedex-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pokedex-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.pokedex-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-pokedex-screen-border);
+  border-radius: 4px;
+}
+
+/* Utilitários Pokedex */
+.scanline-effect::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 10;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+.screen-glare::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 11;
+  pointer-events: none;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+/* Pokemon Type Backgrounds with Opacity */
+.type-bg-subtle {
+  background-color: color-mix(in srgb, var(--type-color), transparent 90%);
+}
+
+.type-text-main {
+  color: var(--type-color);
+}
+
+/* Pixel Font Fallback Class */
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+}

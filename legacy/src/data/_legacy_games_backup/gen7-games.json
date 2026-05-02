@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Pokémon Sun",
+    "slug": "sun",
+    "console": "Nintendo 3DS",
+    "color": "#f28929",
+    "year": "2016",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/f/fa/Sun_EN_boxart.png/250px-Sun_EN_boxart.png",
+    "description": "Remoção dos antigos Ginásios e estreia da era dos Desafios das Ilhas nos trópicos do arquipélago de Alola."
+  },
+  {
+    "name": "Pokémon Moon",
+    "slug": "moon",
+    "console": "Nintendo 3DS",
+    "color": "#633c7f",
+    "year": "2016",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/52/Moon_EN_boxart.png/250px-Moon_EN_boxart.png",
+    "description": "O jogo sincroniza a rotação natural do Planeta com o relógio interno causando tempo noturno permanente no gameplay de dia."
+  },
+  {
+    "name": "Pokémon Ultra Sun",
+    "slug": "ultra-sun",
+    "console": "Nintendo 3DS",
+    "color": "#ffa500",
+    "year": "2017",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/74/Ultra_Sun_EN_boxart.png/250px-Ultra_Sun_EN_boxart.png",
+    "description": "Versão expandida focando na interferência celestial de uma nova Ultra Beast controladora em Alola."
+  },
+  {
+    "name": "Pokémon Ultra Moon",
+    "slug": "ultra-moon",
+    "console": "Nintendo 3DS",
+    "color": "#4b0082",
+    "year": "2017",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/7c/Ultra_Moon_EN_boxart.png/250px-Ultra_Moon_EN_boxart.png",
+    "description": "Viagem por portais Ultra dimensionais atrás de lendas além do tempo espaço normal."
+  },
+  {
+    "name": "Pokémon: Let's Go, Pikachu!",
+    "slug": "lets-go-pikachu",
+    "console": "Nintendo Switch",
+    "color": "#f2c94c",
+    "year": "2018",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/a/ad/Lets_Go_Pikachu_EN_boxart.png/250px-Lets_Go_Pikachu_EN_boxart.png",
+    "description": "Um pseudo-remake cooperativo para o híbrido que juntou regras do core series de Kanto com The Pokémon Go."
+  },
+  {
+    "name": "Pokémon: Let's Go, Eevee!",
+    "slug": "lets-go-eevee",
+    "console": "Nintendo Switch",
+    "color": "#c4a484",
+    "year": "2018",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/2/23/Lets_Go_Eevee_EN_boxart.png/250px-Lets_Go_Eevee_EN_boxart.png",
+    "description": "Viva a nostalgia reimaginada baseada no Pikachu Yellow com o parceiro customizável Eevee no Switch."
+  }
+]

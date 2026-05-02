@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Pokémon Black Version",
+    "slug": "black",
+    "console": "Nintendo DS",
+    "color": "#222222",
+    "year": "2010",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d1/Black_EN_boxart.png/250px-Black_EN_boxart.png",
+    "description": "Início da quinta geração com um foco sem precedentes em apenas Pokémon originais."
+  },
+  {
+    "name": "Pokémon White Version",
+    "slug": "white",
+    "console": "Nintendo DS",
+    "color": "#dddddd",
+    "year": "2010",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/87/White_EN_boxart.png/250px-White_EN_boxart.png",
+    "description": "A busca heroica em meio à disputa ideológica de N, estrelando Zekrom."
+  },
+  {
+    "name": "Pokémon Black Version 2",
+    "slug": "black-2",
+    "console": "Nintendo DS",
+    "color": "#111111",
+    "year": "2012",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/66/Black_2_EN_boxart.png/250px-Black_2_EN_boxart.png",
+    "description": "A primeira sequência narrativa na história principal com novos ginásios e Kyurem-Black."
+  },
+  {
+    "name": "Pokémon White Version 2",
+    "slug": "white-2",
+    "console": "Nintendo DS",
+    "color": "#eeeeee",
+    "year": "2012",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/2/29/White_2_EN_boxart.png/250px-White_2_EN_boxart.png",
+    "description": "A continuação da versão White lidando com o lado Kyurem-White numa Unova reformulada."
+  }
+]

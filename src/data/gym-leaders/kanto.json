@@ -1,0 +1,161 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Brock",
+      "gym": "Pewter City Gym",
+      "specialty": "Rock",
+      "type": "Rock",
+      "team": [
+        {"name": "Geodude", "level": 12, "types": ["Rock", "Ground"]},
+        {"name": "Onix", "level": 14, "types": ["Rock", "Ground"]}
+      ]
+    },
+    {
+      "name": "Misty",
+      "gym": "Cerulean City Gym",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Staryu", "level": 18, "types": ["Water"]},
+        {"name": "Starmie", "level": 21, "types": ["Water", "Psychic"]}
+      ]
+    },
+    {
+      "name": "Lt. Surge",
+      "gym": "Vermilion City Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Voltorb", "level": 21, "types": ["Electric"]},
+        {"name": "Pikachu", "level": 18, "types": ["Electric"]},
+        {"name": "Raichu", "level": 24, "types": ["Electric"]}
+      ]
+    },
+    {
+      "name": "Erika",
+      "gym": "Celadon City Gym",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Victreebel", "level": 29, "types": ["Grass", "Poison"]},
+        {"name": "Tangela", "level": 24, "types": ["Grass"]},
+        {"name": "Vileplume", "level": 29, "types": ["Grass", "Poison"]}
+      ]
+    },
+    {
+      "name": "Koga",
+      "gym": "Fuchsia City Gym",
+      "specialty": "Poison",
+      "type": "Poison",
+      "team": [
+        {"name": "Koffing", "level": 37, "types": ["Poison"]},
+        {"name": "Koffing", "level": 37, "types": ["Poison"]},
+        {"name": "Muk", "level": 39, "types": ["Poison"]},
+        {"name": "Weezing", "level": 43, "types": ["Poison"]}
+      ]
+    },
+    {
+      "name": "Sabrina",
+      "gym": "Saffron City Gym",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Kadabra", "level": 38, "types": ["Psychic"]},
+        {"name": "Mr. Mime", "level": 37, "types": ["Psychic", "Fairy"]},
+        {"name": "Venomoth", "level": 38, "types": ["Bug", "Poison"]},
+        {"name": "Alakazam", "level": 43, "types": ["Psychic"]}
+      ]
+    },
+    {
+      "name": "Blaine",
+      "gym": "Cinnabar Island Gym",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Growlithe", "level": 42, "types": ["Fire"]},
+        {"name": "Ponyta", "level": 40, "types": ["Fire"]},
+        {"name": "Rapidash", "level": 42, "types": ["Fire"]},
+        {"name": "Arcanine", "level": 47, "types": ["Fire"]}
+      ]
+    },
+    {
+      "name": "Giovanni",
+      "gym": "Viridian City Gym",
+      "specialty": "Ground",
+      "type": "Ground",
+      "team": [
+        {"name": "Rhyhorn", "level": 45, "types": ["Ground", "Rock"]},
+        {"name": "Dugtrio", "level": 42, "types": ["Ground"]},
+        {"name": "Nidoqueen", "level": 44, "types": ["Poison", "Ground"]},
+        {"name": "Nidoking", "level": 45, "types": ["Poison", "Ground"]},
+        {"name": "Rhydon", "level": 50, "types": ["Ground", "Rock"]}
+      ]
+    },
+    {
+      "name": "Lorelei",
+      "gym": "Elite Four",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Dewgong", "level": 54, "types": ["Water", "Ice"]},
+        {"name": "Cloyster", "level": 53, "types": ["Water", "Ice"]},
+        {"name": "Slowbro", "level": 54, "types": ["Water", "Psychic"]},
+        {"name": "Jynx", "level": 56, "types": ["Ice", "Psychic"]},
+        {"name": "Lapras", "level": 56, "types": ["Water", "Ice"]}
+      ]
+    },
+    {
+      "name": "Bruno",
+      "gym": "Elite Four",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Onix", "level": 53, "types": ["Rock", "Ground"]},
+        {"name": "Hitmonchan", "level": 55, "types": ["Fighting"]},
+        {"name": "Hitmonlee", "level": 55, "types": ["Fighting"]},
+        {"name": "Onix", "level": 56, "types": ["Rock", "Ground"]},
+        {"name": "Machamp", "level": 58, "types": ["Fighting"]}
+      ]
+    },
+    {
+      "name": "Agatha",
+      "gym": "Elite Four",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Gengar", "level": 56, "types": ["Ghost", "Poison"]},
+        {"name": "Golbat", "level": 56, "types": ["Poison", "Flying"]},
+        {"name": "Haunter", "level": 55, "types": ["Ghost", "Poison"]},
+        {"name": "Arbok", "level": 58, "types": ["Poison"]},
+        {"name": "Gengar", "level": 60, "types": ["Ghost", "Poison"]}
+      ]
+    },
+    {
+      "name": "Lance",
+      "gym": "Elite Four",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Gyarados", "level": 58, "types": ["Water", "Flying"]},
+        {"name": "Dragonair", "level": 56, "types": ["Dragon"]},
+        {"name": "Dragonair", "level": 56, "types": ["Dragon"]},
+        {"name": "Aerodactyl", "level": 60, "types": ["Rock", "Flying"]},
+        {"name": "Dragonite", "level": 62, "types": ["Dragon", "Flying"]}
+      ]
+    },
+    {
+      "name": "Blue",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "Normal",
+      "team": [
+        {"name": "Pidgeot", "level": 61, "types": ["Normal", "Flying"]},
+        {"name": "Alakazam", "level": 59, "types": ["Psychic"]},
+        {"name": "Rhydon", "level": 61, "types": ["Ground", "Rock"]},
+        {"name": "Exeggutor", "level": 61, "types": ["Grass", "Psychic"]},
+        {"name": "Gyarados", "level": 63, "types": ["Water", "Flying"]},
+        {"name": "Charizard", "level": 65, "types": ["Fire", "Flying"]}
+      ]
+    }
+  ]
+}

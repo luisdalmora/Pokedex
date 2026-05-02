@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pokémon Sword",
+    "slug": "sword",
+    "color": "#01b0f0",
+    "year": "2019",
+    "region": "Galar",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/1a/Sword_EN_boxart.png/250px-Sword_EN_boxart.png",
+    "description": "Aventura inspirada no Reino Unido introduzindo campos selvagens gigantes via Nintendo Switch.",
+    "features": ["Fenômeno Dynamax e Gigantamax", "Área Selvagem (Wild Area)", "Max Raid Battles"],
+    "exclusivesTitle": "Exclusivos Sword",
+    "exclusives": ["zacian", "sirfetchd"]
+  },
+  {
+    "name": "Pokémon Shield",
+    "slug": "shield",
+    "color": "#e30022",
+    "year": "2019",
+    "region": "Galar",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/9/91/Shield_EN_boxart.png/250px-Shield_EN_boxart.png",
+    "description": "Ao lado do seu antecessor formaram a imersão de RPG base no Switch para a Geração 8.",
+    "features": ["Líderes de ginásio exclusivos da versão (Ex: Fantasma)"],
+    "exclusivesTitle": "Exclusivos Shield",
+    "exclusives": ["zamazenta", "cursola"]
+  }
+]

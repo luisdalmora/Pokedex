@@ -1,0 +1,42 @@
+[
+  {
+    "id": "kanto",
+    "name": "Kanto",
+    "generation": 1,
+    "pokemonRange": "001-151",
+    "mainGames": ["red-blue", "yellow", "firered-leafgreen", "lets-go-pikachu-eevee"],
+    "description": "Kanto é a região onde tudo começou. Situada a leste de Johto, compartilha a mesma Liga Pokémon no Planalto Índigo."
+  },
+  {
+    "id": "johto",
+    "name": "Johto",
+    "generation": 2,
+    "pokemonRange": "152-251",
+    "mainGames": ["gold-silver", "crystal", "heartgold-soulsilver"],
+    "description": "Conhecida por sua rica história e tradições antigas, Johto abriga as lendas de Ho-Oh e Lugia."
+  },
+  {
+    "id": "hoenn",
+    "name": "Hoenn",
+    "generation": 3,
+    "pokemonRange": "252-386",
+    "mainGames": ["ruby-sapphire", "emerald", "omegaruby-alphasapphire"],
+    "description": "Uma região de clima tropical com vastos oceanos, ilhas e o imponente vulcão Mt. Chimney."
+  },
+  {
+    "id": "sinnoh",
+    "name": "Sinnoh",
+    "generation": 4,
+    "pokemonRange": "387-493",
+    "mainGames": ["diamond-pearl", "platinum", "brilliant-diamond-shining-pearl", "legends-arceus"],
+    "description": "Região montanhosa dividida ao meio pelo Mt. Coronet. Diz-se ser o local onde o universo Pokémon foi criado."
+  },
+  {
+    "id": "unova",
+    "name": "Unova",
+    "generation": 5,
+    "pokemonRange": "494-649",
+    "mainGames": ["black-white", "black-2-white-2"],
+    "description": "Inspirada em Nova York, é uma região com grandes metrópoles, pontes imponentes e forte contraste entre natureza e tecnologia."
+  }
+]

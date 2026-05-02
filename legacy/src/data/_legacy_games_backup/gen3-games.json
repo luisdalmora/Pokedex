@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Pokémon Ruby Version",
+    "slug": "ruby",
+    "console": "Game Boy Advance",
+    "color": "#a12323",
+    "year": "2002",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/14/Ruby_EN_boxart.png/250px-Ruby_EN_boxart.png",
+    "description": "Início da terceira geração em Hoenn controlada por Groudon e Team Magma."
+  },
+  {
+    "name": "Pokémon Sapphire Version",
+    "slug": "sapphire",
+    "console": "Game Boy Advance",
+    "color": "#2341a1",
+    "year": "2002",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d1/Sapphire_EN_boxart.png/250px-Sapphire_EN_boxart.png",
+    "description": "Conflito nos oceanos comandado por Kyogre e a Equipe Aqua."
+  },
+  {
+    "name": "Pokémon FireRed Version",
+    "slug": "firered",
+    "console": "Game Boy Advance",
+    "color": "#e84833",
+    "year": "2004",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/9/90/FireRed_EN_boxart.png/250px-FireRed_EN_boxart.png",
+    "description": "O remake fiel ao Red de Gen 1 na avançada engine de Game Boy Advance."
+  },
+  {
+    "name": "Pokémon LeafGreen Version",
+    "slug": "leafgreen",
+    "console": "Game Boy Advance",
+    "color": "#79c850",
+    "year": "2004",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/1a/LeafGreen_EN_boxart.png/250px-LeafGreen_EN_boxart.png",
+    "description": "O remake ocidental do exclusivo e originário Pokémon Green, agora no GBA."
+  },
+  {
+    "name": "Pokémon Emerald Version",
+    "slug": "emerald",
+    "console": "Game Boy Advance",
+    "color": "#1ca34d",
+    "year": "2004",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/6/65/Emerald_EN_boxart.jpg/250px-Emerald_EN_boxart.jpg",
+    "description": "Versão definitiva de Hoenn, pondo Rayquaza no centro do confronto épico."
+  }
+]

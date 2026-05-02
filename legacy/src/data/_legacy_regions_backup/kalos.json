@@ -1,0 +1,10 @@
+{
+  "name": "Kalos",
+  "generation": 6,
+  "range": {
+    "start": 650,
+    "end": 721
+  },
+  "image": "/assets/regions/kalos.png",
+  "description": "Inspirada na França, famosa pelas Mega Evoluções, de Pokémon X & Y."
+}

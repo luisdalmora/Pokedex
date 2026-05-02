@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Pokémon Diamond Version",
+    "slug": "diamond",
+    "console": "Nintendo DS",
+    "color": "#63a0d4",
+    "year": "2006",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/83/Diamond_EN_boxart.png/250px-Diamond_EN_boxart.png",
+    "description": "Lendário Dialga introduz o controle temporal de Sinnoh nos dois visores do NDS."
+  },
+  {
+    "name": "Pokémon Pearl Version",
+    "slug": "pearl",
+    "console": "Nintendo DS",
+    "color": "#d46399",
+    "year": "2006",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/74/Pearl_EN_boxart.png/250px-Pearl_EN_boxart.png",
+    "description": "Lendário Palkia domina o espaço dimensional ao longo de batalhas conectadas online via Wi-Fi."
+  },
+  {
+    "name": "Pokémon Platinum Version",
+    "slug": "platinum",
+    "console": "Nintendo DS",
+    "color": "#787679",
+    "year": "2008",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/0/07/Platinum_EN_boxart.png/250px-Platinum_EN_boxart.png",
+    "description": "Versão definitiva estendendo Sinnoh para o bizarro Distortion World encabeçado por Giratina."
+  },
+  {
+    "name": "Pokémon HeartGold Version",
+    "slug": "heartgold",
+    "console": "Nintendo DS",
+    "color": "#e2a938",
+    "year": "2009",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/1/15/HeartGold_EN_boxart.png/250px-HeartGold_EN_boxart.png",
+    "description": "Remake belíssimo e definitivo de Gold, permitindo que os Pokémon andem fora da Pokébola."
+  },
+  {
+    "name": "Pokémon SoulSilver Version",
+    "slug": "soulsilver",
+    "console": "Nintendo DS",
+    "color": "#c4c0c5",
+    "year": "2009",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/53/SoulSilver_EN_boxart.png/250px-SoulSilver_EN_boxart.png",
+    "description": "Remake de Silver amado por suas mecânicas perfeitas de seguir o jogador e vasto side-content."
+  }
+]

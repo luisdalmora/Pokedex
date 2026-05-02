@@ -1,0 +1,128 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Milo",
+      "specialty": "Grass",
+      "type": "Grass",
+      "team": [
+        {"name": "Gossifleur", "level": 19, "types": ["Grass"]},
+        {"name": "Eldegoss", "level": 20, "types": ["Grass"]}
+      ]
+    },
+    {
+      "name": "Nessa",
+      "specialty": "Water",
+      "type": "Water",
+      "team": [
+        {"name": "Goldeen", "level": 22, "types": ["Water"]},
+        {"name": "Arrokuda", "level": 23, "types": ["Water"]},
+        {"name": "Drednaw", "level": 24, "types": ["Water", "Rock"]}
+      ]
+    },
+    {
+      "name": "Kabu",
+      "specialty": "Fire",
+      "type": "Fire",
+      "team": [
+        {"name": "Ninetales", "level": 25, "types": ["Fire"]},
+        {"name": "Arcanine", "level": 25, "types": ["Fire"]},
+        {"name": "Centiskorch", "level": 27, "types": ["Fire", "Bug"]}
+      ]
+    },
+    {
+      "name": "Bea",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "version": "Sword",
+      "team": [
+        {"name": "Hitmontop", "level": 34, "types": ["Fighting"]},
+        {"name": "Pangoro", "level": 34, "types": ["Fighting", "Dark"]},
+        {"name": "Sirfetch'd", "level": 35, "types": ["Fighting"]},
+        {"name": "Machamp", "level": 36, "types": ["Fighting"]}
+      ]
+    },
+    {
+      "name": "Allister",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "version": "Shield",
+      "team": [
+        {"name": "Yamask", "level": 34, "types": ["Ghost", "Ground"]},
+        {"name": "Mimikyu", "level": 34, "types": ["Ghost", "Fairy"]},
+        {"name": "Cursola", "level": 35, "types": ["Ghost"]},
+        {"name": "Gengar", "level": 36, "types": ["Ghost", "Poison"]}
+      ]
+    },
+    {
+      "name": "Opal",
+      "specialty": "Fairy",
+      "type": "Fairy",
+      "team": [
+        {"name": "Weezing", "level": 36, "types": ["Poison", "Fairy"]},
+        {"name": "Mawile", "level": 36, "types": ["Steel", "Fairy"]},
+        {"name": "Togekiss", "level": 37, "types": ["Fairy", "Flying"]},
+        {"name": "Alcremie", "level": 38, "types": ["Fairy"]}
+      ]
+    },
+    {
+      "name": "Gordie",
+      "specialty": "Rock",
+      "type": "Rock",
+      "version": "Sword",
+      "team": [
+        {"name": "Barbaracle", "level": 40, "types": ["Water", "Rock"]},
+        {"name": "Shuckle", "level": 40, "types": ["Bug", "Rock"]},
+        {"name": "Stonjourner", "level": 41, "types": ["Rock"]},
+        {"name": "Coalossal", "level": 42, "types": ["Rock", "Fire"]}
+      ]
+    },
+    {
+      "name": "Melony",
+      "specialty": "Ice",
+      "type": "Ice",
+      "version": "Shield",
+      "team": [
+        {"name": "Frosmoth", "level": 40, "types": ["Ice", "Bug"]},
+        {"name": "Darmanitan", "level": 40, "types": ["Ice"]},
+        {"name": "Eiscue", "level": 41, "types": ["Ice"]},
+        {"name": "Lapras", "level": 42, "types": ["Water", "Ice"]}
+      ]
+    },
+    {
+      "name": "Piers",
+      "specialty": "Dark",
+      "type": "Dark",
+      "team": [
+        {"name": "Scrafty", "level": 44, "types": ["Dark", "Fighting"]},
+        {"name": "Malamar", "level": 45, "types": ["Dark", "Psychic"]},
+        {"name": "Skuntank", "level": 45, "types": ["Poison", "Dark"]},
+        {"name": "Obstagoon", "level": 46, "types": ["Dark", "Normal"]}
+      ]
+    },
+    {
+      "name": "Raihan",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Gigalith", "level": 46, "types": ["Rock"]},
+        {"name": "Flygon", "level": 47, "types": ["Ground", "Dragon"]},
+        {"name": "Sandaconda", "level": 46, "types": ["Ground"]},
+        {"name": "Duraludon", "level": 48, "types": ["Steel", "Dragon"]}
+      ]
+    },
+    {
+      "name": "Leon",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "All",
+      "team": [
+        {"name": "Aegislash", "level": 62, "types": ["Steel", "Ghost"]},
+        {"name": "Dragapult", "level": 62, "types": ["Dragon", "Ghost"]},
+        {"name": "Haxorus", "level": 63, "types": ["Dragon"]},
+        {"name": "Seismitoad", "level": 64, "types": ["Water", "Ground"]},
+        {"name": "Cinderace", "level": 64, "types": ["Fire"]},
+        {"name": "Charizard", "level": 65, "types": ["Fire", "Flying"]}
+      ]
+    }
+  ]
+}

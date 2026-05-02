@@ -1,0 +1,82 @@
+[
+  {
+    "id": "brock",
+    "name": "Brock",
+    "region": "kanto",
+    "city": "Pewter City",
+    "type": "rock",
+    "badge": "Boulder Badge",
+    "mainPokemon": 95,
+    "image": "/leaders/brock.png"
+  },
+  {
+    "id": "misty",
+    "name": "Misty",
+    "region": "kanto",
+    "city": "Cerulean City",
+    "type": "water",
+    "badge": "Cascade Badge",
+    "mainPokemon": 121,
+    "image": "/leaders/misty.png"
+  },
+  {
+    "id": "ltsurge",
+    "name": "Lt. Surge",
+    "region": "kanto",
+    "city": "Vermilion City",
+    "type": "electric",
+    "badge": "Thunder Badge",
+    "mainPokemon": 26,
+    "image": "/leaders/ltsurge.png"
+  },
+  {
+    "id": "erika",
+    "name": "Erika",
+    "region": "kanto",
+    "city": "Celadon City",
+    "type": "grass",
+    "badge": "Rainbow Badge",
+    "mainPokemon": 71,
+    "image": "/leaders/erika.png"
+  },
+  {
+    "id": "koga",
+    "name": "Koga",
+    "region": "kanto",
+    "city": "Fuchsia City",
+    "type": "poison",
+    "badge": "Soul Badge",
+    "mainPokemon": 110,
+    "image": "/leaders/koga.png"
+  },
+  {
+    "id": "sabrina",
+    "name": "Sabrina",
+    "region": "kanto",
+    "city": "Saffron City",
+    "type": "psychic",
+    "badge": "Marsh Badge",
+    "mainPokemon": 65,
+    "image": "/leaders/sabrina.png"
+  },
+  {
+    "id": "blaine",
+    "name": "Blaine",
+    "region": "kanto",
+    "city": "Cinnabar Island",
+    "type": "fire",
+    "badge": "Volcano Badge",
+    "mainPokemon": 59,
+    "image": "/leaders/blaine.png"
+  },
+  {
+    "id": "giovanni",
+    "name": "Giovanni",
+    "region": "kanto",
+    "city": "Viridian City",
+    "type": "ground",
+    "badge": "Earth Badge",
+    "mainPokemon": 112,
+    "image": "/leaders/giovanni.png"
+  }
+]

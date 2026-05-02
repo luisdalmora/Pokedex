@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Pokémon Scarlet",
+    "slug": "scarlet",
+    "color": "#dd3523",
+    "year": "2022",
+    "region": "Paldea",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/3/36/Scarlet_EN_boxart.png/250px-Scarlet_EN_boxart.png",
+    "description": "O primeiro mundo 100% aberto da franquia. Koraidon acompanha o jogador no presente em tons de antiguidade.",
+    "features": ["Terastalização", "100% Open World cooperativo (4 jogadores)", "Múltiplas Rotas e Academias"],
+    "exclusivesTitle": "Paradoxo (Passado)",
+    "exclusives": ["koraidon"]
+  },
+  {
+    "name": "Pokémon Violet",
+    "slug": "violet",
+    "color": "#5b23dd",
+    "year": "2022",
+    "region": "Paldea",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/5e/Violet_EN_boxart.png/250px-Violet_EN_boxart.png",
+    "description": "Aventura focada num visual mais futurista com o lendário Miraidon e Pokémon Paradoxais de um futuro cibernético.",
+    "features": ["Terastalização", "Piqueniques e Produção de Sanduíches", "100% World Livre sem ordem de ginásio"],
+    "exclusivesTitle": "Paradoxo (Futuro)",
+    "exclusives": ["miraidon"]
+  }
+]

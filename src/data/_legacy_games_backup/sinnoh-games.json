@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Pokémon Diamond Version",
+    "slug": "diamond",
+    "color": "#63a0d4",
+    "year": "2006",
+    "region": "Sinnoh",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/83/Diamond_EN_boxart.png/250px-Diamond_EN_boxart.png",
+    "description": "Introdução da 4ª Geração no Nintendo DS com forte foco na lenda do espaço-tempo através de Dialga.",
+    "features": ["Divisão entre dano Physical e Special", "Global Trade Station (GTS)"],
+    "exclusivesTitle": "Exclusivos",
+    "exclusives": ["dialga"]
+  },
+  {
+    "name": "Pokémon Pearl Version",
+    "slug": "pearl",
+    "color": "#d46399",
+    "year": "2006",
+    "region": "Sinnoh",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/74/Pearl_EN_boxart.png/250px-Pearl_EN_boxart.png",
+    "description": "Contraparte do Nintendo DS focada na lenda do espaço com Palkia.",
+    "features": ["Sistema de Poffins", "The Underground"],
+    "exclusivesTitle": "Exclusivos",
+    "exclusives": ["palkia"]
+  },
+  {
+    "name": "Pokémon Platinum Version",
+    "slug": "platinum",
+    "color": "#787679",
+    "year": "2008",
+    "region": "Sinnoh",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/0/07/Platinum_EN_boxart.png/250px-Platinum_EN_boxart.png",
+    "description": "A versão definitiva de Sinnoh encabeçada por Giratina no misterioso Distortion World.",
+    "features": ["Distortion World", "Nova Battle Frontier"],
+    "exclusivesTitle": "Lendário Capa",
+    "exclusives": ["giratina"]
+  },
+  {
+    "name": "Pokémon Brilliant Diamond",
+    "slug": "brilliant-diamond",
+    "color": "#add8e6",
+    "year": "2021",
+    "region": "Sinnoh",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/4/41/Brilliant_Diamond_EN_boxart.png/250px-Brilliant_Diamond_EN_boxart.png",
+    "description": "Remake autêntico chibificado para o Nintendo Switch.",
+    "features": ["Grand Underground", "Personalização de Pokeballs"],
+    "exclusivesTitle": "Exclusivos BD",
+    "exclusives": ["dialga"]
+  },
+  {
+    "name": "Pokémon Shining Pearl",
+    "slug": "shining-pearl",
+    "color": "#ffb6c1",
+    "year": "2021",
+    "region": "Sinnoh",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/52/Shining_Pearl_EN_boxart.png/250px-Shining_Pearl_EN_boxart.png",
+    "description": "Remake de Pearl para a era do Switch.",
+    "features": ["Grand Underground com Esconderijos Pokémon"],
+    "exclusivesTitle": "Exclusivos SP",
+    "exclusives": ["palkia"]
+  }
+]

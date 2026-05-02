@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Pokémon X",
+    "slug": "x",
+    "console": "Nintendo 3DS",
+    "color": "#0d43a6",
+    "year": "2013",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d4/X_EN_boxart.png/250px-X_EN_boxart.png",
+    "description": "A mudança drástica para os gráficos 3D da era atual com o lendário Xerneas encabeçando as Mega Evoluções."
+  },
+  {
+    "name": "Pokémon Y",
+    "slug": "y",
+    "console": "Nintendo 3DS",
+    "color": "#a60d1b",
+    "year": "2013",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/8/8c/Y_EN_boxart.png/250px-Y_EN_boxart.png",
+    "description": "Yveltal marca o ciclo de destruição numa região inspirada fortemente na grande França (Kalos)."
+  },
+  {
+    "name": "Pokémon Omega Ruby",
+    "slug": "omega-ruby",
+    "console": "Nintendo 3DS",
+    "color": "#c43333",
+    "year": "2014",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/0/05/Omega_Ruby_EN_boxart.png/250px-Omega_Ruby_EN_boxart.png",
+    "description": "Remake belíssimo tridimensional de Hoenn unindo Groudon e as evoluções Mega e Primais."
+  },
+  {
+    "name": "Pokémon Alpha Sapphire",
+    "slug": "alpha-sapphire",
+    "console": "Nintendo 3DS",
+    "color": "#335fc4",
+    "year": "2014",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/7/7b/Alpha_Sapphire_EN_boxart.png/250px-Alpha_Sapphire_EN_boxart.png",
+    "description": "Remortalizando a experiência do clássico Sapphire com episódios end-game lendários de Kyogre e Deoxys."
+  }
+]

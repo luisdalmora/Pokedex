@@ -1,0 +1,10 @@
+{
+  "name": "Johto",
+  "generation": 2,
+  "range": {
+    "start": 152,
+    "end": 251
+  },
+  "image": "/assets/regions/johto.png",
+  "description": "Região introduzida em Pokémon Gold & Silver, explorando mitologia com Lugia e Ho-Oh."
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Pokémon Scarlet",
+    "slug": "scarlet",
+    "console": "Nintendo Switch",
+    "color": "#dd3523",
+    "year": "2022",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/3/36/Scarlet_EN_boxart.png/250px-Scarlet_EN_boxart.png",
+    "description": "Primeiro da série a apresentar um design Full Open World desde as rotas de exploração iniciais acompanhado pelo Dragão Antigo Koraidon."
+  },
+  {
+    "name": "Pokémon Violet",
+    "slug": "violet",
+    "console": "Nintendo Switch",
+    "color": "#5b23dd",
+    "year": "2022",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/5/5e/Violet_EN_boxart.png/250px-Violet_EN_boxart.png",
+    "description": "Uma experiência completamente nova com rotações de narrativa e exploração multi-jogador ao redor das encostas de Paldea num futuro cibernético."
+  },
+  {
+    "name": "Pokémon Legends: Z-A",
+    "slug": "legends-za",
+    "console": "Switch 2",
+    "color": "#2c6c39",
+    "year": "2025",
+    "cover": "https://archives.bulbagarden.net/media/upload/thumb/d/d4/X_EN_boxart.png/250px-X_EN_boxart.png",
+    "description": "Prometido expandir a tecnologia dos consoles híbridos recriando a mítica zona urbana Lumiose City central do mundo."
+  }
+]

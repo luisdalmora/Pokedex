@@ -1,0 +1,152 @@
+{
+  "gym-leaders": [
+    {
+      "name": "Cilan / Chili / Cress",
+      "gym": "Striaton City Gym",
+      "specialty": "Grass / Fire / Water",
+      "type": "Grass",
+      "team": [
+        {"name": "Lillipup", "level": 12, "types": ["Normal"]},
+        {"name": "Pansage", "level": 14, "types": ["Grass"]}
+      ]
+    },
+    {
+      "name": "Lenora",
+      "gym": "Nacrene City Gym",
+      "specialty": "Normal",
+      "type": "Normal",
+      "team": [
+        {"name": "Herdier", "level": 18, "types": ["Normal"]},
+        {"name": "Watchog", "level": 20, "types": ["Normal"]}
+      ]
+    },
+    {
+      "name": "Burgh",
+      "gym": "Castelia City Gym",
+      "specialty": "Bug",
+      "type": "Bug",
+      "team": [
+        {"name": "Whirlipede", "level": 21, "types": ["Bug", "Poison"]},
+        {"name": "Dwebble", "level": 21, "types": ["Bug", "Rock"]},
+        {"name": "Leavanny", "level": 23, "types": ["Bug", "Grass"]}
+      ]
+    },
+    {
+      "name": "Elesa",
+      "gym": "Nimbasa City Gym",
+      "specialty": "Electric",
+      "type": "Electric",
+      "team": [
+        {"name": "Emolga", "level": 25, "types": ["Electric", "Flying"]},
+        {"name": "Emolga", "level": 25, "types": ["Electric", "Flying"]},
+        {"name": "Zebstrika", "level": 27, "types": ["Electric"]}
+      ]
+    },
+    {
+      "name": "Clay",
+      "gym": "Driftveil City Gym",
+      "specialty": "Ground",
+      "type": "Ground",
+      "team": [
+        {"name": "Krokorok", "level": 29, "types": ["Ground", "Dark"]},
+        {"name": "Palpitoad", "level": 29, "types": ["Water", "Ground"]},
+        {"name": "Excadrill", "level": 31, "types": ["Ground", "Steel"]}
+      ]
+    },
+    {
+      "name": "Skyla",
+      "gym": "Mistralton City Gym",
+      "specialty": "Flying",
+      "type": "Flying",
+      "team": [
+        {"name": "Swoobat", "level": 33, "types": ["Psychic", "Flying"]},
+        {"name": "Unfezant", "level": 33, "types": ["Normal", "Flying"]},
+        {"name": "Swanna", "level": 35, "types": ["Water", "Flying"]}
+      ]
+    },
+    {
+      "name": "Brycen",
+      "gym": "Icirrus City Gym",
+      "specialty": "Ice",
+      "type": "Ice",
+      "team": [
+        {"name": "Vanillish", "level": 37, "types": ["Ice"]},
+        {"name": "Cryogonal", "level": 37, "types": ["Ice"]},
+        {"name": "Beartic", "level": 39, "types": ["Ice"]}
+      ]
+    },
+    {
+      "name": "Drayden / Iris",
+      "gym": "Opelucid City Gym",
+      "specialty": "Dragon",
+      "type": "Dragon",
+      "team": [
+        {"name": "Fraxure", "level": 41, "types": ["Dragon"]},
+        {"name": "Druddigon", "level": 41, "types": ["Dragon"]},
+        {"name": "Haxorus", "level": 43, "types": ["Dragon"]}
+      ]
+    },
+    {
+      "name": "Shauntal",
+      "gym": "Elite Four",
+      "specialty": "Ghost",
+      "type": "Ghost",
+      "team": [
+        {"name": "Cofagrigus", "level": 48, "types": ["Ghost"]},
+        {"name": "Jellicent", "level": 48, "types": ["Water", "Ghost"]},
+        {"name": "Golurk", "level": 48, "types": ["Ground", "Ghost"]},
+        {"name": "Chandelure", "level": 50, "types": ["Ghost", "Fire"]}
+      ]
+    },
+    {
+      "name": "Grimsley",
+      "gym": "Elite Four",
+      "specialty": "Dark",
+      "type": "Dark",
+      "team": [
+        {"name": "Scrafty", "level": 48, "types": ["Dark", "Fighting"]},
+        {"name": "Krookodile", "level": 48, "types": ["Ground", "Dark"]},
+        {"name": "Liepard", "level": 48, "types": ["Dark"]},
+        {"name": "Bisharp", "level": 50, "types": ["Dark", "Steel"]}
+      ]
+    },
+    {
+      "name": "Caitlin",
+      "gym": "Elite Four",
+      "specialty": "Psychic",
+      "type": "Psychic",
+      "team": [
+        {"name": "Reuniclus", "level": 48, "types": ["Psychic"]},
+        {"name": "Musharna", "level": 48, "types": ["Psychic"]},
+        {"name": "Sigilyph", "level": 48, "types": ["Psychic", "Flying"]},
+        {"name": "Gothitelle", "level": 50, "types": ["Psychic"]}
+      ]
+    },
+    {
+      "name": "Marshal",
+      "gym": "Elite Four",
+      "specialty": "Fighting",
+      "type": "Fighting",
+      "team": [
+        {"name": "Throh", "level": 48, "types": ["Fighting"]},
+        {"name": "Sawk", "level": 48, "types": ["Fighting"]},
+        {"name": "Conkeldurr", "level": 48, "types": ["Fighting"]},
+        {"name": "Mienshao", "level": 50, "types": ["Fighting"]}
+      ]
+    },
+    {
+      "name": "Alder",
+      "gym": "Champion",
+      "specialty": "Mixed",
+      "type": "All",
+      "team": [
+        {"name": "Accelgor", "level": 75, "types": ["Bug"]},
+        {"name": "Bouffalant", "level": 75, "types": ["Normal"]},
+        {"name": "Druddigon", "level": 75, "types": ["Dragon"]},
+        {"name": "Vanilluxe", "level": 75, "types": ["Ice"]},
+        {"name": "Escavalier", "level": 75, "types": ["Bug", "Steel"]},
+        {"name": "Volcarona", "level": 77, "types": ["Bug", "Fire"]}
+      ]
+    }
+  ]
+}

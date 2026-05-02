@@ -1,0 +1,44 @@
+[
+  {
+    "id": "game-boy",
+    "name": "Game Boy",
+    "manufacturer": "Nintendo",
+    "releaseYear": 1989,
+    "icon": "/consoles/game-boy.png"
+  },
+  {
+    "id": "game-boy-color",
+    "name": "Game Boy Color",
+    "manufacturer": "Nintendo",
+    "releaseYear": 1998,
+    "icon": "/consoles/game-boy-color.png"
+  },
+  {
+    "id": "game-boy-advance",
+    "name": "Game Boy Advance",
+    "manufacturer": "Nintendo",
+    "releaseYear": 2001,
+    "icon": "/consoles/game-boy-advance.png"
+  },
+  {
+    "id": "nintendo-ds",
+    "name": "Nintendo DS",
+    "manufacturer": "Nintendo",
+    "releaseYear": 2004,
+    "icon": "/consoles/nintendo-ds.png"
+  },
+  {
+    "id": "nintendo-3ds",
+    "name": "Nintendo 3DS",
+    "manufacturer": "Nintendo",
+    "releaseYear": 2011,
+    "icon": "/consoles/nintendo-3ds.png"
+  },
+  {
+    "id": "nintendo-switch",
+    "name": "Nintendo Switch",
+    "manufacturer": "Nintendo",
+    "releaseYear": 2017,
+    "icon": "/consoles/nintendo-switch.png"
+  }
+]

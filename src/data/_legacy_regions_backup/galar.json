@@ -1,0 +1,10 @@
+{
+  "name": "Galar",
+  "generation": 8,
+  "range": {
+    "start": 810,
+    "end": 898
+  },
+  "image": "/assets/regions/galar.png",
+  "description": "Região inspirada no Reino Unido de Pokémon Sword & Shield, focada em batalhas de estádio e Dynamax."
+}

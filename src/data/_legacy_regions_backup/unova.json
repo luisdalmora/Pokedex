@@ -1,0 +1,10 @@
+{
+  "name": "Unova",
+  "generation": 5,
+  "range": {
+    "start": 494,
+    "end": 649
+  },
+  "image": "/assets/regions/unova.png",
+  "description": "Uma região mais cosmopolita inspirada em Nova Iorque, introduzida em Black & White."
+}
