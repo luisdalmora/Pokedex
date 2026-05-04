@@ -1,124 +1,214 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
-import { KantoPokedexShell } from "@/components/device/KantoPokedexShell";
-import { PokedexScreen } from "@/components/device/PokedexScreen";
+import React, { useState, useEffect, useCallback } from "react";
+import { PokedexOSLayout } from "@/components/pokedex-os/PokedexOSLayout";
 import { PokemonCard } from "@/components/pokemon/PokemonCard";
-import { ChevronLeft } from "lucide-react";
-import gymLeaders from "@/data/gym_leaders.json";
+import { Loader, ErrorState, EmptyState } from "@/components/ui/States";
+import { PokeAPIClient } from "@/lib/pokeapi/client";
+import { PokemonSearchEngine, SearchFilters } from "@/lib/pokeapi/search-engine";
+import { PokemonCardViewModel } from "@/types/view-models";
+
 import kantoLore from "@/data/kanto_lore.json";
-import { PokemonService } from "@/lib/pokemon/pokemon.service";
-import { PokeApiClient } from "@/lib/pokeapi/client";
-import { ENDPOINTS } from "@/lib/pokeapi/endpoints";
-import { PokemonMapper } from "@/lib/pokemon/pokemon.mapper";
+import gymLeaders from "@/data/gym_leaders.json";
 
-export default function KantoPage() {
-  const [pokemons, setPokemons] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function KantoScannerPage() {
+  const [pokemonList, setPokemonList] = useState<PokemonCardViewModel[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const loadKantoPokedex = useCallback(async () => {
-    setIsLoading(true);
+  const [search, setSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState("all");
+
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
+  const LIMIT = 30;
+
+  const loadKantoDex = useCallback(async (currentOffset: number, append = false, currentFilters: SearchFilters) => {
     try {
-      // 151 Pokémons originais
-      const listResponse = await PokeApiClient.fetch<any>(ENDPOINTS.pokemonList(151, 0));
-      const detailedPokemons = await Promise.all(
-        listResponse.results.map(async (p: any) => {
-          const id = p.url.split("/").filter(Boolean).pop()!;
-          const pokemon = await PokeApiClient.fetch<any>(ENDPOINTS.pokemon(id));
+      setLoading(true);
+      setError(null);
+
+      // Force Kanto filter (Generation 1)
+      const kantoFilters = { ...currentFilters, generation: "1", special: "all" };
+      const searchRes = await PokemonSearchEngine.search(kantoFilters, LIMIT, currentOffset);
+      
+      setHasMore(searchRes.hasMore);
+      setTotalCount(searchRes.totalCount);
+      
+      const detailedPromises = searchRes.results.map(async (p) => {
+        try {
+          const detail = await PokeAPIClient.getPokemon(p.name);
+          const species = await PokeAPIClient.getPokemonSpecies(detail.id);
           
-          // Mapeando com sprite gen 1 forçado
-          const card = PokemonMapper.toCardViewModel(pokemon);
-          // Substituir sprite normal pelo de Red/Blue (ou fallback se yellow)
-          const gen1Sprite = pokemon.sprites.versions?.["generation-i"]?.["red-blue"]?.front_default 
-                          || pokemon.sprites.versions?.["generation-i"]?.yellow?.front_default
-                          || card.spriteUrl;
-                          
-          return { ...card, spriteUrl: gen1Sprite, generation: 1 };
-        })
-      );
-      setPokemons(detailedPokemons);
-    } catch (error) {
-      console.error("Erro ao carregar Kanto dex", error);
+          return {
+            id: detail.id,
+            name: detail.name,
+            types: detail.types.map((t) => t.type.name),
+            spriteUrl: detail.sprites.versions?.["generation-i"]?.["red-blue"]?.front_default || 
+                       detail.sprites.versions?.["generation-i"]?.yellow?.front_default || 
+                       detail.sprites.front_default,
+            generation: 1,
+            isLegendary: species.is_legendary,
+            isMythical: species.is_mythical
+          };
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      });
+      
+      const detailedBatch = (await Promise.all(detailedPromises)).filter(Boolean) as PokemonCardViewModel[];
+      setPokemonList(prev => append ? [...prev, ...detailedBatch] : detailedBatch);
+    } catch (err) {
+      setError("Falha ao carregar banco de dados de Kanto.");
+      console.error(err);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    loadKantoPokedex();
-  }, [loadKantoPokedex]);
+    const debounce = setTimeout(() => {
+      loadKantoDex(0, false, {
+        query: search,
+        type: typeFilter,
+        generation: "1",
+        special: "all"
+      });
+    }, 400);
+    return () => clearTimeout(debounce);
+  }, [search, typeFilter, loadKantoDex]);
+
+  const loadMore = () => {
+    if (!hasMore) return;
+    const nextOffset = offset + LIMIT;
+    setOffset(nextOffset);
+    loadKantoDex(nextOffset, true, {
+      query: search,
+      type: typeFilter,
+      generation: "1",
+      special: "all"
+    });
+  };
+
+  const RightPanel = (
+    <div className="flex flex-col gap-4 h-full">
+      <div className="bg-[#991b1b]/20 border-2 border-red-500/50 p-3 rounded">
+        <h3 className="text-red-400 font-bold text-xs uppercase tracking-widest mb-3">Busca Kanto</h3>
+        <input 
+          type="text" 
+          placeholder="Nome ou ID" 
+          value={search}
+          onChange={(e) => {
+            setOffset(0);
+            setSearch(e.target.value);
+          }}
+          className="w-full bg-black border border-red-900 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-red-500 mb-2"
+        />
+        <select 
+          className="w-full bg-black border border-red-900 rounded px-2 py-1.5 text-xs text-white"
+          value={typeFilter}
+          onChange={(e) => {
+            setOffset(0);
+            setTypeFilter(e.target.value);
+          }}
+        >
+          <option value="all">Todos os Tipos</option>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+          <option value="electric">Electric</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+        </select>
+        
+        <div className="mt-4 p-2 bg-black/50 border border-red-900 rounded">
+            <div className="text-red-500 text-xl font-bold font-mono tracking-widest text-center">
+                {totalCount.toString().padStart(3, '0')}
+            </div>
+            <div className="text-[10px] text-red-900/80 text-center uppercase mt-1">
+                Registros Compatíveis
+            </div>
+        </div>
+      </div>
+
+      <div className="bg-[#0f172a] border-2 border-[#1f2937] p-3 rounded flex-1 overflow-y-auto os-scroll">
+        <h3 className="text-white font-bold text-[10px] uppercase tracking-widest mb-2 border-b border-slate-800 pb-1">
+          Kanto Lore
+        </h3>
+        <p className="text-[10px] text-slate-400 font-mono mb-4">
+          {kantoLore.description}
+        </p>
+
+        <h3 className="text-white font-bold text-[10px] uppercase tracking-widest mb-2 border-b border-slate-800 pb-1">
+          Líderes de Ginásio
+        </h3>
+        <div className="flex flex-col gap-2">
+          {gymLeaders.filter(g => g.region === "Kanto").map((leader) => (
+            <div key={leader.order} className="flex flex-col bg-black/40 p-1.5 rounded border border-slate-800">
+              <div className="flex justify-between items-center">
+                <span className="text-[10px] text-cyan-400 font-bold uppercase">{leader.name}</span>
+                <span className="text-[9px] px-1 rounded text-white" style={{ backgroundColor: `var(--color-type-${leader.type})` }}>
+                  {leader.type}
+                </span>
+              </div>
+              <div className="flex justify-between text-[9px] text-slate-500 mt-1 uppercase">
+                <span>{leader.city}</span>
+                <span>{leader.badge}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <KantoPokedexShell
-      isOpen={true}
-      rightPanel={
-        <div className="h-full flex flex-col p-2 pokedex-scroll overflow-y-auto pr-2">
-          <h2 className="font-pixel text-xl mb-4 border-b-2 border-gray-700 pb-2 text-red-500">KANTO DOSSIER</h2>
-          
-          <div className="bg-[#111] border border-gray-700 rounded p-4 mb-6">
-            <p className="text-sm text-gray-300 leading-relaxed">
-              {kantoLore.description}
-            </p>
-          </div>
-
-          <h3 className="font-pixel text-xs text-gray-400 mb-4 border-b border-gray-700 pb-2">LÍDERES DE GINÁSIO</h3>
-          <div className="grid grid-cols-1 gap-3 mb-6">
-            {gymLeaders.map((leader) => (
-              <div key={leader.id} className="bg-[#222] border border-gray-600 rounded p-3 flex justify-between items-center">
-                <div>
-                  <h4 className="font-pixel text-[10px] text-white uppercase">{leader.name}</h4>
-                  <p className="text-xs text-gray-400 mt-1">{leader.city}</p>
-                </div>
-                <div className="text-right">
-                  <span className="font-pixel text-[8px] bg-gray-800 text-gray-300 px-2 py-1 rounded block mb-1">
-                    {leader.badge}
-                  </span>
-                  <span className="font-pixel text-[8px] text-[var(--color-pokedex-blue-glow)] block">
-                    TIPO: {leader.type.toUpperCase()}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <h3 className="font-pixel text-xs text-gray-400 mb-4 border-b border-gray-700 pb-2">LOCAIS NOTÁVEIS</h3>
-          <div className="space-y-4">
-            {kantoLore.notableLocations.map((loc, idx) => (
-              <div key={idx} className="border-l-2 border-red-500 pl-3">
-                <h4 className="font-pixel text-[10px] text-gray-200">{loc.name}</h4>
-                <p className="text-xs text-gray-400 mt-1">{loc.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      }
+    <PokedexOSLayout 
+      moduleName="KANTO SCANNER" 
+      status={loading ? "SCANNING" : "ONLINE"}
+      isScanning={loading}
+      itemsCount={totalCount}
+      rightPanel={RightPanel}
     >
-      <PokedexScreen isScanning={isLoading}>
-        <div className="flex justify-between items-center mb-6 sticky top-0 bg-[var(--color-pokedex-screen-bg)] z-30 py-2 border-b-2 border-black/10">
-          <Link href="/regions">
-            <button className="flex items-center gap-1 font-pixel text-[10px] hover:opacity-70 transition-opacity">
-              <ChevronLeft size={16} /> REGIÕES
+      <div className="h-full flex flex-col">
+        <div className="flex-1 overflow-y-auto os-scroll pr-2 pb-4">
+          {error ? (
+            <ErrorState message={error} />
+          ) : pokemonList.length === 0 && !loading ? (
+             <EmptyState message="Nenhum Pokémon encontrado." />
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+              {pokemonList.map((pokemon) => (
+                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+              ))}
+            </div>
+          )}
+          
+          {loading && pokemonList.length > 0 && (
+             <div className="py-4"><Loader text="MOUNTING KANTO DATABASE..." /></div>
+          )}
+          
+          {!loading && !error && hasMore && pokemonList.length > 0 && (
+            <button 
+              onClick={loadMore}
+              className="mt-6 w-full py-2 border-2 border-red-900/50 text-red-500/70 font-bold text-xs uppercase tracking-widest hover:border-red-500 hover:text-red-500 transition-colors rounded"
+            >
+              CARREGAR MAIS REGISTROS
             </button>
-          </Link>
-          <h1 className="font-pixel text-sm">POKÉDEX KANTO</h1>
+          )}
         </div>
-
-        {isLoading ? (
-           <div className="py-20 flex flex-col items-center justify-center text-[10px] font-pixel animate-pulse">
-            <div className="w-8 h-8 border-2 border-black border-t-transparent rounded-full animate-spin mb-4"></div>
-            CARREGANDO DADOS DA GERAÇÃO I...
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-10">
-            {pokemons.map((pokemon, index) => (
-              <div key={pokemon.id} className="rendering-pixelated">
-                <PokemonCard pokemon={pokemon} index={index} />
-              </div>
-            ))}
-          </div>
-        )}
-      </PokedexScreen>
-    </KantoPokedexShell>
+      </div>
+    </PokedexOSLayout>
   );
 }

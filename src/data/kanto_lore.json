@@ -1,23 +1,31 @@
 {
-  "description": "Kanto é a primeira região apresentada na franquia Pokémon, baseada na região real de Kantō no Japão. É famosa por abrigar os Pokémon originais de número 1 a 151. Sua tecnologia de captura e armazenamento de Pokémon foi pioneira, sendo o lar do Professor Oak (Carvalho) e do sistema de PC desenvolvido por Bill.",
-  "notableLocations": [
-    {
-      "name": "Pallet Town",
-      "description": "Uma cidade tranquila, lar do laboratório do Professor Carvalho e ponto de partida de muitos treinadores famosos."
-    },
-    {
-      "name": "Mt. Moon",
-      "description": "Uma montanha mística onde os rituais das Clefairies e as pedras lunares são frequentemente encontrados."
-    },
-    {
-      "name": "Indigo Plateau",
-      "description": "A sede da Liga Pokémon, onde os treinadores que conquistam as oito insígnias desafiam a Elite Four."
-    },
-    {
-      "name": "Cerulean Cave",
-      "description": "Uma caverna perigosa, selada por muito tempo, onde habitam Pokémon fortíssimos e o lendário Mewtwo."
-    }
+  "description": "A região de Kanto é o cenário original do universo Pokémon. Rica em desenvolvimento tecnológico e urbano, é onde estão instaladas grandes entidades corporativas, como a Silph Co. O Professor Carvalho conduz suas pesquisas na bucólica Pallet Town.",
+  "locations": [
+    "Pallet Town",
+    "Viridian City",
+    "Pewter City",
+    "Cerulean City",
+    "Vermilion City",
+    "Lavender Town",
+    "Celadon City",
+    "Saffron City",
+    "Fuchsia City",
+    "Cinnabar Island",
+    "Indigo Plateau"
   ],
-  "professor": "Professor Oak (Carvalho)",
-  "villainTeam": "Equipe Rocket"
+  "notableFacts": [
+    "Kanto e Johto são as únicas regiões confirmadas que compartilham a mesma massa de terra e a mesma Liga Pokémon no Indigo Plateau.",
+    "A Silph Co., com sede em Saffron City, inventou a Master Ball, o Silph Scope e os TMs.",
+    "Lavender Town é lar da icônica Pokémon Tower, local de luto por Pokémon falecidos e envolta em mistério.",
+    "O Laboratório Cinnabar trabalhou em clonagem genética, resultando no nascimento de Mewtwo."
+  ],
+  "relatedGames": [
+    "Pokémon Red",
+    "Pokémon Blue",
+    "Pokémon Yellow",
+    "Pokémon FireRed",
+    "Pokémon LeafGreen",
+    "Pokémon Let's Go, Pikachu!",
+    "Pokémon Let's Go, Eevee!"
+  ]
 }

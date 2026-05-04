@@ -1,173 +1,225 @@
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import Link from "next/link";
-import { KantoPokedexShell } from "@/components/device/KantoPokedexShell";
-import { PokedexScreen } from "@/components/device/PokedexScreen";
+import React, { useState, useEffect, useCallback } from "react";
+import { PokedexOSLayout } from "@/components/pokedex-os/PokedexOSLayout";
 import { PokemonCard } from "@/components/pokemon/PokemonCard";
+import { Loader, ErrorState, EmptyState } from "@/components/ui/States";
+import { PokeAPIClient } from "@/lib/pokeapi/client";
+import { PokemonSearchEngine, SearchFilters } from "@/lib/pokeapi/search-engine";
 import { PokemonCardViewModel } from "@/types/view-models";
-import { PokemonService } from "@/lib/pokemon/pokemon.service";
-import { Search, ChevronLeft } from "lucide-react";
-import { PokeApiClient } from "@/lib/pokeapi/client";
-import { ENDPOINTS } from "@/lib/pokeapi/endpoints";
-import { PokemonMapper } from "@/lib/pokemon/pokemon.mapper";
 
 export default function PokedexPage() {
-  const [pokemons, setPokemons] = useState<PokemonCardViewModel[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [offset, setOffset] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const LIMIT = 20;
+  const [pokemonList, setPokemonList] = useState<PokemonCardViewModel[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [search, setSearch] = useState("");
+  const [genFilter, setGenFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [specialFilter, setSpecialFilter] = useState("all");
 
-  const loadPokemons = useCallback(async (currentOffset: number, append = false) => {
-    setIsLoading(true);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
+  const LIMIT = 30;
+
+  const loadBatch = useCallback(async (currentOffset: number, append = false, currentFilters: SearchFilters) => {
     try {
-      const newPokemons = await PokemonService.getPokemonList(LIMIT, currentOffset);
-      if (append) {
-        setPokemons(prev => [...prev, ...newPokemons]);
-      } else {
-        setPokemons(newPokemons);
-      }
-    } catch (error) {
-      console.error("Erro ao carregar pokémons", error);
+      setLoading(true);
+      setError(null);
+      
+      const searchRes = await PokemonSearchEngine.search(currentFilters, LIMIT, currentOffset);
+      setHasMore(searchRes.hasMore);
+      setTotalCount(searchRes.totalCount);
+      
+      // Fetch details only for the current paginated slice
+      const detailedPromises = searchRes.results.map(async (p) => {
+        try {
+          const detail = await PokeAPIClient.getPokemon(p.name);
+          const species = await PokeAPIClient.getPokemonSpecies(detail.id); // Get by ID to avoid form name issues
+          return {
+            id: detail.id,
+            name: detail.name,
+            types: detail.types.map((t) => t.type.name),
+            spriteUrl: detail.sprites.front_default,
+            generation: species.generation ? parseInt(species.generation.name.split("-")[1] || "0", 10) : null,
+            isLegendary: species.is_legendary,
+            isMythical: species.is_mythical
+          };
+        } catch (e) {
+          console.warn(`Failed to fetch details for ${p.name}`);
+          return null;
+        }
+      });
+
+      const detailedResults = (await Promise.all(detailedPromises)).filter(Boolean) as PokemonCardViewModel[];
+
+      setPokemonList(prev => append ? [...prev, ...detailedResults] : detailedResults);
+    } catch (err) {
+      setError("Falha ao carregar banco de dados.");
+      console.error(err);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   }, []);
 
+  // Trigger search when filters or search change
   useEffect(() => {
-    loadPokemons(0);
-  }, [loadPokemons]);
+    const debounce = setTimeout(() => {
+        loadBatch(0, false, {
+            query: search,
+            type: typeFilter,
+            generation: genFilter,
+            special: specialFilter
+        });
+    }, 400); // 400ms debounce for typing
+    return () => clearTimeout(debounce);
+  }, [search, genFilter, typeFilter, specialFilter, loadBatch]);
 
-  const handleLoadMore = () => {
-    const newOffset = offset + LIMIT;
-    setOffset(newOffset);
-    loadPokemons(newOffset, true);
+  const loadMore = () => {
+    if (!hasMore) return;
+    const nextOffset = offset + LIMIT;
+    setOffset(nextOffset);
+    loadBatch(nextOffset, true, {
+        query: search,
+        type: typeFilter,
+        generation: genFilter,
+        special: specialFilter
+    });
   };
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) {
-      setIsSearching(false);
-      setOffset(0);
-      loadPokemons(0);
-      return;
-    }
+  const RightPanel = (
+    <div className="flex flex-col gap-4 h-full">
+      <div className="bg-[#0f172a] border-2 border-[#1f2937] p-3 rounded">
+        <h3 className="text-[#38bdf8] font-bold text-xs uppercase tracking-widest mb-3">Busca</h3>
+        <div className="flex gap-2">
+          <input 
+            type="text" 
+            placeholder="Nome ou ID" 
+            value={search}
+            onChange={(e) => {
+              setOffset(0);
+              setSearch(e.target.value);
+            }}
+            className="flex-1 bg-black border border-[#374151] rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-[#38bdf8]"
+          />
+        </div>
+      </div>
 
-    setIsSearching(true);
-    setIsLoading(true);
-    try {
-      const pokemonNameOrId = searchQuery.toLowerCase().trim();
-      const pokemon = await PokeApiClient.fetch<any>(ENDPOINTS.pokemon(pokemonNameOrId));
-      const card = PokemonMapper.toCardViewModel(pokemon);
-      setPokemons([card]);
-    } catch (error) {
-      console.error("Pokemon não encontrado", error);
-      setPokemons([]); // Não encontrado
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      <div className="bg-[#0f172a] border-2 border-[#1f2937] p-3 rounded flex-1">
+        <h3 className="text-white font-bold text-xs uppercase tracking-widest mb-3">Filtros Globais</h3>
+        
+        <select 
+          className="w-full bg-black border border-[#374151] rounded px-2 py-1.5 text-xs text-white mb-2"
+          value={genFilter}
+          onChange={(e) => {
+            setOffset(0);
+            setGenFilter(e.target.value);
+          }}
+        >
+          <option value="all">Todas as Gerações</option>
+          <option value="1">Geração 1</option>
+          <option value="2">Geração 2</option>
+          <option value="3">Geração 3</option>
+          <option value="4">Geração 4</option>
+          <option value="5">Geração 5</option>
+          <option value="6">Geração 6</option>
+          <option value="7">Geração 7</option>
+          <option value="8">Geração 8</option>
+          <option value="9">Geração 9</option>
+        </select>
+        
+        <select 
+          className="w-full bg-black border border-[#374151] rounded px-2 py-1.5 text-xs text-white mb-2"
+          value={typeFilter}
+          onChange={(e) => {
+            setOffset(0);
+            setTypeFilter(e.target.value);
+          }}
+        >
+          <option value="all">Todos os Tipos</option>
+          <option value="normal">Normal</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+          <option value="electric">Electric</option>
+          <option value="ice">Ice</option>
+          <option value="fighting">Fighting</option>
+          <option value="poison">Poison</option>
+          <option value="ground">Ground</option>
+          <option value="flying">Flying</option>
+          <option value="psychic">Psychic</option>
+          <option value="bug">Bug</option>
+          <option value="rock">Rock</option>
+          <option value="ghost">Ghost</option>
+          <option value="dragon">Dragon</option>
+          <option value="dark">Dark</option>
+          <option value="steel">Steel</option>
+          <option value="fairy">Fairy</option>
+        </select>
+
+        <select 
+          className="w-full bg-black border border-[#374151] rounded px-2 py-1.5 text-xs text-white mb-2"
+          value={specialFilter}
+          onChange={(e) => {
+            setOffset(0);
+            setSpecialFilter(e.target.value);
+          }}
+        >
+          <option value="all">Status Comum</option>
+          <option value="legendary">Lendários</option>
+          <option value="mythical">Míticos</option>
+          <option value="baby">Bebês</option>
+        </select>
+        
+        <div className="mt-4 p-2 bg-black/50 border border-slate-800 rounded">
+            <div className="text-[#38bdf8] text-xl font-bold font-mono tracking-widest text-center">
+                {totalCount.toString().padStart(4, '0')}
+            </div>
+            <div className="text-[10px] text-slate-400 text-center uppercase mt-1">
+                Registros Encontrados
+            </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <KantoPokedexShell
-      isOpen={true}
-      rightPanel={
-        <div className="h-full flex flex-col p-2">
-          <h2 className="font-pixel text-xl mb-6 border-b-2 border-gray-700 pb-2">BUSCA NACIONAL</h2>
-          
-          <form onSubmit={handleSearch} className="mb-8">
-            <label className="font-pixel text-[10px] text-gray-400 block mb-2">NOME OU ID</label>
-            <div className="flex gap-2">
-              <input 
-                type="text" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Ex: pikachu, 25"
-                className="flex-1 bg-black border-2 border-gray-600 rounded p-3 font-pixel text-xs text-white focus:outline-none focus:border-[var(--color-pokedex-blue-glow)] transition-colors"
-              />
-              <button 
-                type="submit"
-                className="bg-[var(--color-pokedex-blue)] hover:bg-blue-400 p-3 rounded border-2 border-blue-800 transition-colors flex items-center justify-center"
-              >
-                <Search size={20} className="text-white" />
-              </button>
-            </div>
-            {isSearching && (
-              <button 
-                type="button" 
-                onClick={() => {
-                  setSearchQuery("");
-                  setIsSearching(false);
-                  setOffset(0);
-                  loadPokemons(0);
-                }}
-                className="mt-4 text-[10px] font-pixel text-gray-400 hover:text-white underline w-full text-center"
-              >
-                LIMPAR BUSCA
-              </button>
-            )}
-          </form>
-
-          <div className="flex-1 border-t-2 border-gray-700 pt-6">
-            <p className="font-pixel text-[10px] text-gray-400 mb-4">ESTATÍSTICAS DA TELA</p>
-            <div className="bg-[#111] border border-gray-700 rounded p-4">
-              <div className="flex justify-between mb-2">
-                <span className="font-pixel text-[10px] text-gray-500">EXIBINDO:</span>
-                <span className="font-pixel text-[10px] text-[var(--color-pokedex-blue-glow)]">{pokemons.length}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-pixel text-[10px] text-gray-500">MODO:</span>
-                <span className="font-pixel text-[10px] text-[var(--color-pokedex-blue-glow)]">{isSearching ? 'BUSCA' : 'LISTAGEM'}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      }
+    <PokedexOSLayout 
+      moduleName="NATIONAL DEX" 
+      status={loading ? "SCANNING" : "ONLINE"}
+      isScanning={loading}
+      itemsCount={totalCount}
+      rightPanel={RightPanel}
     >
-      <PokedexScreen isScanning={isLoading}>
-        <div className="flex justify-between items-center mb-6 sticky top-0 bg-[var(--color-pokedex-screen-bg)] z-30 py-2 border-b-2 border-black/10">
-          <Link href="/">
-            <button className="flex items-center gap-1 font-pixel text-[10px] hover:opacity-70 transition-opacity">
-              <ChevronLeft size={16} /> VOLTAR
-            </button>
-          </Link>
-          <h1 className="font-pixel text-sm">LISTA NACIONAL</h1>
-        </div>
-
-        {pokemons.length === 0 && !isLoading ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center opacity-60">
-            <div className="w-16 h-16 border-4 border-dashed border-black/30 rounded-full mb-4 flex items-center justify-center">
-              <span className="font-pixel text-[10px]">?</span>
+      <div className="h-full flex flex-col">
+        <div className="flex-1 overflow-y-auto os-scroll pr-2 pb-4">
+          {error ? (
+            <ErrorState message={error} />
+          ) : pokemonList.length === 0 && !loading ? (
+            <EmptyState message="Nenhum Pokémon encontrado." />
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
+              {pokemonList.map((pokemon) => (
+                <PokemonCard key={pokemon.id} pokemon={pokemon} />
+              ))}
             </div>
-            <p className="font-pixel text-[10px]">NENHUM POKÉMON<br/>ENCONTRADO</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-10">
-            {pokemons.map((pokemon, index) => (
-              <PokemonCard key={`${pokemon.id}-${index}`} pokemon={pokemon} index={index} />
-            ))}
-          </div>
-        )}
-
-        {isLoading && pokemons.length > 0 && (
-          <div className="py-4 flex justify-center text-[10px] font-pixel animate-pulse">
-            CARREGANDO...
-          </div>
-        )}
-
-        {!isSearching && pokemons.length > 0 && !isLoading && (
-          <div className="flex justify-center mt-6 pb-6">
+          )}
+          
+          {loading && pokemonList.length > 0 && (
+             <div className="py-4"><Loader text="LOADING MORE..." /></div>
+          )}
+          
+          {!loading && !error && hasMore && pokemonList.length > 0 && (
             <button 
-              onClick={handleLoadMore}
-              className="bg-black/10 hover:bg-black/20 border-2 border-black/30 px-6 py-3 rounded font-pixel text-[10px] font-bold transition-colors"
+              onClick={loadMore}
+              className="mt-6 w-full py-2 border-2 border-[#1f2937] text-[#94a3b8] font-bold text-xs uppercase tracking-widest hover:border-[#38bdf8] hover:text-[#38bdf8] transition-colors rounded"
             >
-              CARREGAR MAIS
+              CARREGAR MAIS REGISTROS
             </button>
-          </div>
-        )}
-      </PokedexScreen>
-    </KantoPokedexShell>
+          )}
+        </div>
+      </div>
+    </PokedexOSLayout>
   );
 }

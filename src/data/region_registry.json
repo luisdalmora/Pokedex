@@ -1,42 +1,92 @@
 [
   {
-    "id": "kanto",
+    "slug": "kanto",
     "name": "Kanto",
     "generation": 1,
-    "pokemonRange": "001-151",
-    "mainGames": ["red-blue", "yellow", "firered-leafgreen", "lets-go-pikachu-eevee"],
-    "description": "Kanto é a região onde tudo começou. Situada a leste de Johto, compartilha a mesma Liga Pokémon no Planalto Índigo."
+    "pokemonRange": "#001 - #151",
+    "starters": ["Bulbasaur", "Charmander", "Squirtle", "Pikachu", "Eevee"],
+    "legendaries": ["Articuno", "Zapdos", "Moltres", "Mewtwo", "Mew"],
+    "mainGames": ["Red", "Blue", "Yellow", "FireRed", "LeafGreen", "Let's Go Pikachu", "Let's Go Eevee"],
+    "description": "A primeira região descoberta. Caracterizada por sua tecnologia emergente, cidades urbanizadas como Saffron, e forte presença da corporação Silph Co. Onde a jornada Pokémon começou e berço do laboratório do Professor Carvalho em Pallet Town."
   },
   {
-    "id": "johto",
+    "slug": "johto",
     "name": "Johto",
     "generation": 2,
-    "pokemonRange": "152-251",
-    "mainGames": ["gold-silver", "crystal", "heartgold-soulsilver"],
-    "description": "Conhecida por sua rica história e tradições antigas, Johto abriga as lendas de Ho-Oh e Lugia."
+    "pokemonRange": "#152 - #251",
+    "starters": ["Chikorita", "Cyndaquil", "Totodile"],
+    "legendaries": ["Raikou", "Entei", "Suicune", "Lugia", "Ho-Oh", "Celebi"],
+    "mainGames": ["Gold", "Silver", "Crystal", "HeartGold", "SoulSilver"],
+    "description": "Uma região vizinha de Kanto, rica em história tradicional, lendas milenares e construções clássicas como a Torre de Lata em Ecruteak City."
   },
   {
-    "id": "hoenn",
+    "slug": "hoenn",
     "name": "Hoenn",
     "generation": 3,
-    "pokemonRange": "252-386",
-    "mainGames": ["ruby-sapphire", "emerald", "omegaruby-alphasapphire"],
-    "description": "Uma região de clima tropical com vastos oceanos, ilhas e o imponente vulcão Mt. Chimney."
+    "pokemonRange": "#252 - #386",
+    "starters": ["Treecko", "Torchic", "Mudkip"],
+    "legendaries": ["Regirock", "Regice", "Registeel", "Latias", "Latios", "Kyogre", "Groudon", "Rayquaza", "Jirachi", "Deoxys"],
+    "mainGames": ["Ruby", "Sapphire", "Emerald", "Omega Ruby", "Alpha Sapphire"],
+    "description": "Região com grande diversidade de climas e relevos, famosa por suas rotas aquáticas, o vulcão ativo de Mt. Chimney e a imponente cidade de Sootopolis."
   },
   {
-    "id": "sinnoh",
+    "slug": "sinnoh",
     "name": "Sinnoh",
     "generation": 4,
-    "pokemonRange": "387-493",
-    "mainGames": ["diamond-pearl", "platinum", "brilliant-diamond-shining-pearl", "legends-arceus"],
-    "description": "Região montanhosa dividida ao meio pelo Mt. Coronet. Diz-se ser o local onde o universo Pokémon foi criado."
+    "pokemonRange": "#387 - #493",
+    "starters": ["Turtwig", "Chimchar", "Piplup"],
+    "legendaries": ["Dialga", "Palkia", "Giratina", "Arceus"],
+    "mainGames": ["Diamond", "Pearl", "Platinum", "Brilliant Diamond", "Shining Pearl", "Legends: Arceus"],
+    "description": "Uma vasta terra ao norte, dominada pelo majestoso Mt. Coronet que a divide ao meio. Rica em mitos de criação do universo Pokémon."
   },
   {
-    "id": "unova",
+    "slug": "unova",
     "name": "Unova",
     "generation": 5,
-    "pokemonRange": "494-649",
-    "mainGames": ["black-white", "black-2-white-2"],
-    "description": "Inspirada em Nova York, é uma região com grandes metrópoles, pontes imponentes e forte contraste entre natureza e tecnologia."
+    "pokemonRange": "#494 - #649",
+    "starters": ["Snivy", "Tepig", "Oshawott"],
+    "legendaries": ["Reshiram", "Zekrom", "Kyurem"],
+    "mainGames": ["Black", "White", "Black 2", "White 2"],
+    "description": "Uma metrópole em constante desenvolvimento, lar de Castelia City, com forte influência da civilização moderna e separada de outras regiões."
+  },
+  {
+    "slug": "kalos",
+    "name": "Kalos",
+    "generation": 6,
+    "pokemonRange": "#650 - #721",
+    "starters": ["Chespin", "Fennekin", "Froakie"],
+    "legendaries": ["Xerneas", "Yveltal", "Zygarde", "Diancie", "Hoopa", "Volcanion"],
+    "mainGames": ["X", "Y"],
+    "description": "Uma região que valoriza a arte, beleza e moda. Famosa pela Torre Prisma em Lumiose City e o mistério das Mega Evoluções."
+  },
+  {
+    "slug": "alola",
+    "name": "Alola",
+    "generation": 7,
+    "pokemonRange": "#722 - #809",
+    "starters": ["Rowlet", "Litten", "Popplio"],
+    "legendaries": ["Solgaleo", "Lunala", "Necrozma", "Tapu Koko", "Tapu Lele", "Tapu Bulu", "Tapu Fini"],
+    "mainGames": ["Sun", "Moon", "Ultra Sun", "Ultra Moon"],
+    "description": "Um arquipélago tropical de quatro grandes ilhas. Em vez de Ginásios tradicionais, os Treinadores enfrentam o 'Island Challenge'."
+  },
+  {
+    "slug": "galar",
+    "name": "Galar",
+    "generation": 8,
+    "pokemonRange": "#810 - #898",
+    "starters": ["Grookey", "Scorbunny", "Sobble"],
+    "legendaries": ["Zacian", "Zamazenta", "Eternatus", "Calyrex"],
+    "mainGames": ["Sword", "Shield"],
+    "description": "Uma região que mescla vilas rurais pitorescas e cidades industriais modernas. As batalhas Pokémon são o esporte mais popular, realizadas em estádios colossais com o fenômeno Dynamax."
+  },
+  {
+    "slug": "paldea",
+    "name": "Paldea",
+    "generation": 9,
+    "pokemonRange": "#899 - #1025",
+    "starters": ["Sprigatito", "Fuecoco", "Quaxly"],
+    "legendaries": ["Koraidon", "Miraidon", "Terapagos"],
+    "mainGames": ["Scarlet", "Violet"],
+    "description": "Uma região imensa de mundo aberto inspirada na Península Ibérica, centrada no fenômeno da Terastalização e na gigantesca cratera de Area Zero."
   }
 ]

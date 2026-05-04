@@ -1,53 +1,64 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { PokedexOSLayout } from "@/components/pokedex-os/PokedexOSLayout";
+import { RegionViewModel } from "@/types/view-models";
+import { PokedexOSPanel } from "@/components/pokedex-os/PokedexOSPanel";
 import Link from "next/link";
-import { KantoPokedexShell } from "@/components/device/KantoPokedexShell";
-import { PokedexScreen } from "@/components/device/PokedexScreen";
-import { ChevronLeft, Map as MapIcon } from "lucide-react";
-import regionsData from "@/data/region_registry.json";
+import regionData from "@/data/region_registry.json";
+
+const mappedRegions: RegionViewModel[] = (regionData as RegionViewModel[]).map((r) => ({
+  slug: r.slug,
+  name: r.name,
+  generation: r.generation,
+  pokemonRange: r.pokemonRange,
+  starters: r.starters || [],
+  legendaries: r.legendaries || [],
+  mainGames: r.mainGames || [],
+  description: r.description || ""
+}));
 
 export default function RegionsPage() {
-  return (
-    <KantoPokedexShell
-      isOpen={true}
-      rightPanel={
-        <div className="h-full flex flex-col p-4 justify-center items-center text-center">
-          <MapIcon size={48} className="mb-4 text-gray-400" />
-          <h2 className="font-pixel text-xl mb-4">MAPA MUNDI</h2>
-          <p className="text-sm text-gray-400 leading-relaxed mb-8">
-            Selecione uma região para acessar o banco de dados regional e informações de líderes de ginásio.
-          </p>
-        </div>
-      }
-    >
-      <PokedexScreen>
-        <div className="flex justify-between items-center mb-6 sticky top-0 bg-[var(--color-pokedex-screen-bg)] z-30 py-2 border-b-2 border-black/10">
-          <Link href="/">
-            <button className="flex items-center gap-1 font-pixel text-[10px] hover:opacity-70 transition-opacity">
-              <ChevronLeft size={16} /> VOLTAR
-            </button>
-          </Link>
-          <h1 className="font-pixel text-sm">REGIÕES</h1>
-        </div>
+  const [regions] = useState<RegionViewModel[]>(mappedRegions);
 
-        <div className="flex flex-col gap-4 pb-10">
-          {regionsData.map((region) => (
-            <Link key={region.id} href={region.id === "kanto" ? "/regions/kanto" : `/regions/${region.id}`}>
-              <div className="bg-white/80 backdrop-blur border-4 border-gray-400 hover:border-gray-600 rounded-lg p-4 cursor-pointer transition-all hover:scale-[1.02]">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="font-pixel text-sm uppercase">{region.name}</h2>
-                  <span className="font-pixel text-[8px] bg-gray-200 px-2 py-1 rounded">GEN {region.generation}</span>
+  return (
+    <PokedexOSLayout moduleName="GEOGRAPHIC MAPPING" itemsCount={regions.length}>
+      <div className="h-full overflow-y-auto os-scroll pr-2 pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
+          {regions.map((region) => (
+            <Link key={region.slug} href={region.slug === "kanto" ? "/regions/kanto" : `/regions/${region.slug}`} className="group">
+              <PokedexOSPanel className={`h-full transition-all duration-300 ${region.slug === "kanto" ? "border-red-500 hover:bg-red-900/20" : "border-[#1f2937] hover:border-cyan-500 hover:bg-[#0f172a]"}`}>
+                <div className="flex justify-between items-start border-b border-slate-800 pb-2 mb-3">
+                  <div>
+                    <h3 className={`text-lg font-black uppercase tracking-widest ${region.slug === "kanto" ? "text-red-400 group-hover:text-red-300" : "text-white group-hover:text-cyan-400"}`}>
+                      {region.name}
+                    </h3>
+                    <span className="text-[10px] text-slate-500 font-mono">GEN {region.generation} :: {region.pokemonRange}</span>
+                  </div>
+                  {region.slug === "kanto" && (
+                    <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)] animate-pulse"></div>
+                  )}
                 </div>
-                <p className="text-xs text-gray-600 mb-2">{region.description}</p>
-                <div className="font-pixel text-[8px] text-gray-500">
-                  POKÉMON: #{region.pokemonRange}
+                
+                <div className="bg-slate-900/80 p-4 rounded border border-emerald-900/50 italic text-slate-300 text-sm leading-relaxed font-mono">
+                    &ldquo;{region.description}&rdquo;
                 </div>
-              </div>
+
+                <div className="flex flex-col gap-1 text-[10px] text-slate-500 font-mono mt-auto">
+                  <div className="flex justify-between">
+                    <span>GAMES:</span>
+                    <span className="text-slate-300 text-right">{region.mainGames.slice(0, 2).join(", ")} {region.mainGames.length > 2 ? "..." : ""}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>STARTERS:</span>
+                    <span className="text-slate-300 text-right">{region.starters.slice(0, 3).join(", ")}</span>
+                  </div>
+                </div>
+              </PokedexOSPanel>
             </Link>
           ))}
         </div>
-      </PokedexScreen>
-    </KantoPokedexShell>
+      </div>
+    </PokedexOSLayout>
   );
 }

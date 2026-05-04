@@ -1,144 +1,148 @@
-import { PokemonData } from "@/types/pokeapi";
+import { SpriteResolveOptions, SpriteResolvedResult } from "@/types/sprites";
+import { SpriteGallery } from "@/types/view-models";
+import { getGenerationName, getDefaultVersionForGeneration, extractGenerationNumber } from "./sprite-version-map";
+import { buildFallbackChain } from "./sprite-fallbacks";
 
-export type SpriteMode = 
-  | "origin-generation" 
-  | "selected-generation" 
-  | "modern" 
-  | "official-artwork" 
-  | "game-version";
-
-export interface ResolveSpriteOptions {
-  pokemon: PokemonData;
-  originGeneration: number;
-  mode?: SpriteMode;
-  selectedGeneration?: number;
-  selectedVersion?: string;
-  shiny?: boolean;
-  back?: boolean;
-  female?: boolean;
-  animated?: boolean;
-}
-
-export interface SpriteResolvedResult {
-  url: string | null;
-  source: string;
-  generation: number | null;
-  version: string | null;
-  isFallback: boolean;
-}
-
-export function resolvePokemonSprite(options: ResolveSpriteOptions): SpriteResolvedResult {
+export function resolvePokemonSprite(options: SpriteResolveOptions): SpriteResolvedResult {
   const {
     pokemon,
-    originGeneration,
-    mode = "origin-generation",
+    species,
+    mode,
     selectedGeneration,
     selectedVersion,
     shiny = false,
     back = false,
     female = false,
-    animated = false,
+    animated = false
   } = options;
 
   const sprites = pokemon.sprites;
-  
-  // Helpers
-  const getPropName = (b: boolean, s: boolean, f: boolean) => {
-    let name = b ? "back" : "front";
-    if (s) name += "_shiny";
-    else name += "_default";
-    if (f) {
-       // Only append female if it exists. But we check dynamically later.
-       name = name.replace("default", "female").replace("shiny", "shiny_female");
-    }
-    return name;
-  };
+  if (!sprites) return buildFallbackChain(pokemon.id, mode)[0];
 
-  const getSpriteFromObj = (obj: any, b: boolean, s: boolean, f: boolean) => {
+  const propKey = [
+    back ? "back" : "front",
+    shiny ? "shiny" : "default",
+    female ? "female" : null
+  ].filter(Boolean).join("_");
+
+  // Fix: The female key in PokeAPI is like "front_female" or "front_shiny_female". If female is true, but female sprite is null, fallback to male.
+  const getProp = (obj: Record<string, string | null | undefined> | null | undefined): string | null => {
     if (!obj) return null;
-    const propName = getPropName(b, s, f);
-    if (f && obj[propName]) return obj[propName];
-    // Fallback to non-female if female requested but not found
-    const fallbackProp = getPropName(b, s, false);
-    return obj[fallbackProp] || null;
+    let url = obj[propKey];
+    if (!url && female) {
+      // Fallback to non-female if female doesn't exist
+      const fallbackKey = [back ? "back" : "front", shiny ? "shiny" : "default"].join("_");
+      url = obj[fallbackKey];
+    }
+    return url || null;
   };
 
-  // 1. Official Artwork Mode
+  const getModern = (): SpriteResolvedResult | null => {
+    const homeUrl = getProp(sprites.other?.home as any);
+    if (homeUrl) return { url: homeUrl, source: "home", generation: null, version: null, isFallback: false };
+    
+    const artworkUrl = getProp(sprites.other?.["official-artwork"] as any);
+    if (artworkUrl) return { url: artworkUrl, source: "official-artwork", generation: null, version: null, isFallback: false };
+    
+    return null;
+  };
+
+  const getHistorical = (genStr: string, version: string): SpriteResolvedResult | null => {
+    const genData = sprites.versions?.[genStr];
+    if (!genData) return null;
+    
+    const versionData = genData[version] as any;
+    if (!versionData) return null;
+
+    if (animated && versionData.animated) {
+      const animUrl = getProp(versionData.animated);
+      if (animUrl) return { url: animUrl, source: `animated-${version}`, generation: extractGenerationNumber(genStr), version, isFallback: false };
+    }
+
+    const url = getProp(versionData);
+    if (url) return { url, source: version, generation: extractGenerationNumber(genStr), version, isFallback: false };
+
+    return null;
+  };
+
   if (mode === "official-artwork") {
-    const artworkObj = sprites.other?.["official-artwork"];
-    const url = getSpriteFromObj(artworkObj, false, shiny, false); // no back/female for artwork usually
+    const url = getProp(sprites.other?.["official-artwork"] as any);
     if (url) return { url, source: "official-artwork", generation: null, version: null, isFallback: false };
   }
 
-  // 2. Modern Mode (HOME or Showdown for animated)
   if (mode === "modern") {
-    if (animated && sprites.other?.showdown) {
-      const url = getSpriteFromObj(sprites.other.showdown, back, shiny, female);
-      if (url) return { url, source: "showdown", generation: null, version: null, isFallback: false };
-    }
-    const homeObj = sprites.other?.home;
-    const url = getSpriteFromObj(homeObj, false, shiny, female);
-    if (url) return { url, source: "home", generation: null, version: null, isFallback: false };
+    const modern = getModern();
+    if (modern) return modern;
   }
 
-  // 3. Origin or Selected Generation Mode
+  if (mode === "game-version" && selectedGeneration && selectedVersion) {
+    const genName = getGenerationName(selectedGeneration);
+    if (genName) {
+      const historical = getHistorical(genName, selectedVersion);
+      if (historical) return historical;
+    }
+  }
+
   if (mode === "origin-generation" || mode === "selected-generation") {
-    const targetGen = mode === "origin-generation" ? originGeneration : (selectedGeneration || originGeneration);
+    let targetGen = mode === "selected-generation" && selectedGeneration ? selectedGeneration : null;
     
-    // Mapeamento de versões primárias por geração
-    const genVersionMap: Record<number, { genKey: string; verKey: string }> = {
-      1: { genKey: "generation-i", verKey: "red-blue" }, // Yellow is also an option
-      2: { genKey: "generation-ii", verKey: "crystal" },
-      3: { genKey: "generation-iii", verKey: "emerald" },
-      4: { genKey: "generation-iv", verKey: "platinum" },
-      5: { genKey: "generation-v", verKey: "black-white" },
-      6: { genKey: "generation-vi", verKey: "omegaruby-alphasapphire" },
-      7: { genKey: "generation-vii", verKey: "ultra-sun-ultra-moon" },
-    };
-
-    const targetInfo = genVersionMap[targetGen];
-    
-    if (targetInfo && sprites.versions && (sprites.versions as any)[targetInfo.genKey]) {
-      const genObj = (sprites.versions as any)[targetInfo.genKey];
-      
-      // Override for Gen 5 Animated
-      if (targetGen === 5 && animated && genObj["black-white"]?.animated) {
-        const url = getSpriteFromObj(genObj["black-white"].animated, back, shiny, female);
-        if (url) return { url, source: "versions", generation: targetGen, version: "black-white-animated", isFallback: false };
-      }
-
-      const verObj = genObj[targetInfo.verKey];
-      const url = getSpriteFromObj(verObj, back, shiny, female);
-      
-      if (url) {
-        return { url, source: "versions", generation: targetGen, version: targetInfo.verKey, isFallback: false };
-      }
+    if (mode === "origin-generation" && species?.generation) {
+       targetGen = extractGenerationNumber(species.generation.name);
     }
-  }
 
-  // 4. Game Version Mode
-  if (mode === "game-version" && selectedVersion && sprites.versions) {
-    // Find the version across generations
-    for (const [genKey, genObj] of Object.entries(sprites.versions)) {
-      if ((genObj as any)[selectedVersion]) {
-        const url = getSpriteFromObj((genObj as any)[selectedVersion], back, shiny, female);
-        if (url) {
-          const genNum = parseInt(genKey.split("-")[1].replace(/i|v|x/g, (m) => ({"i": 1, "v": 5, "x": 10}[m] as any) || m)); // rough roman to int if needed, actually we just return what we have
-          return { url, source: "versions", generation: null, version: selectedVersion, isFallback: false };
+    // Try target generation
+    if (targetGen) {
+      const genName = getGenerationName(targetGen);
+      const defaultVersion = getDefaultVersionForGeneration(targetGen);
+      if (genName && defaultVersion) {
+        const historical = getHistorical(genName, defaultVersion);
+        if (historical) return historical;
+        
+        // If preferred version fails, try any version in that generation
+        if (sprites.versions && sprites.versions[genName]) {
+            for(const v of Object.keys(sprites.versions[genName])) {
+                const hist = getHistorical(genName, v);
+                if (hist) return hist;
+            }
         }
       }
     }
   }
 
-  // FALLBACKS
-  // 1. Official Artwork
-  let fallbackUrl = getSpriteFromObj(sprites.other?.["official-artwork"], false, shiny, false);
-  if (fallbackUrl) return { url: fallbackUrl, source: "official-artwork", generation: null, version: null, isFallback: true };
+  // Final fallback strategy
+  const defaultUrl = getProp(sprites as any);
+  if (defaultUrl) {
+      return { url: defaultUrl, source: "default", generation: null, version: null, isFallback: true };
+  }
 
-  // 2. Default Front
-  fallbackUrl = getSpriteFromObj(sprites, back, shiny, female);
-  if (fallbackUrl) return { url: fallbackUrl, source: "base", generation: null, version: null, isFallback: true };
+  return buildFallbackChain(pokemon.id, mode)[0];
+}
 
-  // 3. Absolute Last Resort
-  return { url: null, source: "none", generation: null, version: null, isFallback: true };
+import { PokemonData } from "@/types/pokeapi";
+
+export function buildSpriteGallery(pokemon: PokemonData): SpriteGallery {
+  const s = pokemon.sprites;
+  const mappedVersions: any = {};
+  if (s.versions) {
+    Object.entries(s.versions).forEach(([gen, games]) => {
+      mappedVersions[gen] = {};
+      Object.entries(games).forEach(([game, sprites]: [string, any]) => {
+        mappedVersions[gen][game] = {
+          front: sprites.front_default || null,
+          back: sprites.back_default || null,
+          shiny: sprites.front_shiny || null,
+          backShiny: sprites.back_shiny || null
+        };
+      });
+    });
+  }
+
+  return {
+    main: s.other?.["official-artwork"]?.front_default || s.front_default || null,
+    officialArtwork: s.other?.["official-artwork"]?.front_default || null,
+    home: s.other?.home?.front_default || null,
+    dreamWorld: s.other?.dream_world?.front_default || null,
+    animated: s.versions?.["generation-v"]?.["black-white"]?.animated?.front_default || null,
+    versions: mappedVersions
+  };
 }

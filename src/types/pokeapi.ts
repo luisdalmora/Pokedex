@@ -1,4 +1,3 @@
-// Tipos básicos da PokeAPI
 export interface NamedAPIResource {
   name: string;
   url: string;
@@ -41,7 +40,20 @@ export interface PokemonSprites {
       front_female: string | null;
       front_shiny_female: string | null;
     };
-    showdown?: any;
+    showdown?: {
+      front_default: string | null;
+      front_shiny: string | null;
+      front_female: string | null;
+      front_shiny_female: string | null;
+      back_default: string | null;
+      back_shiny: string | null;
+      back_female: string | null;
+      back_shiny_female: string | null;
+    };
+    dream_world?: {
+      front_default: string | null;
+      front_female: string | null;
+    };
   };
   versions?: {
     [generation: string]: {
@@ -54,7 +66,16 @@ export interface PokemonSprites {
         back_shiny: string | null;
         back_female: string | null;
         back_shiny_female: string | null;
-        animated?: any;
+        animated?: {
+          front_default: string | null;
+          front_shiny: string | null;
+          front_female: string | null;
+          front_shiny_female: string | null;
+          back_default: string | null;
+          back_shiny: string | null;
+          back_female: string | null;
+          back_shiny_female: string | null;
+        };
       };
     };
   };
@@ -109,7 +130,6 @@ export interface PokemonSpeciesData {
     language: NamedAPIResource;
     version: NamedAPIResource;
   }[];
-  form_descriptions: any[];
   genera: {
     genus: string;
     language: NamedAPIResource;
@@ -165,6 +185,10 @@ export interface TypeData {
     half_damage_from: NamedAPIResource[];
     double_damage_from: NamedAPIResource[];
   };
+  pokemon: {
+    slot: number;
+    pokemon: NamedAPIResource;
+  }[];
 }
 
 export interface PaginatedResponse<T> {
@@ -172,4 +196,23 @@ export interface PaginatedResponse<T> {
   next: string | null;
   previous: string | null;
   results: T[];
+}
+
+export interface PokedexData {
+  id: number;
+  name: string;
+  is_main_series: boolean;
+  pokemon_entries: {
+    entry_number: number;
+    pokemon_species: NamedAPIResource;
+  }[];
+}
+
+export interface RegionData {
+  id: number;
+  name: string;
+  locations: NamedAPIResource[];
+  main_generation: NamedAPIResource;
+  pokedexes: NamedAPIResource[];
+  version_groups: NamedAPIResource[];
 }

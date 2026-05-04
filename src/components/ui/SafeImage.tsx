@@ -1,99 +1,57 @@
 "use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import { cn } from "@/utils/cn";
 
-import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+interface SafeImageProps {
+  src: string | null;
+  alt: string;
+  className?: string;
+  fallbackSrc?: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
 }
 
-interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  fallback?: string;
-  useSkeleton?: boolean;
-}
-
-export const SafeImage = forwardRef<HTMLImageElement, SafeImageProps>(({ 
+export function SafeImage({ 
   src, 
-  fallback = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png", 
+  alt, 
   className, 
-  alt,
-  useSkeleton = true,
-  onDrag,
-  onDragStart,
-  onDragEnd,
-  onAnimationStart,
-  ...props 
-}, ref) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [errorCount, setErrorCount] = useState(0);
-  const [currentSrc, setCurrentSrc] = useState(src);
-  const [hasError, setHasError] = useState(false);
-  const internalRef = useRef<HTMLImageElement>(null);
+  fallbackSrc = "/fallback-placeholder.png",
+  width = 96,
+  height = 96,
+  priority = false
+}: SafeImageProps) {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  // Sync refs: internal usage + external ref
-  useImperativeHandle(ref, () => internalRef.current!);
-
-  // Sync with prop changes
-  useEffect(() => {
-    setCurrentSrc(src);
-    setErrorCount(0);
-    setIsLoaded(false);
-    setHasError(false);
-  }, [src]);
-
-  // Handle cached images
-  useEffect(() => {
-    if (internalRef.current?.complete && internalRef.current?.naturalWidth > 0) {
-      setIsLoaded(true);
-    }
-  }, [currentSrc]);
-
-  const handleError = () => {
-    if (errorCount === 0 && typeof src === "string" && src.includes("home")) {
-      const officialArtwork = src.replace("other/home", "other/official-artwork");
-      setCurrentSrc(officialArtwork);
-      setErrorCount(1);
-    } else {
-      setCurrentSrc(fallback);
-      setErrorCount(2);
-      setHasError(true);
-      setIsLoaded(true); 
-    }
-  };
+  const imageSrc = error || !src ? fallbackSrc : src;
 
   return (
-    <div className={cn("relative overflow-hidden flex items-center justify-center", className)}>
-      <AnimatePresence>
-        {!isLoaded && useSkeleton && (
-          <motion.div 
-            key="skeleton"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-slate-100 dark:bg-slate-800 animate-pulse z-10"
-          />
-        )}
-      </AnimatePresence>
-      
-      <motion.img
-        ref={internalRef}
-        key={typeof currentSrc === "string" ? currentSrc : undefined}
-        src={currentSrc}
+    <div className={cn("relative flex items-center justify-center", className)}>
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-full animate-pulse">
+          <div className="w-1/2 h-1/2 rounded-full border-2 border-[#38bdf8] border-t-transparent animate-spin"></div>
+        </div>
+      )}
+      <Image
+        src={imageSrc}
         alt={alt}
-        initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: isLoaded ? 1 : 0,
-          filter: hasError ? "grayscale(1) opacity(0.2)" : "none"
+        width={width}
+        height={height}
+        priority={priority}
+        className={cn(
+          "object-contain transition-opacity duration-300",
+          loading ? "opacity-0" : "opacity-100",
+          error ? "opacity-50 grayscale" : ""
+        )}
+        onLoad={() => setLoading(false)}
+        onError={() => {
+          setError(true);
+          setLoading(false);
         }}
-        transition={{ duration: 0.3 }}
-        onLoad={() => setIsLoaded(true)}
-        onError={handleError}
-        className={cn("w-full h-full object-contain", className)}
-        {...props}
+        unoptimized
       />
     </div>
   );
-});
-
-SafeImage.displayName = "SafeImage";
+}

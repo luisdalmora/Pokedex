@@ -1,92 +1,66 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { PokedexOSLayout } from "@/components/pokedex-os/PokedexOSLayout";
+import { GameViewModel } from "@/types/view-models";
+import { PokedexOSPanel } from "@/components/pokedex-os/PokedexOSPanel";
 import Link from "next/link";
-import { KantoPokedexShell } from "@/components/device/KantoPokedexShell";
-import { PokedexScreen } from "@/components/device/PokedexScreen";
-import { ChevronLeft, Gamepad2 } from "lucide-react";
-import gamesRegistry from "@/data/games_registry.json";
+import gamesData from "@/data/games_registry.json";
+
+const sortedGames = [...(gamesData as GameViewModel[])].sort((a, b) => a.year - b.year);
 
 export default function GamesPage() {
-  // Agrupar por geração
-  const gamesByGen = gamesRegistry.reduce((acc, game) => {
+  const [games, setGames] = useState<GameViewModel[]>(sortedGames);
+
+  // Group by generation
+  const grouped = games.reduce((acc, game) => {
     if (!acc[game.generation]) acc[game.generation] = [];
     acc[game.generation].push(game);
     return acc;
-  }, {} as Record<number, typeof gamesRegistry>);
+  }, {} as Record<number, GameViewModel[]>);
 
   return (
-    <KantoPokedexShell
-      isOpen={true}
-      rightPanel={
-        <div className="h-full flex flex-col p-4 justify-center items-center text-center">
-          <Gamepad2 size={48} className="mb-4 text-[var(--color-pokedex-blue-glow)]" />
-          <h2 className="font-pixel text-xl mb-4 text-[var(--color-pokedex-blue-glow)]">REGISTRO DE JOGOS</h2>
-          <p className="text-sm text-gray-300 leading-relaxed mb-8">
-            Explore a linha do tempo dos jogos principais da franquia, organizados por geração e console.
-          </p>
-          <div className="bg-[#111] p-4 rounded-lg border-2 border-gray-700 w-full">
-            <h3 className="font-pixel text-[10px] text-gray-500 mb-2">ESTATÍSTICAS</h3>
-            <div className="flex justify-between border-b border-gray-800 pb-2 mb-2">
-              <span className="text-xs text-gray-400">Total de Jogos</span>
-              <span className="font-pixel text-xs text-white">{gamesRegistry.length}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-xs text-gray-400">Gerações</span>
-              <span className="font-pixel text-xs text-white">{Object.keys(gamesByGen).length}</span>
-            </div>
-          </div>
-        </div>
-      }
-    >
-      <PokedexScreen>
-        <div className="flex justify-between items-center mb-6 sticky top-0 bg-[var(--color-pokedex-screen-bg)] z-30 py-2 border-b-2 border-black/10">
-          <Link href="/">
-            <button className="flex items-center gap-1 font-pixel text-[10px] hover:opacity-70 transition-opacity">
-              <ChevronLeft size={16} /> VOLTAR
-            </button>
-          </Link>
-          <h1 className="font-pixel text-sm">LINHA DO TEMPO</h1>
-        </div>
-
-        <div className="flex flex-col gap-8 pb-10">
-          {Object.entries(gamesByGen).map(([gen, games]) => (
-            <div key={gen} className="relative">
-              <h2 className="font-pixel text-xs bg-black text-white px-3 py-1 inline-block rounded mb-4">
-                GERAÇÃO {gen}
+    <PokedexOSLayout moduleName="SOFTWARE TIMELINE" itemsCount={games.length}>
+      <div className="h-full overflow-y-auto os-scroll pr-2 pb-8 w-full max-w-4xl mx-auto">
+        <div className="relative border-l-2 border-[#1f2937] ml-4 mt-6">
+          {Object.keys(grouped).sort().map((gen) => (
+            <div key={gen} className="mb-10 pl-6 relative">
+              <div className="absolute w-4 h-4 rounded-full bg-cyan-500 -left-[9px] top-1 shadow-[0_0_10px_rgba(6,182,212,0.8)] border-2 border-[#0f172a]"></div>
+              
+              <h2 className="text-xl font-black italic tracking-widest text-cyan-400 mb-4 uppercase">
+                Geração {gen}
               </h2>
               
-              <div className="grid grid-cols-1 gap-4 border-l-2 border-black/20 pl-4 ml-2">
-                {games.map((game) => (
-                  <div key={game.id} className="bg-white/80 backdrop-blur border-2 border-black/20 rounded p-3 relative hover:scale-[1.01] transition-transform">
-                    <div className="absolute -left-[21px] top-4 w-3 h-3 rounded-full bg-[var(--color-pokedex-red)] border-2 border-white"></div>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="font-bold text-gray-800 leading-tight mb-1">{game.name}</h3>
-                        <div className="flex gap-2 text-xs text-gray-500 mb-2">
-                          <span>{game.year}</span>
-                          <span>•</span>
-                          <span className="capitalize">{game.region}</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {grouped[parseInt(gen, 10)].map((game) => (
+                  <Link href={`/games/${game.id}`} key={game.id} className="group block">
+                    <PokedexOSPanel className="transition-all duration-300 border-[#1f2937] group-hover:border-cyan-500 group-hover:bg-[#111827]">
+                      <div className="flex justify-between items-start border-b border-slate-800 pb-2 mb-2">
+                        <div className="flex flex-col">
+                          <span className="text-[9px] text-slate-500 uppercase tracking-widest bg-black/50 px-1 py-0.5 rounded w-max mb-1 border border-slate-800">
+                            {game.console}
+                          </span>
+                          <h3 className="text-white font-bold group-hover:text-cyan-400 transition-colors uppercase">
+                            {game.name}
+                          </h3>
+                        </div>
+                        <div className="text-cyan-500 font-mono font-bold text-xs">
+                          {game.year}
                         </div>
                       </div>
-                    </div>
-                    <div className="flex justify-between items-center mt-2 pt-2 border-t border-black/10">
-                      <span className="text-[10px] font-pixel text-gray-400 uppercase bg-black/5 px-2 py-1 rounded">
-                        {game.console}
-                      </span>
-                      {game.isRemake && (
-                        <span className="text-[9px] font-pixel text-orange-500 uppercase border border-orange-200 bg-orange-50 px-1 rounded">
-                          Remake
-                        </span>
-                      )}
-                    </div>
-                  </div>
+                      
+                      <div className="text-slate-400 text-[10px] font-mono flex gap-3 uppercase">
+                        <span><span className="text-slate-600">REG:</span> {game.region}</span>
+                        {game.isRemake && <span className="text-yellow-500 bg-yellow-500/10 px-1 rounded">REMAKE</span>}
+                      </div>
+                    </PokedexOSPanel>
+                  </Link>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </PokedexScreen>
-    </KantoPokedexShell>
+      </div>
+    </PokedexOSLayout>
   );
 }

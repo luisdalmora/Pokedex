@@ -1,0 +1,162 @@
+﻿
+C:\xampp\htdocs\Pokedex\src\app\favorites\page.tsx
+  15:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\favorites\page.tsx:15:5
+  13 |
+  14 |   useEffect(() => {
+> 15 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |     setFavorites(getFavorites());
+  17 |     
+  18 |     const handleUpdate = () => {  react-hooks/set-state-in-effect
+
+C:\xampp\htdocs\Pokedex\src\app\games\[id]\page.tsx
+  72:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\xampp\htdocs\Pokedex\src\app\games\page.tsx
+  15:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\games\page.tsx:15:5
+  13 |   useEffect(() => {
+  14 |     const sorted = [...(gamesData as GameViewModel[])].sort((a, b) => a.year - b.year);
+> 15 |     setGames(sorted);
+     |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |   }, []);
+  17 |
+  18 |   // Group by generation  react-hooks/set-state-in-effect
+
+C:\xampp\htdocs\Pokedex\src\app\page.tsx
+   17:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\page.tsx:17:7
+  15 |     if (booted) {
+  16 |       const randomId = Math.floor(Math.random() * 151) + 1; // Keep it classic for Kanto Scanner hero
+> 17 |       setHeroSprite(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${randomId}.png`);
+     |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  18 |     }
+  19 |   }, [booted]);
+  20 |  react-hooks/set-state-in-effect
+  113:46  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\xampp\htdocs\Pokedex\src\app\page.tsx:113:46
+  111 |           </Link>
+  112 |
+> 113 |           <Link href={`/pokemon/${Math.floor(Math.random() * 1025) + 1}`} className="group">
+      |                                              ^^^^^^^^^^^^^ Cannot call impure function
+  114 |             <PokedexOSPanel className="h-full bg-slate-900 hover:bg-slate-800 transition-colors border-cyan-900 hover:border-cyan-400 cursor-pointer">
+  115 |               <div className="flex items-center justify-center h-full">
+  116 |                 <span className="text-cyan-500 font-bold tracking-widest text-sm group-hover:text-cyan-300">                                                                                                                                                                                     react-hooks/purity
+
+C:\xampp\htdocs\Pokedex\src\app\pokedex\page.tsx
+  49:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  58:14  warning  'err' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  68:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\pokedex\page.tsx:68:5
+  66 |   useEffect(() => {
+  67 |     // Reset offset when filters change
+> 68 |     setOffset(0);
+     |     ^^^^^^^^^ Avoid calling setState() directly within an effect
+  69 |     const debounce = setTimeout(() => {
+  70 |         loadBatch(0, false, {
+  71 |             query: search,  react-hooks/set-state-in-effect
+
+C:\xampp\htdocs\Pokedex\src\app\pokemon\[id]\page.tsx
+   23:8   warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+   50:20  warning  'e' is defined but never used     @typescript-eslint/no-unused-vars
+  134:16  warning  'err' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\xampp\htdocs\Pokedex\src\app\regions\[region]\page.tsx
+  71:21  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  71:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\xampp\htdocs\Pokedex\src\app\regions\kanto\page.tsx
+  55:18  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  62:14  warning  'err' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  70:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\regions\kanto\page.tsx:70:5
+  68 |
+  69 |   useEffect(() => {
+> 70 |     setOffset(0);
+     |     ^^^^^^^^^ Avoid calling setState() directly within an effect
+  71 |     const debounce = setTimeout(() => {
+  72 |       loadKantoDex(0, false, {
+  73 |         query: search,  react-hooks/set-state-in-effect
+
+C:\xampp\htdocs\Pokedex\src\app\regions\page.tsx
+  16:54  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-explicit-any
+  26:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\app\regions\page.tsx:26:5
+  24 |       description: r.description || ""
+  25 |     }));
+> 26 |     setRegions(mapped);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |   }, []);
+  28 |
+  29 |   return (  react-hooks/set-state-in-effect
+  41:99  error  Comments inside children section of tag should be placed inside braces                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/jsx-no-comment-textnodes
+
+C:\xampp\htdocs\Pokedex\src\components\pokedex-os\PokedexOSLayout.tsx
+  3:17  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\xampp\htdocs\Pokedex\src\components\pokemon\FavoritePokemonButton.tsx
+  20:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\xampp\htdocs\Pokedex\src\components\pokemon\FavoritePokemonButton.tsx:20:5
+  18 |     // while ensuring client-side initialization from localStorage
+  19 |     const fav = isFavorite(pokemon.id);
+> 20 |     setIsFav(fav);
+     |     ^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |   }, [pokemon.id]);
+  22 |
+  23 |   const handleToggle = (e: React.MouseEvent) => {  react-hooks/set-state-in-effect
+
+Ô£û 21 problems (12 errors, 9 warnings)
+
